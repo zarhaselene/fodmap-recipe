@@ -6,7 +6,7 @@ import Testimonials from "./components/home/Testimonials";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-primary">
       {/* Hero */}
       <section className="hero">
         <Hero
