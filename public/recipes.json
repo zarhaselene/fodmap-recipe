@@ -12,7 +12,7 @@
       "servings": 4,
       "level": "Low FODMAP",
       "image": "/images/lemon-chicken.jpg",
-      "dietaryNeeds": ["Vegan", "Gluten-Free", "Dairy-Free"],
+      "dietaryNeeds": ["Gluten-Free", "Dairy-Free"],
       "description": "This delicious lemon herb grilled chicken is perfect for those following a low FODMAP diet. The bright citrus flavors and fresh herbs make this a refreshing and satisfying dinner option.",
       "nutritionFacts": {
         "calories": 210,
