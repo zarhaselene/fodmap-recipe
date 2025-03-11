@@ -1,8 +1,7 @@
 "use client";
-
+import { Menu } from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";
-import MenuIcon from "@/app/components/icons/MenuIcon";
 import { usePathname } from "next/navigation";
 
 const navLinkClasses =
@@ -67,7 +66,7 @@ const Navbar = () => {
               aria-expanded={mobileMenuOpen}
             >
               <span className="sr-only">Open menu</span>
-              <MenuIcon className="w-8 h-8 text-teal-700" />
+              <Menu className="block h-8 w-8 text-teal-700" />
             </button>
           </div>
         </div>
