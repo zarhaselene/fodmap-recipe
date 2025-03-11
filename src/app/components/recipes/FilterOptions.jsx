@@ -4,8 +4,6 @@ import { Filter, ChevronDown, X, RefreshCw } from "lucide-react";
 const FilterOptions = ({
   activeDietaryNeeds,
   setActiveDietaryNeeds,
-  activeFodmapLevels,
-  setActiveFodmapLevels,
   activeMealTypes,
   setActiveMealTypes,
 }) => {
@@ -21,7 +19,6 @@ const FilterOptions = ({
     "Soy-Free",
     "Sugar-Free",
   ];
-  const fodmapLevels = ["Low FODMAP", "Moderate FODMAP", "High FODMAP"];
   const mealTypes = ["Breakfast", "Lunch", "Dinner", "Desserts", "Snacks"];
 
   const toggleDropdown = (type) => {
@@ -30,14 +27,6 @@ const FilterOptions = ({
 
   const toggleDietaryFilter = (filter) => {
     setActiveDietaryNeeds((prev) =>
-      prev.includes(filter)
-        ? prev.filter((f) => f !== filter)
-        : [...prev, filter]
-    );
-  };
-
-  const toggleFodmapFilter = (filter) => {
-    setActiveFodmapLevels((prev) =>
       prev.includes(filter)
         ? prev.filter((f) => f !== filter)
         : [...prev, filter]
@@ -55,21 +44,18 @@ const FilterOptions = ({
   // Reset all filters
   const resetAllFilters = () => {
     setActiveDietaryNeeds([]);
-    setActiveFodmapLevels([]);
     setActiveMealTypes([]);
   };
 
   // Helper function to get toggle function based on filter type
   const getToggleFunction = (type, option) => {
     if (type === "dietary") return () => toggleDietaryFilter(option);
-    if (type === "fodmap") return () => toggleFodmapFilter(option);
     if (type === "meal") return () => toggleMealTypeFilter(option);
   };
 
   // Helper function to check if option is active
   const isFilterActive = (type, option) => {
     if (type === "dietary") return activeDietaryNeeds.includes(option);
-    if (type === "fodmap") return activeFodmapLevels.includes(option);
     if (type === "meal") return activeMealTypes.includes(option);
     return false;
   };
@@ -85,18 +71,12 @@ const FilterOptions = ({
   }, []);
 
   // Get all active filters
-  const allActiveFilters = [
-    ...activeDietaryNeeds,
-    ...activeFodmapLevels,
-    ...activeMealTypes,
-  ];
+  const allActiveFilters = [...activeDietaryNeeds, ...activeMealTypes];
 
   // Helper function to remove filter based on its type
   const removeFilter = (filter) => {
     if (dietaryNeedsOptions.includes(filter)) {
       toggleDietaryFilter(filter);
-    } else if (fodmapLevels.includes(filter)) {
-      toggleFodmapFilter(filter);
     } else if (mealTypes.includes(filter)) {
       toggleMealTypeFilter(filter);
     }
@@ -106,13 +86,12 @@ const FilterOptions = ({
     <div className="mt-6 mb-8" ref={dropdownRef}>
       {/* Filter buttons in the top row with reset button */}
       <div className="flex flex-wrap items-center justify-between">
-        <div className="flex flex-wrap items-center">
+        <div className="flex flex-wrap items-baseline">
           <Filter size={18} className="text-gray-500 mr-2" />
           <span className="text-gray-700 mr-6">Filters</span>
 
           {/* Dropdown Buttons */}
           {[
-            { label: "FODMAP Level", type: "fodmap", options: fodmapLevels },
             { label: "Meal Type", type: "meal", options: mealTypes },
             {
               label: "Dietary Needs",

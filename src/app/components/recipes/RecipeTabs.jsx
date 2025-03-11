@@ -90,7 +90,7 @@ export default function RecipeTabs({
           <h2 className="text-xl font-bold mb-4">Instructions</h2>
           <ol className="space-y-6">
             {recipe.instructions.map((instruction, index) => (
-              <li key={index} className="flex">
+              <li key={index} className="flex items-center">
                 <div className="flex-shrink-0 h-8 w-8 bg-teal-500 text-white rounded-full flex items-center justify-center mr-4 font-medium mt-1">
                   {index + 1}
                 </div>
@@ -102,7 +102,7 @@ export default function RecipeTabs({
       )}
 
       {/* Tags */}
-      <div className="mt-12">
+      <div className="mt-12 mb-8">
         <h3 className="text-gray-500 text-sm mb-2">Tags</h3>
         <div className="flex flex-wrap gap-2">
           {recipe.tags.map((tag, index) => (
@@ -115,7 +115,7 @@ export default function RecipeTabs({
           ))}
         </div>
       </div>
-      <br />
+      {/* Related recipes */}
     </div>
   );
 }

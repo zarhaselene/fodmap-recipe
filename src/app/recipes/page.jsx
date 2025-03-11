@@ -13,7 +13,6 @@ const Recipes = () => {
   const [error, setError] = useState(null);
 
   const [activeDietaryNeeds, setActiveDietaryNeeds] = useState([]);
-  const [activeFodmapLevels, setActiveFodmapLevels] = useState([]);
   const [activeMealTypes, setActiveMealTypes] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -55,7 +54,13 @@ const Recipes = () => {
     };
   }, []);
 
-  if (loading) return <p className="text-center">Loading...</p>;
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <div className="border-t-4 border-teal-500 border-solid w-8 h-8 rounded-full animate-spin"></div>
+      </div>
+    );
+  }
   if (error) return <p className="text-center text-red-500">{error}</p>;
 
   const filteredRecipes = recipes.filter((recipe) => {
@@ -63,14 +68,10 @@ const Recipes = () => {
       activeDietaryNeeds.length === 0 ||
       activeDietaryNeeds.every((need) => recipe.dietaryNeeds.includes(need));
 
-    const matchesFodmap =
-      activeFodmapLevels.length === 0 ||
-      activeFodmapLevels.includes(recipe.level);
-
     const matchesMealType =
       activeMealTypes.length === 0 || activeMealTypes.includes(recipe.category);
 
-    return matchesDietary && matchesFodmap && matchesMealType;
+    return matchesDietary && matchesMealType;
   });
 
   const searchedRecipes = filteredRecipes.filter((recipe) =>
@@ -115,24 +116,22 @@ const Recipes = () => {
         <FilterOptions
           activeDietaryNeeds={activeDietaryNeeds}
           setActiveDietaryNeeds={setActiveDietaryNeeds}
-          activeFodmapLevels={activeFodmapLevels}
-          setActiveFodmapLevels={setActiveFodmapLevels}
           activeMealTypes={activeMealTypes}
           setActiveMealTypes={setActiveMealTypes}
         />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12">
           {currentRecipes.length > 0 ? (
             currentRecipes.map((recipe) => (
-              <Link href={`/recipes/${recipe.id}`}>
+              <Link key={recipe.id} href={`/recipes/${recipe.id}`}>
                 <RecipeCard
                   key={recipe.id}
+                  level={recipe.level}
                   image={recipe.image}
-                  tag={recipe.level}
                   title={recipe.title}
-                  category={recipe.category}
                   rating={recipe.rating}
                   reviews={recipe.reviews}
-                  time={recipe.time}
+                  totalTime={recipe.totalTime}
+                  category={recipe.category}
                   dietaryNeeds={recipe.dietaryNeeds}
                 />
               </Link>
