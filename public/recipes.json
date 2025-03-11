@@ -1,0 +1,1312 @@
+{
+  "recipes": [
+    {
+      "id": 1,
+      "title": "Lemon Herb Grilled Chicken",
+      "category": "Dinner",
+      "rating": 4.2,
+      "reviews": "(42 reviews)",
+      "prepTime": "10 min",
+      "cookTime": "15 min",
+      "time": "25 min",
+      "servings": 4,
+      "level": "Low FODMAP",
+      "image": "/images/lemon-chicken.jpg",
+      "dietaryNeeds": ["Vegan", "Gluten-Free", "Dairy-Free"],
+      "description": "This delicious lemon herb grilled chicken is perfect for those following a low FODMAP diet. The bright citrus flavors and fresh herbs make this a refreshing and satisfying dinner option.",
+      "nutritionFacts": {
+        "calories": 210,
+        "protein": 32,
+        "fat": 8,
+        "carbs": 2,
+        "fiber": 0,
+        "sodium": 340
+      },
+      "ingredients": {
+        "eu": [
+          "4 boneless, skinless chicken breasts",
+          "60 ml fresh lemon juice",
+          "30 ml olive oil",
+          "2 tablespoons fresh rosemary, chopped",
+          "2 tablespoons fresh thyme, chopped",
+          "2 teaspoons lemon zest",
+          "2 cloves garlic-infused oil",
+          "5 g salt",
+          "2 g black pepper"
+        ],
+        "us": [
+          "4 boneless, skinless chicken breasts",
+          "¼ cup fresh lemon juice",
+          "2 tablespoons olive oil",
+          "2 tablespoons fresh rosemary, chopped",
+          "2 tablespoons fresh thyme, chopped",
+          "2 teaspoons lemon zest",
+          "2 cloves garlic-infused oil",
+          "1 teaspoon salt",
+          "½ teaspoon black pepper"
+        ]
+      },
+      "instructions": [
+        "In a large bowl or zip-top bag, combine lemon juice, olive oil, rosemary, thyme, lemon zest, garlic-infused oil, salt, and pepper.",
+        "Add chicken breasts to the marinade, ensuring they're well coated. Marinate in the refrigerator for at least 30 minutes or up to 4 hours.",
+        "Preheat grill to medium-high heat (about 375-400°F or 190-200°C).",
+        "Remove chicken from marinade and discard remaining liquid.",
+        "Grill chicken for 6-7 minutes per side, or until internal temperature reaches 165°F (74°C).",
+        "Let chicken rest for 5 minutes before serving to allow juices to redistribute.",
+        "Garnish with additional fresh herbs and lemon slices if desired."
+      ],
+      "fodmapTips": [
+        "Garlic-infused oil is low FODMAP as the fructans in garlic are not oil-soluble.",
+        "Lemon juice and zest are low FODMAP and add flavor without triggering symptoms.",
+        "This recipe is naturally gluten-free and dairy-free.",
+        "Pair with low FODMAP vegetables like carrot, zucchini, or potato for a complete meal."
+      ],
+      "tags": [
+        "Chicken",
+        "Dinner",
+        "Gluten-Free",
+        "Dairy-Free",
+        "High-Protein",
+        "Low FODMAP"
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Maple Ginger Salmon",
+      "category": "Dinner",
+      "rating": 4.7,
+      "reviews": "(36 reviews)",
+      "prepTime": "5 min",
+      "cookTime": "15 min",
+      "time": "20 min",
+      "servings": 4,
+      "level": "Low FODMAP",
+      "image": "/images/maple-salmon.jpg",
+      "dietaryNeeds": ["Gluten-Free", "Dairy-Free"],
+      "description": "This maple ginger salmon is a perfect low FODMAP option with a delightful balance of sweet and savory flavors. The natural maple sweetness complements the rich salmon perfectly for an elegant yet simple dinner.",
+      "nutritionFacts": {
+        "calories": 280,
+        "protein": 29,
+        "fat": 15,
+        "carbs": 8,
+        "fiber": 0,
+        "sodium": 310
+      },
+      "ingredients": {
+        "eu": [
+          "4 salmon fillets (about 150g each)",
+          "45 ml pure maple syrup",
+          "15 ml tamari (gluten-free soy sauce)",
+          "1 tablespoon fresh ginger, grated",
+          "15 ml olive oil",
+          "1 tablespoon fresh lime juice",
+          "2 g black pepper",
+          "2 g salt",
+          "Fresh chives for garnish, chopped"
+        ],
+        "us": [
+          "4 salmon fillets (about 5-6 oz each)",
+          "3 tablespoons pure maple syrup",
+          "1 tablespoon tamari (gluten-free soy sauce)",
+          "1 tablespoon fresh ginger, grated",
+          "1 tablespoon olive oil",
+          "1 tablespoon fresh lime juice",
+          "½ teaspoon black pepper",
+          "½ teaspoon salt",
+          "Fresh chives for garnish, chopped"
+        ]
+      },
+      "instructions": [
+        "Preheat oven to 400°F (200°C) and line a baking sheet with parchment paper.",
+        "In a small bowl, whisk together maple syrup, tamari, grated ginger, olive oil, lime juice, salt and pepper.",
+        "Place salmon fillets on the prepared baking sheet, skin side down.",
+        "Brush the maple mixture generously over each salmon fillet.",
+        "Bake for 12-15 minutes, or until salmon flakes easily with a fork and reaches an internal temperature of 145°F (63°C).",
+        "Garnish with fresh chopped chives before serving."
+      ],
+      "fodmapTips": [
+        "Pure maple syrup is low FODMAP in portions up to 2 tablespoons (40g) per serving.",
+        "Fresh ginger is low FODMAP and adds flavor without triggering symptoms.",
+        "Tamari is a great low FODMAP alternative to regular soy sauce, which may contain wheat.",
+        "Pair with low FODMAP sides like rice, quinoa, or roasted carrots for a complete meal."
+      ],
+      "tags": [
+        "Seafood",
+        "Dinner",
+        "Gluten-Free",
+        "Dairy-Free",
+        "High-Protein",
+        "Low FODMAP",
+        "Quick Meal"
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Quinoa Breakfast Bowl",
+      "category": "Breakfast",
+      "rating": 4.4,
+      "reviews": "(28 reviews)",
+      "prepTime": "5 min",
+      "cookTime": "15 min",
+      "time": "20 min",
+      "servings": 2,
+      "level": "Low FODMAP",
+      "image": "/images/quinoa-breakfast.jpg",
+      "dietaryNeeds": ["Vegan", "Gluten-Free", "Dairy-Free"],
+      "description": "Start your day with this nutritious low FODMAP quinoa breakfast bowl. Packed with protein and fiber, this warm breakfast alternative to oatmeal will keep you satisfied all morning.",
+      "nutritionFacts": {
+        "calories": 320,
+        "protein": 10,
+        "fat": 12,
+        "carbs": 45,
+        "fiber": 7,
+        "sodium": 120
+      },
+      "ingredients": {
+        "eu": [
+          "100g quinoa, rinsed",
+          "240ml lactose-free milk or almond milk",
+          "120ml water",
+          "30g pure maple syrup",
+          "5g cinnamon",
+          "1g salt",
+          "30g sliced strawberries",
+          "30g blueberries",
+          "15g chopped walnuts",
+          "15g pumpkin seeds"
+        ],
+        "us": [
+          "½ cup quinoa, rinsed",
+          "1 cup lactose-free milk or almond milk",
+          "½ cup water",
+          "2 tablespoons pure maple syrup",
+          "1 teaspoon cinnamon",
+          "¼ teaspoon salt",
+          "¼ cup sliced strawberries",
+          "¼ cup blueberries",
+          "1 tablespoon chopped walnuts",
+          "1 tablespoon pumpkin seeds"
+        ]
+      },
+      "instructions": [
+        "In a medium saucepan, combine quinoa, milk, water, and salt.",
+        "Bring to a boil, then reduce heat to low and simmer, covered, for 12-15 minutes until liquid is absorbed.",
+        "Remove from heat and let stand, covered, for 5 minutes.",
+        "Stir in maple syrup and cinnamon.",
+        "Divide into bowls and top with strawberries, blueberries, walnuts, and pumpkin seeds."
+      ],
+      "fodmapTips": [
+        "Quinoa is a low FODMAP grain that provides a good source of protein.",
+        "Use lactose-free milk or almond milk as regular milk contains lactose, a FODMAP.",
+        "Strawberries and blueberries are low FODMAP fruits in the portions specified.",
+        "Walnuts and pumpkin seeds are low FODMAP in small portions and add healthy fats."
+      ],
+      "tags": [
+        "Breakfast",
+        "Vegan",
+        "Gluten-Free",
+        "Dairy-Free",
+        "Low FODMAP",
+        "High-Fiber"
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Mediterranean Chicken Salad",
+      "category": "Lunch",
+      "rating": 4.5,
+      "reviews": "(31 reviews)",
+      "prepTime": "15 min",
+      "cookTime": "0 min",
+      "time": "15 min",
+      "servings": 2,
+      "level": "Low FODMAP",
+      "image": "/images/mediterranean-salad.jpg",
+      "dietaryNeeds": ["Gluten-Free", "Dairy-Free"],
+      "description": "This refreshing Mediterranean chicken salad is perfect for a light lunch that won't trigger IBS symptoms. Packed with protein and fresh vegetables, it's as nutritious as it is delicious.",
+      "nutritionFacts": {
+        "calories": 350,
+        "protein": 28,
+        "fat": 22,
+        "carbs": 12,
+        "fiber": 4,
+        "sodium": 380
+      },
+      "ingredients": {
+        "eu": [
+          "200g cooked chicken breast, diced",
+          "100g mixed lettuce leaves",
+          "50g cucumber, diced",
+          "50g cherry tomatoes, halved",
+          "30g red bell pepper, diced",
+          "30g kalamata olives, pitted",
+          "20g feta cheese (lactose-free if needed)",
+          "10g fresh basil leaves, torn",
+          "15ml olive oil",
+          "10ml lemon juice",
+          "5ml Dijon mustard",
+          "2g dried oregano",
+          "Salt and pepper to taste"
+        ],
+        "us": [
+          "2 cups cooked chicken breast, diced",
+          "2 cups mixed lettuce leaves",
+          "½ cup cucumber, diced",
+          "½ cup cherry tomatoes, halved",
+          "¼ cup red bell pepper, diced",
+          "¼ cup kalamata olives, pitted",
+          "2 tablespoons feta cheese (lactose-free if needed)",
+          "¼ cup fresh basil leaves, torn",
+          "1 tablespoon olive oil",
+          "2 teaspoons lemon juice",
+          "1 teaspoon Dijon mustard",
+          "½ teaspoon dried oregano",
+          "Salt and pepper to taste"
+        ]
+      },
+      "instructions": [
+        "In a large bowl, combine lettuce, cucumber, tomatoes, bell pepper, olives, and basil.",
+        "In a small bowl, whisk together olive oil, lemon juice, Dijon mustard, oregano, salt, and pepper.",
+        "Add the cooked chicken to the salad bowl.",
+        "Drizzle the dressing over the salad and toss gently to combine.",
+        "Sprinkle with feta cheese before serving."
+      ],
+      "fodmapTips": [
+        "Cherry tomatoes are low FODMAP in servings up to ½ cup (75g).",
+        "Cucumber is low FODMAP with the skin on in servings up to ½ cup (75g).",
+        "Red bell peppers are low FODMAP in servings up to ¼ cup (38g).",
+        "Feta cheese is typically low in lactose, but use a lactose-free version if you're very sensitive."
+      ],
+      "tags": [
+        "Lunch",
+        "Salad",
+        "Chicken",
+        "Gluten-Free",
+        "Low FODMAP",
+        "High-Protein",
+        "Quick Meal"
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Peanut Butter Energy Balls",
+      "category": "Snacks",
+      "rating": 4.8,
+      "reviews": "(52 reviews)",
+      "prepTime": "15 min",
+      "cookTime": "0 min",
+      "time": "15 min",
+      "servings": 12,
+      "level": "Low FODMAP",
+      "image": "/images/energy-balls.jpg",
+      "dietaryNeeds": ["Vegan", "Gluten-Free", "Dairy-Free"],
+      "description": "These no-bake peanut butter energy balls make the perfect low FODMAP snack. They're great for on-the-go energy boosts without triggering digestive symptoms.",
+      "nutritionFacts": {
+        "calories": 120,
+        "protein": 4,
+        "fat": 8,
+        "carbs": 10,
+        "fiber": 2,
+        "sodium": 40
+      },
+      "ingredients": {
+        "eu": [
+          "120g natural peanut butter",
+          "60g pure maple syrup",
+          "5ml vanilla extract",
+          "70g gluten-free rolled oats",
+          "30g ground flaxseed",
+          "15g chia seeds",
+          "30g dark chocolate chips (low FODMAP)",
+          "1g salt"
+        ],
+        "us": [
+          "½ cup natural peanut butter",
+          "¼ cup pure maple syrup",
+          "1 teaspoon vanilla extract",
+          "¾ cup gluten-free rolled oats",
+          "¼ cup ground flaxseed",
+          "1 tablespoon chia seeds",
+          "¼ cup dark chocolate chips (low FODMAP)",
+          "¼ teaspoon salt"
+        ]
+      },
+      "instructions": [
+        "In a large bowl, mix together peanut butter, maple syrup, and vanilla extract until well combined.",
+        "Add in the rolled oats, ground flaxseed, chia seeds, and salt. Mix until thoroughly combined.",
+        "Fold in the chocolate chips.",
+        "Cover and refrigerate the mixture for 30 minutes to make it easier to handle.",
+        "Using a tablespoon, scoop the mixture and roll into 12 balls with your hands.",
+        "Store in an airtight container in the refrigerator for up to one week."
+      ],
+      "fodmapTips": [
+        "Natural peanut butter is low FODMAP in servings up to 2 tablespoons (32g).",
+        "Oats are low FODMAP in servings up to ½ cup (52g) per sitting.",
+        "Dark chocolate is low FODMAP in servings up to 30g (check that it doesn't contain high FODMAP ingredients).",
+        "Chia seeds and flaxseed are low FODMAP and provide healthy omega-3 fatty acids."
+      ],
+      "tags": [
+        "Snacks",
+        "Vegan",
+        "Gluten-Free",
+        "Dairy-Free",
+        "Low FODMAP",
+        "No-Bake"
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Spaghetti Squash Pasta",
+      "category": "Dinner",
+      "rating": 4.3,
+      "reviews": "(39 reviews)",
+      "prepTime": "10 min",
+      "cookTime": "45 min",
+      "time": "55 min",
+      "servings": 4,
+      "level": "Low FODMAP",
+      "image": "/images/spaghetti-squash.jpg",
+      "dietaryNeeds": ["Vegan", "Gluten-Free", "Dairy-Free"],
+      "description": "This low FODMAP spaghetti squash pasta is a delicious alternative to traditional pasta dishes. The light vegetable base pairs perfectly with a simple herb-infused tomato sauce.",
+      "nutritionFacts": {
+        "calories": 220,
+        "protein": 5,
+        "fat": 10,
+        "carbs": 28,
+        "fiber": 6,
+        "sodium": 290
+      },
+      "ingredients": {
+        "eu": [
+          "1 medium spaghetti squash (about 1.2kg)",
+          "30ml olive oil, divided",
+          "400g canned diced tomatoes",
+          "15g fresh basil leaves, chopped",
+          "5g dried oregano",
+          "5g fresh thyme leaves",
+          "30ml garlic-infused oil",
+          "10ml balsamic vinegar",
+          "5g salt",
+          "2g black pepper",
+          "30g pine nuts, toasted (optional)"
+        ],
+        "us": [
+          "1 medium spaghetti squash (about 2.5-3 lbs)",
+          "2 tablespoons olive oil, divided",
+          "1 can (14.5 oz) diced tomatoes",
+          "½ cup fresh basil leaves, chopped",
+          "1 teaspoon dried oregano",
+          "1 teaspoon fresh thyme leaves",
+          "2 tablespoons garlic-infused oil",
+          "2 teaspoons balsamic vinegar",
+          "1 teaspoon salt",
+          "½ teaspoon black pepper",
+          "¼ cup pine nuts, toasted (optional)"
+        ]
+      },
+      "instructions": [
+        "Preheat oven to 375°F (190°C). Line a baking sheet with parchment paper.",
+        "Cut the spaghetti squash in half lengthwise and scoop out the seeds.",
+        "Brush the cut sides with 1 tablespoon olive oil and season with salt and pepper.",
+        "Place the squash halves cut-side down on the prepared baking sheet.",
+        "Bake for 35-45 minutes, until the flesh is tender and can be easily scraped with a fork.",
+        "While the squash is baking, heat garlic-infused oil in a large skillet over medium heat.",
+        "Add diced tomatoes, dried oregano, thyme, salt, and pepper.",
+        "Simmer for 15-20 minutes, until the sauce thickens slightly.",
+        "Stir in balsamic vinegar and half of the fresh basil. Remove from heat.",
+        "When squash is done, let it cool slightly, then use a fork to scrape the flesh into spaghetti-like strands.",
+        "Toss the spaghetti squash with the remaining 1 tablespoon olive oil.",
+        "Serve topped with tomato sauce, remaining fresh basil, and toasted pine nuts if using."
+      ],
+      "fodmapTips": [
+        "Spaghetti squash is a low FODMAP alternative to regular pasta.",
+        "Garlic-infused oil provides the flavor without the FODMAPs, as the fructans in garlic are not oil-soluble.",
+        "Canned tomatoes are low FODMAP in servings up to ½ cup (92g) per sitting.",
+        "This recipe can be made with gluten-free pasta instead of spaghetti squash if preferred."
+      ],
+      "tags": [
+        "Dinner",
+        "Vegan",
+        "Gluten-Free",
+        "Dairy-Free",
+        "Low FODMAP",
+        "Vegetarian"
+      ]
+    },
+    {
+      "id": 7,
+      "title": "Blueberry Lemon Muffins",
+      "category": "Breakfast",
+      "rating": 4.6,
+      "reviews": "(47 reviews)",
+      "prepTime": "15 min",
+      "cookTime": "25 min",
+      "time": "40 min",
+      "servings": 12,
+      "level": "Low FODMAP",
+      "image": "/images/blueberry-muffins.jpg",
+      "dietaryNeeds": ["Gluten-Free", "Dairy-Free"],
+      "description": "These gluten-free blueberry lemon muffins are perfect for a low FODMAP breakfast or snack. The bright citrus flavor complements the sweet blueberries for a delicious morning treat.",
+      "nutritionFacts": {
+        "calories": 185,
+        "protein": 3,
+        "fat": 9,
+        "carbs": 24,
+        "fiber": 2,
+        "sodium": 160
+      },
+      "ingredients": {
+        "eu": [
+          "240g gluten-free all-purpose flour",
+          "100g granulated sugar",
+          "12g baking powder (gluten-free)",
+          "2g salt",
+          "2 large eggs",
+          "120ml lactose-free milk or almond milk",
+          "60ml vegetable oil",
+          "5ml vanilla extract",
+          "15ml lemon juice",
+          "15g lemon zest (about 2 lemons)",
+          "150g fresh blueberries",
+          "30g coarse sugar for topping (optional)"
+        ],
+        "us": [
+          "2 cups gluten-free all-purpose flour",
+          "½ cup granulated sugar",
+          "1 tablespoon baking powder (gluten-free)",
+          "½ teaspoon salt",
+          "2 large eggs",
+          "½ cup lactose-free milk or almond milk",
+          "¼ cup vegetable oil",
+          "1 teaspoon vanilla extract",
+          "1 tablespoon lemon juice",
+          "1 tablespoon lemon zest (about 2 lemons)",
+          "1 cup fresh blueberries",
+          "2 tablespoons coarse sugar for topping (optional)"
+        ]
+      },
+      "instructions": [
+        "Preheat oven to 375°F (190°C). Line a 12-cup muffin tin with paper liners.",
+        "In a large bowl, whisk together gluten-free flour, sugar, baking powder, and salt.",
+        "In a separate bowl, beat eggs and then add lactose-free milk, oil, vanilla extract, lemon juice, and lemon zest.",
+        "Pour the wet ingredients into the dry ingredients and stir just until combined. Do not overmix.",
+        "Gently fold in the blueberries.",
+        "Divide batter evenly among the muffin cups, filling each about ¾ full.",
+        "If using, sprinkle coarse sugar on top of each muffin.",
+        "Bake for 22-25 minutes, or until a toothpick inserted into the center comes out clean.",
+        "Allow muffins to cool in the pan for 5 minutes before transferring to a wire rack to cool completely."
+      ],
+      "fodmapTips": [
+        "Blueberries are low FODMAP in servings up to 20 berries (28g) per sitting.",
+        "Use a certified gluten-free all-purpose flour blend that doesn't contain high FODMAP ingredients like chickpea flour.",
+        "Lactose-free milk or almond milk are both suitable low FODMAP alternatives to regular milk.",
+        "Lemon juice and zest add flavor without adding FODMAPs."
+      ],
+      "tags": [
+        "Breakfast",
+        "Baking",
+        "Gluten-Free",
+        "Dairy-Free",
+        "Low FODMAP",
+        "Snack"
+      ]
+    },
+    {
+      "id": 8,
+      "title": "Teriyaki Tofu Stir-Fry",
+      "category": "Dinner",
+      "rating": 4.4,
+      "reviews": "(33 reviews)",
+      "prepTime": "20 min",
+      "cookTime": "15 min",
+      "time": "35 min",
+      "servings": 4,
+      "level": "Low FODMAP",
+      "image": "/images/teriyaki-tofu.jpg",
+      "dietaryNeeds": ["Vegan", "Gluten-Free", "Dairy-Free"],
+      "description": "This flavorful teriyaki tofu stir-fry is a plant-based low FODMAP dinner option. The homemade teriyaki sauce is carefully crafted to be stomach-friendly while still delivering that classic sweet and savory taste.",
+      "nutritionFacts": {
+        "calories": 290,
+        "protein": 16,
+        "fat": 14,
+        "carbs": 28,
+        "fiber": 5,
+        "sodium": 520
+      },
+      "ingredients": {
+        "eu": [
+          "400g firm tofu, pressed and cubed",
+          "30ml sesame oil, divided",
+          "100g carrots, julienned",
+          "100g bok choy, chopped",
+          "100g red bell pepper, sliced",
+          "50g bean sprouts",
+          "15g green parts of spring onions, chopped",
+          "15ml rice vinegar",
+          "45ml tamari (gluten-free soy sauce)",
+          "30ml pure maple syrup",
+          "10g fresh ginger, grated",
+          "10ml garlic-infused oil",
+          "5g cornstarch",
+          "30ml water",
+          "5g sesame seeds for garnish",
+          "Cooked rice for serving (optional)"
+        ],
+        "us": [
+          "14 oz firm tofu, pressed and cubed",
+          "2 tablespoons sesame oil, divided",
+          "1 cup carrots, julienned",
+          "1 cup bok choy, chopped",
+          "1 cup red bell pepper, sliced",
+          "½ cup bean sprouts",
+          "¼ cup green parts of spring onions, chopped",
+          "1 tablespoon rice vinegar",
+          "3 tablespoons tamari (gluten-free soy sauce)",
+          "2 tablespoons pure maple syrup",
+          "2 teaspoons fresh ginger, grated",
+          "2 teaspoons garlic-infused oil",
+          "1 teaspoon cornstarch",
+          "2 tablespoons water",
+          "1 teaspoon sesame seeds for garnish",
+          "Cooked rice for serving (optional)"
+        ]
+      },
+      "instructions": [
+        "Press tofu for at least 15 minutes to remove excess moisture, then cut into 1-inch cubes.",
+        "In a small bowl, whisk together tamari, maple syrup, rice vinegar, grated ginger, garlic-infused oil, cornstarch, and water to make the teriyaki sauce.",
+        "Heat 1 tablespoon sesame oil in a large wok or skillet over medium-high heat.",
+        "Add tofu cubes and cook for 2-3 minutes on each side until golden brown. Remove from pan and set aside.",
+        "Add remaining 1 tablespoon sesame oil to the pan.",
+        "Add carrots and stir-fry for 2 minutes, then add red bell pepper and continue cooking for 2 more minutes.",
+        "Add bok choy and bean sprouts, and stir-fry for another 2 minutes until vegetables are tender-crisp.",
+        "Return tofu to the pan and pour the teriyaki sauce over everything.",
+        "Cook for 2-3 minutes until the sauce thickens and coats everything evenly.",
+        "Stir in the green parts of spring onions and remove from heat.",
+        "Garnish with sesame seeds and serve over rice if desired."
+      ],
+      "fodmapTips": [
+        "Use only the green parts of spring onions, as the white parts are high in FODMAPs.",
+        "Garlic-infused oil provides flavor without the FODMAPs present in fresh garlic.",
+        "Bean sprouts, bok choy, carrots, and red bell peppers are all low FODMAP vegetables in the portions specified.",
+        "Tamari is a gluten-free alternative to regular soy sauce, which may contain wheat."
+      ],
+      "tags": [
+        "Dinner",
+        "Vegan",
+        "Tofu",
+        "Gluten-Free",
+        "Dairy-Free",
+        "Low FODMAP",
+        "Stir-Fry"
+      ]
+    },
+    {
+      "id": 9,
+      "title": "Banana Oat Pancakes",
+      "category": "Breakfast",
+      "rating": 4.7,
+      "reviews": "(45 reviews)",
+      "prepTime": "10 min",
+      "cookTime": "15 min",
+      "time": "25 min",
+      "servings": 4,
+      "level": "Low FODMAP",
+      "image": "/images/banana-pancakes.jpg",
+      "dietaryNeeds": ["Gluten-Free", "Dairy-Free"],
+      "description": "These fluffy banana oat pancakes are a delicious low FODMAP breakfast option. Made with just the right amount of ripe banana to stay within low FODMAP guidelines, they're the perfect weekend treat.",
+      "nutritionFacts": {
+        "calories": 250,
+        "protein": 8,
+        "fat": 9,
+        "carbs": 36,
+        "fiber": 4,
+        "sodium": 220
+      },
+      "ingredients": {
+        "eu": [
+          "120g gluten-free rolled oats",
+          "120g gluten-free all-purpose flour",
+          "10g baking powder (gluten-free)",
+          "3g cinnamon",
+          "1g salt",
+          "2 large eggs",
+          "240ml lactose-free milk or almond milk",
+          "1 ripe banana (100g), mashed",
+          "30ml maple syrup",
+          "5ml vanilla extract",
+          "30g unsalted butter or coconut oil, melted (plus more for cooking)",
+          "Fresh strawberries for serving (optional)",
+          "Pure maple syrup for serving (optional)"
+        ],
+        "us": [
+          "1 cup gluten-free rolled oats",
+          "1 cup gluten-free all-purpose flour",
+          "2 teaspoons baking powder (gluten-free)",
+          "¾ teaspoon cinnamon",
+          "¼ teaspoon salt",
+          "2 large eggs",
+          "1 cup lactose-free milk or almond milk",
+          "1 ripe banana (about ⅓ cup mashed)",
+          "2 tablespoons maple syrup",
+          "1 teaspoon vanilla extract",
+          "2 tablespoons unsalted butter or coconut oil, melted (plus more for cooking)",
+          "Fresh strawberries for serving (optional)",
+          "Pure maple syrup for serving (optional)"
+        ]
+      },
+      "instructions": [
+        "In a food processor or blender, process the rolled oats until they become a coarse flour.",
+        "In a large bowl, whisk together the ground oats, gluten-free flour, baking powder, cinnamon, and salt.",
+        "In a separate bowl, beat the eggs, then add lactose-free milk, mashed banana, maple syrup, vanilla extract, and melted butter or coconut oil.",
+        "Pour the wet ingredients into the dry ingredients and stir until just combined. Let the batter rest for 5 minutes.",
+        "Heat a non-stick pan or griddle over medium heat and lightly grease with butter or oil.",
+        "For each pancake, pour about ¼ cup of batter onto the pan. Cook until bubbles form on the surface, about 2-3 minutes.",
+        "Flip the pancake and cook for another 1-2 minutes until golden brown and cooked through.",
+        "Serve warm with fresh strawberries and a drizzle of maple syrup if desired."
+      ],
+      "fodmapTips": [
+        "Unripe bananas are high in FODMAPs, but ripe bananas (with brown spots) are low FODMAP in portions up to 33g per sitting.",
+        "This recipe uses one banana divided into 4 servings, keeping each serving within low FODMAP guidelines.",
+        "Lactose-free milk or almond milk are both suitable low FODMAP alternatives to regular milk.",
+        "Strawberries are low FODMAP in servings up to 5 medium or 65g per sitting."
+      ],
+      "tags": [
+        "Breakfast",
+        "Pancakes",
+        "Gluten-Free",
+        "Dairy-Free",
+        "Low FODMAP",
+        "Weekend Brunch"
+      ]
+    },
+    {
+      "id": 10,
+      "title": "Chocolate Chia Pudding",
+      "category": "Dessert",
+      "rating": 4.5,
+      "reviews": "(38 reviews)",
+      "prepTime": "10 min",
+      "cookTime": "0 min",
+      "time": "10 min (plus 4 hours chilling)",
+      "servings": 4,
+      "level": "Low FODMAP",
+      "image": "/images/chocolate-chia.jpg",
+      "dietaryNeeds": ["Vegan", "Gluten-Free", "Dairy-Free"],
+      "description": "This creamy chocolate chia pudding is a delicious low FODMAP dessert that requires minimal effort. Just mix, chill, and enjoy this nutritious treat that's full of fiber and healthy fats.",
+      "nutritionFacts": {
+        "calories": 210,
+        "protein": 6,
+        "fat": 14,
+        "carbs": 18,
+        "fiber": 10,
+        "sodium": 70
+      },
+      "ingredients": {
+        "eu": [
+          "480ml almond milk or lactose-free milk",
+          "60g chia seeds",
+          "30g unsweetened cocoa powder",
+          "45ml pure maple syrup",
+          "5ml vanilla extract",
+          "1g salt",
+          "Fresh raspberries for topping (optional)",
+          "Dark chocolate shavings for garnish (optional)"
+        ],
+        "us": [
+          "2 cups almond milk or lactose-free milk",
+          "½ cup chia seeds",
+          "¼ cup unsweetened cocoa powder",
+          "3 tablespoons pure maple syrup",
+          "1 teaspoon vanilla extract",
+          "¼ teaspoon salt",
+          "Fresh raspberries for topping (optional)",
+          "Dark chocolate shavings for garnish (optional)"
+        ]
+      },
+      "instructions": [
+        "In a medium bowl, whisk together almond milk, cocoa powder, maple syrup, vanilla extract, and salt until well combined.",
+        "Add chia seeds and whisk thoroughly to prevent clumping.",
+        "Cover and refrigerate for at least 4 hours or overnight, stirring once after about 30 minutes to break up any clumps.",
+        "When ready to serve, give the pudding a good stir. If it's too thick, add a splash more almond milk.",
+        "Divide into serving bowls and top with fresh raspberries and dark chocolate shavings if desired."
+      ],
+      "fodmapTips": [
+        "Chia seeds are low FODMAP and provide excellent fiber content, which can help regulate digestion.",
+        "Almond milk is low FODMAP in servings up to 1 cup (250ml) per sitting.",
+        "Cocoa powder is low FODMAP in servings up to 2-3 heaped teaspoons (8g) per sitting.",
+        "Raspberries are low FODMAP in servings up to 30 berries (60g) per sitting."
+      ],
+      "tags": [
+        "Dessert",
+        "Vegan",
+        "Gluten-Free",
+        "Dairy-Free",
+        "Low FODMAP",
+        "No-Bake",
+        "High-Fiber"
+      ]
+    },
+    {
+      "id": 11,
+      "title": "Spinach and Feta Frittata",
+      "category": "Breakfast",
+      "rating": 4.5,
+      "reviews": "(29 reviews)",
+      "prepTime": "10 min",
+      "cookTime": "20 min",
+      "time": "30 min",
+      "servings": 6,
+      "level": "Low FODMAP",
+      "image": "/images/spinach-frittata.jpg",
+      "dietaryNeeds": ["Gluten-Free", "Vegetarian"],
+      "description": "This easy spinach and feta frittata is a protein-packed low FODMAP breakfast option. Perfect for meal prep, it can be enjoyed hot or cold and stores well in the refrigerator for quick weekday breakfasts.",
+      "nutritionFacts": {
+        "calories": 180,
+        "protein": 12,
+        "fat": 13,
+        "carbs": 4,
+        "fiber": 1,
+        "sodium": 320
+      },
+      "ingredients": {
+        "eu": [
+          "8 large eggs",
+          "60ml lactose-free milk",
+          "150g baby spinach",
+          "100g feta cheese, crumbled (lactose-free if needed)",
+          "50g cherry tomatoes, halved",
+          "15ml olive oil",
+          "2g dried oregano",
+          "Salt and pepper to taste",
+          "15g fresh chives, chopped (for garnish)"
+        ],
+        "us": [
+          "8 large eggs",
+          "¼ cup lactose-free milk",
+          "3 cups baby spinach",
+          "¾ cup feta cheese, crumbled (lactose-free if needed)",
+          "½ cup cherry tomatoes, halved",
+          "1 tablespoon olive oil",
+          "½ teaspoon dried oregano",
+          "Salt and pepper to taste",
+          "1 tablespoon fresh chives, chopped (for garnish)"
+        ]
+      },
+      "instructions": [
+        "Preheat oven to 375°F (190°C).",
+        "In a large bowl, whisk together eggs, lactose-free milk, dried oregano, salt, and pepper.",
+        "Heat olive oil in a 10-inch oven-safe skillet over medium heat.",
+        "Add spinach and cook until wilted, about 2-3 minutes.",
+        "Pour the egg mixture over the spinach.",
+        "Sprinkle the crumbled feta cheese and halved cherry tomatoes evenly over the top.",
+        "Cook on the stovetop for 5 minutes until the edges start to set.",
+        "Transfer the skillet to the preheated oven and bake for 12-15 minutes, until the eggs are set and the top is lightly golden.",
+        "Let cool for 5 minutes before slicing into wedges.",
+        "Garnish with fresh chives before serving."
+      ],
+      "fodmapTips": [
+        "Spinach is low FODMAP in servings up to 2 cups (56g) per sitting.",
+        "Feta cheese is typically low in lactose, but use a lactose-free version if you're very sensitive.",
+        "Cherry tomatoes are low FODMAP in servings up to ½ cup (75g).",
+        "This frittata can be stored in the refrigerator for up to 3 days and reheated as needed."
+      ],
+      "tags": [
+        "Breakfast",
+        "Gluten-Free",
+        "Vegetarian",
+        "Low FODMAP",
+        "High-Protein",
+        "Meal Prep"
+      ]
+    },
+    {
+      "id": 12,
+      "title": "Quinoa Tabbouleh Salad",
+      "category": "Lunch",
+      "rating": 4.6,
+      "reviews": "(34 reviews)",
+      "prepTime": "15 min",
+      "cookTime": "15 min",
+      "time": "30 min",
+      "servings": 4,
+      "level": "Low FODMAP",
+      "image": "/images/quinoa-tabbouleh.jpg",
+      "dietaryNeeds": [
+        "Vegan",
+        "Gluten-Free",
+        "Dairy-Free",
+        "Nut-Free",
+        "Soy-Free"
+      ],
+      "description": "This refreshing quinoa tabbouleh salad is a low FODMAP twist on the classic Middle Eastern dish. Using quinoa instead of bulgur wheat makes it gluten-free while still maintaining the fresh, herby flavors of traditional tabbouleh.",
+      "nutritionFacts": {
+        "calories": 240,
+        "protein": 7,
+        "fat": 12,
+        "carbs": 28,
+        "fiber": 5,
+        "sodium": 250
+      },
+      "ingredients": {
+        "eu": [
+          "170g quinoa, rinsed",
+          "350ml water",
+          "3g salt, divided",
+          "60g cucumber, diced small",
+          "150g cherry tomatoes, quartered",
+          "40g fresh parsley, finely chopped",
+          "20g fresh mint leaves, finely chopped",
+          "30g green parts of spring onions, chopped",
+          "60ml olive oil",
+          "30ml fresh lemon juice",
+          "2g ground black pepper"
+        ],
+        "us": [
+          "1 cup quinoa, rinsed",
+          "1½ cups water",
+          "¾ teaspoon salt, divided",
+          "½ cup cucumber, diced small",
+          "1 cup cherry tomatoes, quartered",
+          "1 cup fresh parsley, finely chopped",
+          "½ cup fresh mint leaves, finely chopped",
+          "⅓ cup green parts of spring onions, chopped",
+          "¼ cup olive oil",
+          "2 tablespoons fresh lemon juice",
+          "½ teaspoon ground black pepper"
+        ]
+      },
+      "instructions": [
+        "In a medium saucepan, combine rinsed quinoa, water, and ¼ teaspoon salt. Bring to a boil.",
+        "Reduce heat to low, cover, and simmer for 15 minutes, or until water is absorbed and quinoa is fluffy.",
+        "Transfer quinoa to a large bowl and allow to cool to room temperature. Fluff with a fork occasionally as it cools.",
+        "Once cooled, add cucumber, cherry tomatoes, parsley, mint, and green parts of spring onions to the quinoa.",
+        "In a small bowl, whisk together olive oil, lemon juice, remaining ½ teaspoon salt, and black pepper.",
+        "Pour the dressing over the salad and toss gently to combine.",
+        "For best flavor, refrigerate for at least 30 minutes before serving to allow the flavors to meld."
+      ],
+      "fodmapTips": [
+        "Use only the green parts of spring onions as the white parts are high in FODMAPs.",
+        "Cucumber is low FODMAP in servings up to ½ cup (75g).",
+        "Cherry tomatoes are low FODMAP in servings up to ½ cup (75g).",
+        "Quinoa is a low FODMAP grain that provides a good source of protein and fiber."
+      ],
+      "tags": [
+        "Lunch",
+        "Vegan",
+        "Gluten-Free",
+        "Dairy-Free",
+        "Nut-Free",
+        "Soy-Free",
+        "Low FODMAP",
+        "Salad"
+      ]
+    },
+    {
+      "id": 13,
+      "title": "Herb-Crusted Salmon with Roasted Vegetables",
+      "category": "Dinner",
+      "rating": 4.8,
+      "reviews": "(41 reviews)",
+      "prepTime": "15 min",
+      "cookTime": "25 min",
+      "time": "40 min",
+      "servings": 4,
+      "level": "Low FODMAP",
+      "image": "/images/herb-salmon.jpg",
+      "dietaryNeeds": ["Gluten-Free", "Dairy-Free", "Nut-Free", "Soy-Free"],
+      "description": "This herb-crusted salmon with roasted vegetables is an elegant yet simple low FODMAP dinner option. The herb crust adds wonderful flavor to the salmon while the colorful roasted vegetables make for a complete and satisfying meal.",
+      "nutritionFacts": {
+        "calories": 380,
+        "protein": 34,
+        "fat": 22,
+        "carbs": 12,
+        "fiber": 4,
+        "sodium": 380
+      },
+      "ingredients": {
+        "eu": [
+          "4 salmon fillets (about 150g each)",
+          "30ml olive oil, divided",
+          "15g fresh dill, chopped",
+          "15g fresh parsley, chopped",
+          "10g fresh thyme leaves",
+          "15ml lemon juice",
+          "5ml Dijon mustard",
+          "15g gluten-free breadcrumbs",
+          "200g carrots, cut into 2cm pieces",
+          "200g parsnips, cut into 2cm pieces",
+          "150g red bell pepper, cut into 2cm pieces",
+          "Salt and pepper to taste",
+          "Lemon wedges for serving"
+        ],
+        "us": [
+          "4 salmon fillets (about 5-6 oz each)",
+          "2 tablespoons olive oil, divided",
+          "2 tablespoons fresh dill, chopped",
+          "2 tablespoons fresh parsley, chopped",
+          "1 tablespoon fresh thyme leaves",
+          "1 tablespoon lemon juice",
+          "1 teaspoon Dijon mustard",
+          "¼ cup gluten-free breadcrumbs",
+          "2 cups carrots, cut into ¾-inch pieces",
+          "2 cups parsnips, cut into ¾-inch pieces",
+          "1½ cups red bell pepper, cut into ¾-inch pieces",
+          "Salt and pepper to taste",
+          "Lemon wedges for serving"
+        ]
+      },
+      "instructions": [
+        "Preheat oven to 400°F (200°C). Line a large baking sheet with parchment paper.",
+        "In a bowl, toss carrots, parsnips, and red bell pepper with 1 tablespoon olive oil, salt, and pepper.",
+        "Spread vegetables on the prepared baking sheet and roast for 15 minutes.",
+        "Meanwhile, in a small bowl, mix together dill, parsley, thyme, remaining olive oil, lemon juice, Dijon mustard, gluten-free breadcrumbs, salt, and pepper.",
+        "Remove baking sheet from oven and push vegetables to one side.",
+        "Place salmon fillets on the baking sheet and spread the herb mixture evenly over the top of each fillet.",
+        "Return to oven and bake for 10-12 minutes more, until salmon is cooked through and vegetables are tender.",
+        "Serve salmon with roasted vegetables and lemon wedges on the side."
+      ],
+      "fodmapTips": [
+        "Carrots, parsnips, and red bell peppers are all low FODMAP vegetables.",
+        "Ensure the gluten-free breadcrumbs don't contain high FODMAP ingredients like onion or garlic powder.",
+        "Dijon mustard is low FODMAP in servings up to 1 teaspoon (5g) per sitting.",
+        "This meal provides a good balance of protein, healthy fats, and low FODMAP vegetables."
+      ],
+      "tags": [
+        "Dinner",
+        "Seafood",
+        "Gluten-Free",
+        "Dairy-Free",
+        "Nut-Free",
+        "Soy-Free",
+        "Low FODMAP",
+        "High-Protein"
+      ]
+    },
+    {
+      "id": 14,
+      "title": "Berry Coconut Crumble",
+      "category": "Desserts",
+      "rating": 4.7,
+      "reviews": "(38 reviews)",
+      "prepTime": "15 min",
+      "cookTime": "30 min",
+      "time": "45 min",
+      "servings": 6,
+      "level": "Low FODMAP",
+      "image": "/images/berry-crumble.jpg",
+      "dietaryNeeds": ["Vegan", "Gluten-Free", "Dairy-Free", "Soy-Free"],
+      "description": "This warm berry coconut crumble is a comforting low FODMAP dessert option. The sweet-tart berries pair perfectly with the crunchy coconut topping for a dessert that's both satisfying and gentle on sensitive stomachs.",
+      "nutritionFacts": {
+        "calories": 260,
+        "protein": 3,
+        "fat": 14,
+        "carbs": 32,
+        "fiber": 6,
+        "sodium": 45
+      },
+      "ingredients": {
+        "eu": [
+          "300g strawberries, hulled and quartered",
+          "150g blueberries",
+          "30g granulated sugar",
+          "15ml lemon juice",
+          "10g cornstarch",
+          "120g gluten-free rolled oats",
+          "60g gluten-free all-purpose flour",
+          "60g coconut sugar or brown sugar",
+          "50g unsweetened shredded coconut",
+          "60ml coconut oil, melted",
+          "30ml pure maple syrup",
+          "2g cinnamon",
+          "1g salt",
+          "Dairy-free vanilla ice cream for serving (optional)"
+        ],
+        "us": [
+          "2 cups strawberries, hulled and quartered",
+          "1 cup blueberries",
+          "2 tablespoons granulated sugar",
+          "1 tablespoon lemon juice",
+          "2 teaspoons cornstarch",
+          "1 cup gluten-free rolled oats",
+          "½ cup gluten-free all-purpose flour",
+          "⅓ cup coconut sugar or brown sugar",
+          "½ cup unsweetened shredded coconut",
+          "¼ cup coconut oil, melted",
+          "2 tablespoons pure maple syrup",
+          "½ teaspoon cinnamon",
+          "¼ teaspoon salt",
+          "Dairy-free vanilla ice cream for serving (optional)"
+        ]
+      },
+      "instructions": [
+        "Preheat oven to 350°F (175°C). Lightly grease an 8×8-inch (20×20 cm) baking dish.",
+        "In a large bowl, gently mix strawberries, blueberries, granulated sugar, lemon juice, and cornstarch until well combined.",
+        "Pour the berry mixture into the prepared baking dish, spreading it evenly.",
+        "In another bowl, mix together rolled oats, gluten-free flour, coconut sugar, shredded coconut, cinnamon, and salt.",
+        "Add melted coconut oil and maple syrup to the dry ingredients. Stir until the mixture is crumbly and well combined.",
+        "Sprinkle the crumble topping evenly over the berry mixture.",
+        "Bake for 30-35 minutes, until the topping is golden brown and the filling is bubbling around the edges.",
+        "Let cool for 10-15 minutes before serving.",
+        "Serve warm with dairy-free vanilla ice cream if desired."
+      ],
+      "fodmapTips": [
+        "Strawberries are low FODMAP in servings up to 5 medium or 65g per sitting.",
+        "Blueberries are low FODMAP in servings up to 20 berries or 28g per sitting.",
+        "The serving size of this dessert keeps the berry amounts within low FODMAP guidelines.",
+        "Coconut products are low FODMAP in moderate amounts and add great flavor without triggering symptoms."
+      ],
+      "tags": [
+        "Desserts",
+        "Vegan",
+        "Gluten-Free",
+        "Dairy-Free",
+        "Soy-Free",
+        "Low FODMAP",
+        "Baking"
+      ]
+    },
+    {
+      "id": 15,
+      "title": "Roasted Pumpkin Seed Trail Mix",
+      "category": "Snacks",
+      "rating": 4.6,
+      "reviews": "(27 reviews)",
+      "prepTime": "10 min",
+      "cookTime": "15 min",
+      "time": "25 min",
+      "servings": 8,
+      "level": "Low FODMAP",
+      "image": "/images/trail-mix.jpg",
+      "dietaryNeeds": [
+        "Vegan",
+        "Gluten-Free",
+        "Dairy-Free",
+        "Soy-Free",
+        "Sugar-Free"
+      ],
+      "description": "This savory roasted pumpkin seed trail mix makes for a perfect low FODMAP snack on the go. It's crunchy, satisfying, and full of nutrients without any added sugar, making it ideal for those watching their sugar intake.",
+      "nutritionFacts": {
+        "calories": 180,
+        "protein": 7,
+        "fat": 14,
+        "carbs": 9,
+        "fiber": 3,
+        "sodium": 160
+      },
+      "ingredients": {
+        "eu": [
+          "100g raw pumpkin seeds",
+          "50g sunflower seeds",
+          "30g rice puffs or puffed quinoa (unsweetened)",
+          "25g dried cranberries (look for varieties without added sugar)",
+          "15ml olive oil",
+          "5g smoked paprika",
+          "2g cumin",
+          "3g salt",
+          "1g black pepper"
+        ],
+        "us": [
+          "¾ cup raw pumpkin seeds",
+          "⅓ cup sunflower seeds",
+          "1 cup rice puffs or puffed quinoa (unsweetened)",
+          "¼ cup dried cranberries (look for varieties without added sugar)",
+          "1 tablespoon olive oil",
+          "1 teaspoon smoked paprika",
+          "½ teaspoon cumin",
+          "½ teaspoon salt",
+          "¼ teaspoon black pepper"
+        ]
+      },
+      "instructions": [
+        "Preheat oven to 325°F (165°C). Line a baking sheet with parchment paper.",
+        "In a large bowl, combine pumpkin seeds, sunflower seeds, smoked paprika, cumin, salt, and black pepper.",
+        "Drizzle with olive oil and toss until all seeds are evenly coated with oil and spices.",
+        "Spread the seed mixture in a single layer on the prepared baking sheet.",
+        "Roast in the preheated oven for 12-15 minutes, stirring halfway through, until the seeds are golden and fragrant.",
+        "Remove from oven and let cool completely on the baking sheet.",
+        "Once cooled, transfer the roasted seeds to a large bowl. Add the rice puffs and dried cranberries and mix well.",
+        "Store in an airtight container at room temperature for up to 2 weeks."
+      ],
+      "fodmapTips": [
+        "Pumpkin seeds and sunflower seeds are low FODMAP in the portions specified.",
+        "Look for dried cranberries that don't contain high FODMAP sweeteners like high-fructose corn syrup or honey.",
+        "Rice puffs and puffed quinoa are good low FODMAP alternatives to granola or cereal in trail mixes.",
+        "This trail mix is a great portable snack option for when you're away from home and need a low FODMAP option."
+      ],
+      "tags": [
+        "Snacks",
+        "Vegan",
+        "Gluten-Free",
+        "Dairy-Free",
+        "Soy-Free",
+        "Sugar-Free",
+        "Low FODMAP",
+        "Portable"
+      ]
+    },
+    {
+      "id": 16,
+      "title": "Polenta with Roasted Vegetables",
+      "category": "Dinner",
+      "rating": 4.4,
+      "reviews": "(31 reviews)",
+      "prepTime": "15 min",
+      "cookTime": "40 min",
+      "time": "55 min",
+      "servings": 4,
+      "level": "Low FODMAP",
+      "image": "/images/polenta-vegetables.jpg",
+      "dietaryNeeds": ["Vegetarian", "Gluten-Free", "Nut-Free", "Soy-Free"],
+      "description": "This creamy polenta topped with colorful roasted vegetables is a satisfying vegetarian low FODMAP dinner option. The combination of comforting polenta with flavorful roasted vegetables creates a balanced and nutritious meal.",
+      "nutritionFacts": {
+        "calories": 320,
+        "protein": 8,
+        "fat": 12,
+        "carbs": 48,
+        "fiber": 5,
+        "sodium": 420
+      },
+      "ingredients": {
+        "eu": [
+          "200g polenta (cornmeal)",
+          "1L water or vegetable stock (low FODMAP)",
+          "50g parmesan cheese, grated (omit for vegan option)",
+          "30g butter or olive oil (use olive oil for vegan option)",
+          "300g zucchini, sliced into half-moons",
+          "200g red bell pepper, cut into chunks",
+          "200g eggplant, cut into cubes",
+          "200g cherry tomatoes, halved",
+          "30ml olive oil",
+          "10g fresh rosemary, chopped",
+          "5g fresh thyme",
+          "15ml garlic-infused oil",
+          "5g salt, divided",
+          "3g black pepper",
+          "Fresh basil leaves for garnish"
+        ],
+        "us": [
+          "1 cup polenta (cornmeal)",
+          "4 cups water or vegetable stock (low FODMAP)",
+          "½ cup parmesan cheese, grated (omit for vegan option)",
+          "2 tablespoons butter or olive oil (use olive oil for vegan option)",
+          "2 cups zucchini, sliced into half-moons",
+          "1 cup red bell pepper, cut into chunks",
+          "1 cup eggplant, cut into cubes",
+          "1 cup cherry tomatoes, halved",
+          "2 tablespoons olive oil",
+          "1 tablespoon fresh rosemary, chopped",
+          "1 teaspoon fresh thyme",
+          "1 tablespoon garlic-infused oil",
+          "1 teaspoon salt, divided",
+          "½ teaspoon black pepper",
+          "Fresh basil leaves for garnish"
+        ]
+      },
+      "instructions": [
+        "Preheat oven to 425°F (220°C). Line a large baking sheet with parchment paper.",
+        "In a large bowl, toss zucchini, bell pepper, eggplant, and cherry tomatoes with olive oil, rosemary, thyme, garlic-infused oil, ½ teaspoon salt, and black pepper.",
+        "Spread vegetables on the prepared baking sheet in a single layer.",
+        "Roast for 25-30 minutes, stirring once halfway through, until vegetables are tender and lightly caramelized.",
+        "Meanwhile, in a large saucepan, bring water or stock to a boil with remaining ½ teaspoon salt.",
+        "Slowly whisk in the polenta, stirring continuously to prevent lumps.",
+        "Reduce heat to low and simmer, stirring frequently, for 15-20 minutes until polenta is thick and creamy.",
+        "Remove from heat and stir in parmesan cheese and butter or olive oil until melted and well combined.",
+        "Divide polenta among four bowls, top with roasted vegetables, and garnish with fresh basil leaves."
+      ],
+      "fodmapTips": [
+        "Polenta is a naturally gluten-free and low FODMAP grain option.",
+        "If using stock, ensure it's low FODMAP without onion or garlic.",
+        "Zucchini is low FODMAP in servings up to ⅓ cup (65g) per sitting.",
+        "Eggplant is low FODMAP in servings up to 1 cup (75g) per sitting.",
+        "Parmesan cheese is naturally low in lactose and suitable for most people with lactose intolerance."
+      ],
+      "tags": [
+        "Dinner",
+        "Vegetarian",
+        "Gluten-Free",
+        "Nut-Free",
+        "Soy-Free",
+        "Low FODMAP",
+        "Comfort Food"
+      ]
+    },
+    {
+      "id": 17,
+      "title": "Overnight Oats with Berries",
+      "category": "Breakfast",
+      "rating": 4.5,
+      "reviews": "(43 reviews)",
+      "prepTime": "10 min",
+      "cookTime": "0 min",
+      "time": "10 min (plus overnight chilling)",
+      "servings": 1,
+      "level": "Low FODMAP",
+      "image": "/images/overnight-oats.jpg",
+      "dietaryNeeds": [
+        "Vegan",
+        "Gluten-Free",
+        "Dairy-Free",
+        "Sugar-Free",
+        "Nut-Free",
+        "Soy-Free"
+      ],
+      "description": "These simple overnight oats with berries make a perfect low FODMAP breakfast that you can prepare ahead of time. With no added sugar, they're a healthy way to start your day that's also gentle on your digestive system.",
+      "nutritionFacts": {
+        "calories": 290,
+        "protein": 9,
+        "fat": 8,
+        "carbs": 48,
+        "fiber": 8,
+        "sodium": 80
+      },
+      "ingredients": {
+        "eu": [
+          "50g gluten-free rolled oats",
+          "125ml lactose-free milk or almond milk",
+          "15g chia seeds",
+          "30g strawberries, sliced",
+          "30g blueberries",
+          "5ml pure maple syrup (optional)",
+          "2g cinnamon",
+          "1g vanilla extract",
+          "Pinch of salt"
+        ],
+        "us": [
+          "½ cup gluten-free rolled oats",
+          "½ cup lactose-free milk or almond milk",
+          "1 tablespoon chia seeds",
+          "¼ cup strawberries, sliced",
+          "¼ cup blueberries",
+          "1 teaspoon pure maple syrup (optional)",
+          "½ teaspoon cinnamon",
+          "¼ teaspoon vanilla extract",
+          "Pinch of salt"
+        ]
+      },
+      "instructions": [
+        "In a mason jar or container with a lid, combine oats, milk, chia seeds, cinnamon, vanilla extract, and salt. Stir well.",
+        "Seal the container and refrigerate overnight, or for at least 6 hours.",
+        "In the morning, stir the oat mixture. If it's too thick, add a splash more milk.",
+        "Top with sliced strawberries, blueberries, and a drizzle of maple syrup if desired.",
+        "Enjoy cold or warm it up in the microwave for 30-60 seconds if preferred."
+      ],
+      "fodmapTips": [
+        "Oats are low FODMAP in servings up to ½ cup (52g) per sitting.",
+        "Strawberries are low FODMAP in servings up to 5 medium or 65g per sitting.",
+        "Blueberries are low FODMAP in servings up to 20 berries or 28g per sitting.",
+        "If needed, this recipe can be made without the maple syrup for a completely sugar-free option."
+      ],
+      "tags": [
+        "Breakfast",
+        "Vegan",
+        "Gluten-Free",
+        "Dairy-Free",
+        "Sugar-Free",
+        "Nut-Free",
+        "Soy-Free",
+        "Low FODMAP",
+        "Meal Prep"
+      ]
+    }
+  ]
+}
