@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import MenuIcon from "@/app/components/icons/MenuIcon";
+import { usePathname } from "next/navigation";
 
 const navLinkClasses =
   "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium";
@@ -16,7 +17,10 @@ const mobileNavLinkClasses =
 const mobileActiveLinkClasses =
   "border-teal-500 text-teal-700 bg-teal-50 block pl-3 pr-4 py-2 border-l-4 text-base font-medium";
 
-const NavLink = ({ href, children, isActive, isMobile }) => {
+const NavLink = ({ href, children, isMobile }) => {
+  const pathname = usePathname();
+  const isActive = pathname === href;
+
   return (
     <Link
       href={href}
@@ -50,9 +54,7 @@ const Navbar = () => {
             {/* Logo */}
             <div className="text-2xl font-bold text-teal-700">FODMAP</div>
             <div className="hidden md:ml-10 md:flex md:space-x-8">
-              <NavLink href="/" isActive={true}>
-                Home
-              </NavLink>
+              <NavLink href="/">Home</NavLink>
               <NavLink href="/food-database">Food Database</NavLink>
               <NavLink href="/recipes">Recipes</NavLink>
               <NavLink href="/resources">Resources</NavLink>
