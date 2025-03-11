@@ -17,7 +17,7 @@ const Recipes = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(8); 
+  const [itemsPerPage, setItemsPerPage] = useState(8);
 
   useEffect(() => {
     const fetchRecipes = async () => {
@@ -110,7 +110,7 @@ const Recipes = () => {
         searchPlaceholder="Search for a food or ingredient..."
         onSearch={handleSearch}
       />
-      <div className="container mx-auto px-4 py-8">
+      <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
         <FilterOptions
           activeDietaryNeeds={activeDietaryNeeds}
           setActiveDietaryNeeds={setActiveDietaryNeeds}
