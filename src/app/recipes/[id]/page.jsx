@@ -4,16 +4,12 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import {
   ArrowLeft,
-  Clock,
-  Users,
   Star,
   Printer,
   Share2,
   Heart,
-  ChevronDown,
   CheckCircle,
   Info,
-  Globe,
 } from "lucide-react";
 
 import RecipeStats from "@/app/components/recipes/RecipeStats";
@@ -28,7 +24,6 @@ export default function RecipeDetail() {
   const [recipe, setRecipe] = useState(null);
   const [relatedRecipes, setRelatedRecipes] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState("ingredients");
   const [servings, setServings] = useState(4);
   const [useUSMeasurements, setUseUSMeasurements] = useState(false);
 
@@ -42,7 +37,7 @@ export default function RecipeDetail() {
         const foundRecipe = data.recipes.find((r) => r.id === parseInt(id));
         setRecipe(foundRecipe);
 
-        // Find related recipes based on category (or any other criteria)
+        // Find related recipes based on category
         const related = data.recipes.filter(
           (r) => r.category === foundRecipe.category && r.id !== foundRecipe.id
         );
