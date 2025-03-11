@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
 import Hero from "../components/Hero";
 import FilterOptions from "../components/recipes/FilterOptions";
@@ -14,6 +15,9 @@ const Recipes = () => {
   const [activeFodmapLevels, setActiveFodmapLevels] = useState([]);
   const [activeMealTypes, setActiveMealTypes] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(8); 
 
   useEffect(() => {
     const fetchRecipes = async () => {
@@ -32,21 +36,36 @@ const Recipes = () => {
     fetchRecipes();
   }, []);
 
+  useEffect(() => {
+    // Update itemsPerPage based on screen size
+    const handleResize = () => {
+      if (window.innerWidth < 640) {
+        setItemsPerPage(4); // Mobile: 4 items per page
+      } else {
+        setItemsPerPage(8); // Default: 8 items per page
+      }
+    };
+
+    handleResize(); // Set the initial itemsPerPage
+    window.addEventListener("resize", handleResize); // Listen for window resize
+
+    return () => {
+      window.removeEventListener("resize", handleResize); // Clean up the event listener
+    };
+  }, []);
+
   if (loading) return <p className="text-center">Loading...</p>;
   if (error) return <p className="text-center text-red-500">{error}</p>;
 
   const filteredRecipes = recipes.filter((recipe) => {
-    // check if each active need is included in the recipe's dietary needs
     const matchesDietary =
       activeDietaryNeeds.length === 0 ||
       activeDietaryNeeds.every((need) => recipe.dietaryNeeds.includes(need));
 
-    // check if the recipe's level is one of the active levels
     const matchesFodmap =
       activeFodmapLevels.length === 0 ||
       activeFodmapLevels.includes(recipe.level);
 
-    // check if the recipe's category matches any active meal type
     const matchesMealType =
       activeMealTypes.length === 0 || activeMealTypes.includes(recipe.category);
 
@@ -59,6 +78,28 @@ const Recipes = () => {
 
   const handleSearch = (term) => {
     setSearchTerm(term);
+    setCurrentPage(1); // Reset page when search term changes
+  };
+
+  // Calculate the recipes to display based on the current page
+  const indexOfLastRecipe = currentPage * itemsPerPage;
+  const indexOfFirstRecipe = indexOfLastRecipe - itemsPerPage;
+  const currentRecipes = searchedRecipes.slice(
+    indexOfFirstRecipe,
+    indexOfLastRecipe
+  );
+
+  // Pagination handlers
+  const nextPage = () => {
+    if (currentPage < Math.ceil(searchedRecipes.length / itemsPerPage)) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const previousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
   };
 
   return (
@@ -78,9 +119,9 @@ const Recipes = () => {
           activeMealTypes={activeMealTypes}
           setActiveMealTypes={setActiveMealTypes}
         />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          {searchedRecipes.length > 0 ? (
-            searchedRecipes.map((recipe) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12">
+          {currentRecipes.length > 0 ? (
+            currentRecipes.map((recipe) => (
               <RecipeCard
                 key={recipe.id}
                 image={recipe.image}
@@ -101,7 +142,16 @@ const Recipes = () => {
             </div>
           )}
         </div>
-        {searchedRecipes.length > 0 && <Pagination />}
+
+        {searchedRecipes.length > 0 && (
+          <Pagination
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            nextPage={nextPage}
+            previousPage={previousPage}
+            totalPages={Math.ceil(searchedRecipes.length / itemsPerPage)}
+          />
+        )}
       </div>
     </div>
   );
