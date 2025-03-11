@@ -2,12 +2,12 @@ import React from "react";
 import { Star } from "lucide-react";
 
 const RecipeCard = ({
-  tag,
+  level,
   image,
   title,
   rating,
   reviews,
-  time,
+  totalTime,
   category,
   dietaryNeeds,
 }) => {
@@ -17,25 +17,30 @@ const RecipeCard = ({
   const getTagColor = (fodmapLevel) => {
     switch (fodmapLevel) {
       case "Low FODMAP":
-        return "bg-green-500"; 
+        return "bg-green-500";
       case "Moderate FODMAP":
-        return "bg-yellow-500"; 
+        return "bg-yellow-500";
       case "High FODMAP":
-        return "bg-red-500"; 
+        return "bg-red-500";
       default:
-        return "bg-gray-500"; 
+        return "bg-gray-500";
     }
   };
 
-  const tagColorClass = getTagColor(tag);
+  {
+    /* Display level from the level array */
+  }
+  const tagColorClass = getTagColor(level);
 
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105">
       <div className="h-48 bg-gray-200 relative">
         <div
-          className={`absolute top-2 left-2 ${tagColorClass} shadow-lg text-white text-xs font-bold px-2 py-1 rounded`}
+          className={`absolute top-2 left-2 ${getTagColor(
+            level
+          )} shadow-lg text-white text-xs font-bold px-2 py-1 rounded`}
         >
-          {tag}
+          {level}
         </div>
         <img
           src={image}
@@ -65,10 +70,12 @@ const RecipeCard = ({
                 <Star key={`empty-${i}`} className="h-4 w-4 text-gray-300" />
               ))}
           </div>
-          <span className="text-xs text-gray-500 ml-2">{reviews}</span>
+          <span className="text-xs text-gray-500 ml-2">
+            ({reviews} reviews)
+          </span>
         </div>
         <div className="flex justify-between">
-          <span className="text-sm text-gray-600">{time}</span>
+          <span className="text-sm text-gray-600">{totalTime} min</span>
           <span className="text-sm bg-teal-100 text-teal-800 px-2 py-1 rounded">
             {category}
           </span>
@@ -76,9 +83,9 @@ const RecipeCard = ({
 
         {dietaryNeeds && dietaryNeeds.length > 0 && (
           <div className="mt-2 flex flex-wrap gap-1">
-            {dietaryNeeds.map((need) => (
+            {dietaryNeeds.map((need, index) => (
               <span
-                key={need}
+                key={index}
                 className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded"
               >
                 {need}

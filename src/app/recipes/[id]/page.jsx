@@ -1,7 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
-
 import { useParams } from "next/navigation";
 import {
   ArrowLeft,
@@ -20,16 +19,18 @@ import {
 import RecipeStats from "@/app/components/recipes/RecipeStats";
 import NutritionFacts from "@/app/components/recipes/NutritionFacts";
 import RecipeTabs from "@/app/components/recipes/RecipeTabs";
+import RecipeCard from "@/app/components/RecipeCard";
 
 export default function RecipeDetail() {
   const params = useParams();
   const id = params.id;
 
   const [recipe, setRecipe] = useState(null);
+  const [relatedRecipes, setRelatedRecipes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState("ingredients");
   const [servings, setServings] = useState(4);
-  const [useUSMeasurements, setUseUSMeasurements] = useState(false); // false = EU (default)
+  const [useUSMeasurements, setUseUSMeasurements] = useState(false);
 
   useEffect(() => {
     const fetchRecipes = async () => {
@@ -37,8 +38,15 @@ export default function RecipeDetail() {
         const response = await fetch("/recipes.json");
         if (!response.ok) throw new Error("Failed to fetch recipes");
         const data = await response.json();
+
         const foundRecipe = data.recipes.find((r) => r.id === parseInt(id));
         setRecipe(foundRecipe);
+
+        // Find related recipes based on category (or any other criteria)
+        const related = data.recipes.filter(
+          (r) => r.category === foundRecipe.category && r.id !== foundRecipe.id
+        );
+        setRelatedRecipes(related.slice(0, 3)); // Get only 3 related recipes
       } catch (error) {
         setError(error);
       } finally {
@@ -69,14 +77,11 @@ export default function RecipeDetail() {
     0.333: "⅓",
   };
 
-  // EU to US conversion helpers
   const euToUSConversions = {
-    // Volume
     ml: (val) => `${(val / 236.588).toFixed(2)} cups`,
     cl: (val) => `${(val / 23.6588).toFixed(2)} cups`,
     dl: (val) => `${(val / 2.36588).toFixed(2)} cups`,
     l: (val) => `${(val * 4.22675).toFixed(2)} cups`,
-    // Weight
     g: (val) =>
       val < 5
         ? `${(val / 5).toFixed(2)} teaspoons`
@@ -84,7 +89,6 @@ export default function RecipeDetail() {
     kg: (val) => `${(val * 2.20462).toFixed(2)} lb`,
   };
 
-  // US to EU conversion helpers
   const usToEUConversions = {
     cup: (val) => `${(val * 236.588).toFixed(0)} ml`,
     cups: (val) => `${(val * 236.588).toFixed(0)} ml`,
@@ -105,21 +109,18 @@ export default function RecipeDetail() {
   const updateIngredientAmount = (ingredient, servings, originalServings) => {
     const parts = ingredient.split(" ");
 
-    // Check if first part is a number or fraction
     let amount = parts[0].replace(",", ".");
 
     if (fractionToDecimal[amount]) {
-      amount = fractionToDecimal[amount]; // Convert fraction to decimal
+      amount = fractionToDecimal[amount];
     } else if (!isNaN(amount)) {
       amount = parseFloat(amount);
     } else {
-      return ingredient; // Return as is if no amount found
+      return ingredient;
     }
 
-    // Calculate new amount
     let scaledAmount = amount * (servings / originalServings);
 
-    // If possible, convert back to fraction
     if (decimalToFraction[scaledAmount]) {
       scaledAmount = decimalToFraction[scaledAmount];
     } else {
@@ -138,8 +139,8 @@ export default function RecipeDetail() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-teal-500 text-xl">Loading recipe...</div>
+      <div className="flex justify-center items-center min-h-screen">
+        <div className="border-t-4 border-teal-500 border-solid w-8 h-8 rounded-full animate-spin"></div>
       </div>
     );
   }
@@ -296,9 +297,27 @@ export default function RecipeDetail() {
             </div>
           </div>
         </div>
+        {/* Related recipes section */}
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">
+            Related Recipes
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {relatedRecipes.slice(0, 3).map((recipe) => (
+              <RecipeCard
+                key={recipe.id}
+                level={recipe.level}
+                image={recipe.image}
+                title={recipe.title}
+                rating={recipe.rating}
+                reviews={recipe.reviews}
+                time={recipe.time}
+                category={recipe.category}
+              />
+            ))}
+          </div>
+        </div>
       </div>
-
-      {/* Related recipes section */}
     </div>
   );
 }
