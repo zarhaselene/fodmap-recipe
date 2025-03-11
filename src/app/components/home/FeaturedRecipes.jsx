@@ -52,17 +52,19 @@ const FeaturedRecipes = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {recipes.slice(0, 3).map((recipe) => (
-            <RecipeCard
-              key={recipe.id}
-              level={recipe.level}
-              image={recipe.image}
-              title={recipe.title}
-              rating={recipe.rating}
-              reviews={recipe.reviews}
-              totalTime={recipe.totalTime}
-              category={recipe.category}
-              dietaryNeeds={recipe.dietaryNeeds}
-            />
+            <Link href={`/recipes/${recipe.id}`} key={recipe.id}>
+              <RecipeCard
+                key={recipe.id}
+                level={recipe.level}
+                image={recipe.image}
+                title={recipe.title}
+                rating={recipe.rating}
+                reviews={recipe.reviews}
+                totalTime={recipe.totalTime}
+                category={recipe.category}
+                dietaryNeeds={recipe.dietaryNeeds}
+              />
+            </Link>
           ))}
         </div>
       </div>
