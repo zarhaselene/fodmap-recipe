@@ -5,6 +5,7 @@ import Hero from "../components/Hero";
 import FilterOptions from "../components/recipes/FilterOptions";
 import RecipeCard from "../components/RecipeCard";
 import Pagination from "../components/recipes/Pagination";
+import Link from "next/link";
 
 const Recipes = () => {
   const [recipes, setRecipes] = useState([]);
@@ -122,17 +123,19 @@ const Recipes = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12">
           {currentRecipes.length > 0 ? (
             currentRecipes.map((recipe) => (
-              <RecipeCard
-                key={recipe.id}
-                image={recipe.image}
-                tag={recipe.level}
-                title={recipe.title}
-                category={recipe.category}
-                rating={recipe.rating}
-                reviews={recipe.reviews}
-                time={recipe.time}
-                dietaryNeeds={recipe.dietaryNeeds}
-              />
+              <Link href={`/recipes/${recipe.id}`}>
+                <RecipeCard
+                  key={recipe.id}
+                  image={recipe.image}
+                  tag={recipe.level}
+                  title={recipe.title}
+                  category={recipe.category}
+                  rating={recipe.rating}
+                  reviews={recipe.reviews}
+                  time={recipe.time}
+                  dietaryNeeds={recipe.dietaryNeeds}
+                />
+              </Link>
             ))
           ) : (
             <div className="col-span-3 text-center py-12">
