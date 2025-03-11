@@ -1,14 +1,40 @@
 import React from "react";
 import { Star } from "lucide-react";
 
-const RecipeCard = ({ tag, image, title, rating, reviews, time, category }) => {
+const RecipeCard = ({
+  tag,
+  image,
+  title,
+  rating,
+  reviews,
+  time,
+  category,
+  dietaryNeeds,
+}) => {
   const filledStars = Math.floor(rating);
   const emptyStars = 5 - filledStars;
+
+  const getTagColor = (fodmapLevel) => {
+    switch (fodmapLevel) {
+      case "Low FODMAP":
+        return "bg-green-500"; 
+      case "Moderate FODMAP":
+        return "bg-yellow-500"; 
+      case "High FODMAP":
+        return "bg-red-500"; 
+      default:
+        return "bg-gray-500"; 
+    }
+  };
+
+  const tagColorClass = getTagColor(tag);
 
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105">
       <div className="h-48 bg-gray-200 relative">
-        <div className="absolute top-2 left-2 bg-green-500 shadow-lg text-white text-xs font-bold px-2 py-1 rounded">
+        <div
+          className={`absolute top-2 left-2 ${tagColorClass} shadow-lg text-white text-xs font-bold px-2 py-1 rounded`}
+        >
           {tag}
         </div>
         <img
@@ -47,6 +73,19 @@ const RecipeCard = ({ tag, image, title, rating, reviews, time, category }) => {
             {category}
           </span>
         </div>
+
+        {dietaryNeeds && dietaryNeeds.length > 0 && (
+          <div className="mt-2 flex flex-wrap gap-1">
+            {dietaryNeeds.map((need) => (
+              <span
+                key={need}
+                className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded"
+              >
+                {need}
+              </span>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
