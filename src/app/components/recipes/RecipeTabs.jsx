@@ -13,11 +13,8 @@ export default function RecipeTabs({
   const [completedIngredients, setCompletedIngredients] = useState([]);
 
   const handleInstructionClick = (index) => {
-    setCompletedInstructions(
-      (prev) =>
-        prev.includes(index)
-          ? prev.filter((i) => i !== index) 
-          : [...prev, index] 
+    setCompletedInstructions((prev) =>
+      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
     );
   };
 
@@ -88,7 +85,7 @@ export default function RecipeTabs({
           <div className="flex justify-end mb-4">
             <button
               onClick={toggleMeasurementSystem}
-              className="flex items-center text-sm bg-gray-50 hover:bg-gray-100 px-3 py-2 rounded-md transition-colors duration-200 border border-gray-100"
+              className="flex items-center text-sm bg-gray-50 hover:bg-gray-100 px-3 py-2 rounded-md transition-colors duration-200 border border-gray-100 hover:cursor-pointer"
               aria-label={`Switch to ${
                 useUSMeasurements ? "metric" : "imperial"
               } measurements`}
