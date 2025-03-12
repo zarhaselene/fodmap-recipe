@@ -156,12 +156,13 @@ export default function RecipeDetail() {
     : recipe.ingredients.eu;
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen">
       {/* Back button */}
-      <div className="max-w-4xl mx-auto px-4 pt-6">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
         <Link
           href="/recipes"
-          className="inline-flex items-center text-teal-600 hover:text-teal-700"
+          className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-teal-600 hover:bg-teal-700 focus:outline-none 
+          focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
         >
           <ArrowLeft size={16} className="mr-1" />
           <span>Back to recipes</span>
@@ -281,7 +282,7 @@ export default function RecipeDetail() {
             </div>
 
             {/* Tabs */}
-            <div className="border-b border-gray-200 mb-6">
+            <div className="border-gray-200 mb-6">
               <RecipeTabs
                 recipe={{ ...recipe, ingredients: currentIngredients }}
                 servings={servings}
@@ -295,7 +296,7 @@ export default function RecipeDetail() {
         {/* Related recipes section */}
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-6">
-            Related Recipes
+            You Might Also Like
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {relatedRecipes.slice(0, 3).map((recipe) => (
@@ -310,6 +311,15 @@ export default function RecipeDetail() {
                 category={recipe.category}
               />
             ))}
+          </div>
+          {/* View all recipes button */}
+          <div className="mt-8 text-center">
+            <Link
+              href="/recipes"
+              className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+            >
+              View All Recipes
+            </Link>
           </div>
         </div>
       </div>
