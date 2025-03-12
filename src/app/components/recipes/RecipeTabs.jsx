@@ -189,7 +189,7 @@ export default function RecipeTabs({
             {recipe.tags.map((tag, index) => (
               <span
                 key={index}
-                className="bg-gray-50 text-gray-700 border border-gray-200 px-3 py-1 rounded-full text-sm hover:bg-gray-100 transition-colors duration-200 cursor-pointer"
+                className="bg-gray-50 text-gray-700 border border-gray-200 px-3 py-1 rounded-full text-sm hover:bg-gray-100 transition-colors duration-200 cursor-default"
               >
                 {tag}
               </span>
