@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import Hero from "../components/Hero";
+import { useEffect, useState } from "react";
+import Hero from "../components/shared/Hero";
 import FilterOptions from "../components/recipes/FilterOptions";
-import RecipeCard from "../components/RecipeCard";
-import Pagination from "../components/recipes/Pagination";
+import RecipeCard from "../components/shared/RecipeCard";
+import Pagination from "../components/shared/Pagination";
 import Link from "next/link";
 
 const Recipes = () => {

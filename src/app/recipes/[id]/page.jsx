@@ -15,7 +15,7 @@ import {
 import RecipeStats from "@/app/components/recipes/RecipeStats";
 import NutritionFacts from "@/app/components/recipes/NutritionFacts";
 import RecipeTabs from "@/app/components/recipes/RecipeTabs";
-import RecipeCard from "@/app/components/RecipeCard";
+import RecipeCard from "@/app/components/shared/RecipeCard";
 
 export default function RecipeDetail() {
   const params = useParams();
