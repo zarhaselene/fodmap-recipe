@@ -29,7 +29,7 @@ export const ResourcesProvider = ({ children }) => {
 
   const resourceCategories = [
     "All",
-    "FODMAP Guide",
+    "FODMAP Guides",
     "Elimination Phase",
     "Reintroduction",
     "Meal Planning",
@@ -39,7 +39,9 @@ export const ResourcesProvider = ({ children }) => {
   const filteredResources =
     activeCategory === "All"
       ? resources
-      : resources.filter((resource) => resource.category === activeCategory);
+      : activeCategory === "Printables"
+      ? resources.filter((resource) => resource.downloadable === true) // Show only downloadable resources for "Printables"
+      : resources.filter((resource) => resource.category === activeCategory); // Filter by category for other tabs
 
   const searchedResources = filteredResources.filter(
     (resource) =>
