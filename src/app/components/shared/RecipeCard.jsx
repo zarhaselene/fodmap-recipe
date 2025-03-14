@@ -52,7 +52,7 @@ const RecipeCard = ({
             {dietaryNeeds.map((need, index) => (
               <span
                 key={index}
-                className="text-xs bg-blue-50 text-blue-700 px-2 py-1 rounded-full"
+                className="text-xs bg-blue-50 text-teal-700 px-2 py-1 rounded"
               >
                 {need}
               </span>
