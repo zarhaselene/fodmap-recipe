@@ -3,7 +3,7 @@ import Link from "next/link";
 import {
   Download,
   Star,
-  ArrowRight,
+  ChevronRight,
   Video,
   BookText,
   FileText,
@@ -47,7 +47,7 @@ const ResourceCard = ({ resource }) => {
       <div className="p-5">
         <div className="flex justify-between items-start mb-2">
           <span
-            className={`inline-block text-xs font-medium px-2.5 py-0.5 rounded-full ${
+            className={`inline-block text-xs font-medium px-2.5 py-0.5 rounded ${
               categoryStyles[resource.category] || "bg-gray-100 text-gray-800"
             }`}
           >
@@ -84,7 +84,7 @@ const ResourceCard = ({ resource }) => {
             className="text-teal-600 hover:text-teal-800 font-medium text-sm inline-flex items-center"
           >
             Read more
-            <ArrowRight className="ml-1 h-3 w-3" />
+            <ChevronRight className="ml-1 h-3 w-3" />
           </Link>
         </div>
       </div>

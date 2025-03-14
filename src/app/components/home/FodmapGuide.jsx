@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { BookOpen, ArrowRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import FodmapCard from "./FodmapCard";
 import { motion } from "framer-motion";
 
@@ -68,7 +68,7 @@ const FodmapGuide = () => {
               href="/resources/guides/fodmap"
               className="text-teal-700 hover:text-teal-900 flex items-center font-medium"
             >
-              Learn more <ArrowRight className="h-5 w-5 ml-1" />
+              Learn more <ChevronRight className="h-5 w-5 ml-1" />
             </Link>
           </motion.div>
         </motion.div>

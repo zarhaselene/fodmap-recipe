@@ -5,7 +5,7 @@ import {
   Calendar,
   ShoppingBag,
   Clock,
-  ArrowRight,
+  ChevronRight,
   FileText,
   FileSpreadsheet,
 } from "lucide-react";
@@ -49,7 +49,8 @@ const MealPlanning = ({ setActiveCategory }) => {
           className="mt-8 bg-teal-500 hover:bg-teal-600 text-white font-medium py-2.5 px-5 rounded-md transition-colors duration-300 flex items-center"
           onClick={() => setActiveCategory("Meal Planning")}
         >
-          Browse Meal Planning Resources <ArrowRight className="ml-2 h-4 w-4" />
+          Browse Meal Planning Resources{" "}
+          <ChevronRight className="ml-2 h-4 w-4" />
         </button>
       </div>
 

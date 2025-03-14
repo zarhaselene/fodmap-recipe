@@ -3,7 +3,8 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import {
-  ArrowLeft,
+  ChevronLeft,
+  ChevronRight,
   Star,
   Printer,
   Share2,
@@ -29,7 +30,7 @@ export default function RecipeDetail() {
   const [relatedRecipes, setRelatedRecipes] = useState([]);
   const [servings, setServings] = useState(4);
   const [useUSMeasurements, setUseUSMeasurements] = useState(false);
-  
+
   // Find related recipes
   useEffect(() => {
     if (id && recipes.length > 0) {
@@ -144,25 +145,6 @@ export default function RecipeDetail() {
     setUseUSMeasurements(!useUSMeasurements);
   };
 
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center min-h-screen">
-        <div className="border-t-4 border-teal-500 border-solid w-8 h-8 rounded-full animate-spin"></div>
-      </div>
-    );
-  }
-
-  if (!recipe) {
-    return (
-      <div className="min-h-screen flex flex-col items-center justify-center">
-        <div className="text-xl mb-4">Recipe not found</div>
-        <Link href="/recipes" className="text-teal-500 hover:underline">
-          Return to recipes
-        </Link>
-      </div>
-    );
-  }
-
   const currentIngredients = useUSMeasurements
     ? recipe.ingredients.us
     : recipe.ingredients.eu;
@@ -176,7 +158,7 @@ export default function RecipeDetail() {
           className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-teal-600 hover:bg-teal-700 focus:outline-none 
           focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
         >
-          <ArrowLeft size={16} className="mr-1" />
+          <ChevronLeft size={16} className="mr-1" />
           <span>Back to recipes</span>
         </Link>
       </div>
@@ -191,7 +173,7 @@ export default function RecipeDetail() {
               alt={recipe.title}
               className="object-cover w-full h-full"
             />
-            <div className="absolute top-4 right-4 bg-teal-500 text-white text-xs px-2 py-1 rounded">
+            <div className="absolute top-4 right-4 bg-teal-600 text-white text-xs px-2 py-1 rounded">
               {recipe.category}
             </div>
           </div>
@@ -203,15 +185,15 @@ export default function RecipeDetail() {
                 {recipe.title}
               </h1>
               <div className="flex space-x-2">
-                <button className="flex items-center px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded">
+                <button className="flex items-center px-3 py-1 bg-gray-200 rounded hover:bg-teal-600 hover:text-white cursor-pointer">
                   <Printer size={16} className="mr-1" />
                   <span className="text-sm">Print</span>
                 </button>
-                <button className="flex items-center px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded">
+                <button className="flex items-center px-3 py-1 bg-gray-200 rounded hover:bg-teal-600 hover:text-white cursor-pointer">
                   <Share2 size={16} className="mr-1" />
                   <span className="text-sm">Share</span>
                 </button>
-                <button className="flex items-center px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded">
+                <button className="flex items-center px-3 py-1 bg-gray-200 rounded hover:bg-teal-600 hover:text-white cursor-pointer">
                   <Heart size={16} className="mr-1" />
                   <span className="text-sm">Save</span>
                 </button>
@@ -260,22 +242,22 @@ export default function RecipeDetail() {
             </div>
 
             {/* FODMAP info box */}
-            <div className="bg-blue-50 border-l-4 border-blue-400 p-4 mb-8 rounded">
+            <div className="bg-blue-50 border-l-4 border-teal-400 p-4 mb-8 rounded">
               <div className="flex">
                 <Info
                   size={20}
-                  className="text-blue-500 mr-3 flex-shrink-0 mt-1"
+                  className="text-teal-500 mr-3 flex-shrink-0 mt-1"
                 />
                 <div>
-                  <h3 className="font-medium text-blue-800 mb-2">
+                  <h3 className="font-medium text-teal-800 mb-2">
                     FODMAP Information
                   </h3>
-                  <ul className="text-blue-700 text-sm space-y-1">
+                  <ul className="text-teal-700 text-sm space-y-1">
                     {recipe.fodmapTips.map((tip, index) => (
                       <li key={index} className="flex items-start">
                         <CheckCircle
                           size={16}
-                          className="text-blue-500 mr-2 flex-shrink-0 mt-1"
+                          className="text-teal-500 mr-2 flex-shrink-0 mt-1"
                         />
                         <span>{tip}</span>
                       </li>
@@ -303,10 +285,20 @@ export default function RecipeDetail() {
           </div>
         </div>
         {/* Related recipes section */}
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">
-            You Might Also Like
-          </h2>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-8 pt-16">
+          <div className="flex items-baseline justify-between">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">
+              You Might Also Like
+            </h2>
+            {/* View all recipes button */}
+            <Link
+              href="/recipes"
+              className="inline-flex items-center text-sm font-medium text-teal-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+            >
+              View all <ChevronRight className="h-5 w-5 ml-1" />
+            </Link>
+          </div>
+
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {relatedRecipes.slice(0, 3).map((recipe) => (
               <RecipeCard
@@ -319,15 +311,6 @@ export default function RecipeDetail() {
                 category={recipe.category}
               />
             ))}
-          </div>
-          {/* View all recipes button */}
-          <div className="mt-8 text-center">
-            <Link
-              href="/recipes"
-              className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
-            >
-              View All Recipes
-            </Link>
           </div>
         </div>
       </div>
