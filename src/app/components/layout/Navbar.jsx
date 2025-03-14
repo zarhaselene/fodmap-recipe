@@ -51,7 +51,9 @@ const Navbar = () => {
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             {/* Logo */}
-            <div className="text-2xl font-bold text-teal-700">FODMAP</div>
+            <Link href="/">
+              <div className="text-2xl font-bold text-teal-700">FODMAP</div>
+            </Link>
             <div className="hidden md:ml-10 md:flex md:space-x-8">
               <NavLink href="/">Home</NavLink>
               <NavLink href="/food-database">Food Database</NavLink>
