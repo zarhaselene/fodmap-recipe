@@ -28,7 +28,7 @@ const MealPlanning = ({ setActiveCategory }) => {
   return (
     <div className="md:flex md:items-center md:justify-between">
       <div className="md:w-1/2 mb-8 md:mb-0 md:pr-12">
-        <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4">
+        <h2 className="text-2xl md:text-3xl font-bold text-teal-700 mb-4">
           Simplify Your FODMAP Journey with Meal Planning
         </h2>
         <p className="text-gray-600 mb-6">
