@@ -3,7 +3,7 @@
     {
       "id": 1,
       "title": "Complete FODMAP Diet Guide",
-      "category": "FODMAP Guide",
+      "category": "FODMAP Guides",
       "description": "A comprehensive introduction to the low FODMAP diet with step-by-step instructions.",
       "longDescription": "This complete guide walks you through every aspect of the FODMAP diet, from understanding what FODMAPs are to implementing each phase successfully. Includes scientific explanations, practical tips, and answers to the most common questions about managing IBS symptoms through diet.",
       "image": "/images/guide-beginner.jpg",
@@ -86,7 +86,7 @@
     {
       "id": 5,
       "title": "Low FODMAP Shopping Guide",
-      "category": "FODMAP Guide",
+      "category": "FODMAP Guides",
       "description": "Tips for grocery shopping and brand recommendations for FODMAP-friendly products.",
       "longDescription": "Make grocery shopping stress-free with this detailed guide to navigating supermarket aisles on a low FODMAP diet. Includes aisle-by-aisle recommendations, lists of FODMAP-friendly brands for common products, label-reading tips, and smartphone app recommendations to help you shop confidently.",
       "image": "/images/grocery-guide.jpg",
@@ -194,7 +194,7 @@
     {
       "id": 11,
       "title": "FODMAP Restaurant Survival Guide",
-      "category": "FODMAP Guide",
+      "category": "FODMAP Guides",
       "description": "Tips and strategies for eating out while following the low FODMAP diet.",
       "longDescription": "Don't let your dietary needs stop you from enjoying social events! This guide provides strategies for navigating restaurant menus, communicating with servers, and making smart choices at different types of restaurants. Includes specific menu recommendations for 15 common restaurant cuisines.",
       "image": "/images/restaurant-guide.jpg",
@@ -253,7 +253,7 @@
     {
       "id": 14,
       "title": "FODMAP Diet for Special Diets",
-      "category": "FODMAP Guide",
+      "category": "FODMAP Guides",
       "description": "Guidance for following the FODMAP diet while managing other dietary restrictions.",
       "longDescription": "This specialized guide addresses the challenges of following the low FODMAP diet alongside other dietary needs, with dedicated sections for vegetarian/vegan, gluten-free, dairy-free, and other common dietary restrictions. Includes specialized food lists, substitution ideas, and nutritional considerations for each combined approach.",
       "image": "/images/special-diets.jpg",
@@ -277,7 +277,7 @@
     {
       "id": 15,
       "title": "Managing FODMAP Diet While Traveling",
-      "category": "FODMAP Guide",
+      "category": "FODMAP Guides",
       "description": "Strategies for maintaining your diet while away from home, including international travel tips.",
       "longDescription": "Don't let travel derail your digestive health! This guide provides practical strategies for maintaining FODMAP awareness while traveling domestically or internationally. Includes packing lists, translation cards for 12 languages, airplane meal tips, and country-specific food guides for 20 popular destinations.",
       "image": "/images/travel-guide.jpg",
