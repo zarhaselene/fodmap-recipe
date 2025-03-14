@@ -1,22 +1,46 @@
+"use client";
 import React from "react";
 import { Search } from "lucide-react";
+import { motion } from "framer-motion";
 import WaveDivider from "./WaveDivider";
+
 const Hero = ({ title, description, searchPlaceholder }) => {
   return (
     <div className="relative bg-gradient-to-r from-teal-500 to-teal-600">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
         <div className="md:flex md:items-center md:justify-between">
-          <div className="md:w-1/2 text-center md:text-left">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-6">
+          <motion.div
+            className="md:w-1/2 text-left"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <motion.h1
+              className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-6"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+            >
               {title}
-            </h1>
-            <p className="text-teal-100 text-lg md:text-xl mb-8">
+            </motion.h1>
+            <motion.p
+              className="text-teal-100 text-lg md:text-xl mb-8"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4, duration: 0.6 }}
+            >
               {description}
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
 
           {/* Search bar */}
-          <div className="md:w-2/5 bg-white rounded-lg shadow-xl p-1">
+          <motion.div
+            className="md:w-2/5 bg-white rounded-lg shadow-xl p-1"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.6 }}
+            whileHover={{ scale: 1.02 }}
+          >
             <form role="search" aria-labelledby="search-bar">
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -30,16 +54,18 @@ const Hero = ({ title, description, searchPlaceholder }) => {
                   placeholder={searchPlaceholder}
                   aria-placeholder={searchPlaceholder}
                 />
-                <button
+                <motion.button
                   type="submit"
                   aria-label="Submit search"
                   className="absolute inset-y-0 right-0 flex items-center px-4 text-white bg-teal-500 hover:bg-teal-600 rounded-r-lg"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
                   Search
-                </button>
+                </motion.button>
               </div>
             </form>
-          </div>
+          </motion.div>
         </div>
       </div>
 
