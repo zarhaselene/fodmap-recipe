@@ -23,6 +23,8 @@ export default function ResourcePage({ params }) {
     setSearchTerm,
     searchedResources,
     resourceCategories,
+    loading: contextLoading,
+    error: contextError,
   } = useResources();
 
   const resourceId = use(params).id;
@@ -32,15 +34,12 @@ export default function ResourcePage({ params }) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchResourceData = async () => {
+    
+    // Only proceed if searchedResources is loaded from context
+    if (!contextLoading && !contextError && searchedResources.length > 0) {
       try {
-        // Fetch resource data
-        const response = await fetch("/resources.json");
-        if (!response.ok) throw new Error("Failed to fetch resource data");
-        const data = await response.json();
-
-        // Find the current resource
-        const currentResource = data.resources.find(
+        // Find the current resource from the context data
+        const currentResource = searchedResources.find(
           (res) => res.id === parseInt(resourceId)
         );
 
@@ -50,9 +49,9 @@ export default function ResourcePage({ params }) {
 
         setResource(currentResource);
 
-        // Fetch related resources
+        // Find related resources from the context data
         if (currentResource.relatedResources?.length > 0) {
-          const related = data.resources.filter((res) =>
+          const related = searchedResources.filter((res) =>
             currentResource.relatedResources.includes(res.id)
           );
           setRelatedResources(related);
@@ -62,27 +61,27 @@ export default function ResourcePage({ params }) {
       } finally {
         setLoading(false);
       }
-    };
-
-    if (resourceId) {
-      fetchResourceData();
     }
-  }, [resourceId]);
+  }, [resourceId, searchedResources, contextLoading, contextError]);
 
-  if (loading) {
+  // Show loading state while either context is loading or component is processing
+  if (contextLoading || loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-teal-500"></div>
+        <div className="flex justify-center items-center h-48">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-teal-500"></div>
+        </div>
       </div>
     );
   }
 
-  if (error) {
+  // Show error from either context or component
+  if (contextError || error) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold text-red-500">Error</h1>
-          <p className="mt-2">{error}</p>
+          <p className="mt-2">{contextError?.message || error}</p>
           <Link
             href="/resources"
             className="mt-4 inline-block text-teal-500 hover:underline"
@@ -130,7 +129,7 @@ export default function ResourcePage({ params }) {
           </Link>
           <div className="flex flex-col md:flex-row items-center">
             <div className="md:w-1/2 mb-8 md:mb-0">
-              <span className="inline-block bg-white/20 text-white px-3 py-1 rounded-full text-sm font-medium mb-4">
+              <span className="inline-block bg-white/20 text-white px-3 py-1 rounded text-sm font-medium mb-4">
                 {resource.category}
               </span>
               <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">
@@ -193,7 +192,6 @@ export default function ResourcePage({ params }) {
             </div>
           </div>
         </div>
-        <WaveDivider inverted={false} />
       </div>
 
       {/* Main Content */}
@@ -234,7 +232,7 @@ export default function ResourcePage({ params }) {
                   {resource.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="bg-gray-100 text-teal-800 px-3 py-1 rounded-full text-sm inline-flex items-center"
+                      className="bg-gray-100 text-teal-800 px-3 py-1 rounded text-sm inline-flex items-center"
                     >
                       <Tag className="h-3 w-3 mr-1" />
                       {tag}
@@ -261,21 +259,21 @@ export default function ResourcePage({ params }) {
                       className="block group"
                     >
                       <div className="flex items-center p-3 rounded-lg transition hover:bg-gray-50">
-                        <div className="relative  flex-shrink-0 rounded overflow-hidden">
+                        <div className="relative flex-shrink-0 rounded overflow-hidden">
                           <div className="flex items-center justify-center h-full w-full">
-                            {resource.type === "PDF Guide" && (
+                            {related.type === "PDF Guide" && (
                               <FileText className="h-8 w-8 text-teal-400" />
                             )}
-                            {resource.type === "Interactive Guide" && (
+                            {related.type === "Interactive Guide" && (
                               <FileCheck2 className="h-8 w-8 text-purple-400" />
                             )}
-                            {resource.type === "Workbook" && (
+                            {related.type === "Workbook" && (
                               <NotebookPen className="h-8 w-8 text-green-400" />
                             )}
-                            {resource.type === "eBook" && (
+                            {related.type === "eBook" && (
                               <BookText className="h-8 w-8 text-amber-400" />
                             )}
-                            {resource.type === "Video Guide" && (
+                            {related.type === "Video Guide" && (
                               <Video className="h-8 w-8 text-red-400" />
                             )}
                           </div>
