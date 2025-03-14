@@ -1,9 +1,8 @@
-import Link from "next/link";
 import Hero from "./components/shared/Hero";
 import FeaturedRecipes from "./components/home/FeaturedRecipes";
 import FodmapGuide from "./components/home/FodmapGuide";
 import Testimonials from "./components/home/Testimonials";
-import WaveDivider from "./components/shared/WaveDivider";
+
 export default function Home() {
   return (
     <div className="min-h-screen">
