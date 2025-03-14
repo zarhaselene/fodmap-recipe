@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 
 const categoryStyles = {
-  "FODMAP Guide": "bg-teal-100 text-teal-800",
+  "FODMAP Guides": "bg-teal-100 text-teal-800",
   "Elimination Phase": "bg-purple-100 text-purple-800",
   Reintroduction: "bg-green-100 text-green-800",
   "Meal Planning": "bg-amber-100 text-amber-800",
