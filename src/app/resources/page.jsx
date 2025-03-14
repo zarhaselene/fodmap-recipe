@@ -1,6 +1,6 @@
 "use client";
-import { useState, useEffect } from "react";
-
+import { useState } from "react";
+import { useResources } from "../context/ResourcesContext";
 import Hero from "../components/shared/Hero";
 import DietPhases from "../components/resources/DietPhases";
 import MealPlanning from "../components/resources/MealPlanning";
@@ -8,50 +8,16 @@ import ResourcesSection from "../components/resources/ResourcesSection";
 import FAQSection from "../components/resources/FAQ";
 
 const Resources = () => {
-  const [activeCategory, setActiveCategory] = useState("All");
-  const [searchTerm, setSearchTerm] = useState("");
   const [expandedFaq, setExpandedFaq] = useState(null);
 
-  const [resources, setResources] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchResources = async () => {
-      try {
-        const response = await fetch("/resources.json");
-        if (!response.ok) throw new Error("Failed to fetch resources");
-        const data = await response.json();
-        setResources(data.resources);
-      } catch (error) {
-        setError(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchResources();
-  }, []);
-
-  const resourceCategories = [
-    "All",
-    "FODMAP Guide",
-    "Elimination Phase",
-    "Reintroduction",
-    "Meal Planning",
-    "Printables",
-  ];
-
-  const filteredResources =
-    activeCategory === "All"
-      ? resources
-      : resources.filter((resource) => resource.category === activeCategory);
-
-  const searchedResources = filteredResources.filter(
-    (resource) =>
-      resource.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      resource.description.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const {
+    activeCategory,
+    setActiveCategory,
+    searchTerm,
+    setSearchTerm,
+    searchedResources,
+    resourceCategories,
+  } = useResources();
 
   const faqs = [
     {
@@ -88,6 +54,7 @@ const Resources = () => {
 
   return (
     <div className="min-h-screen">
+      {/* Hero Section */}
       <Hero
         title={"FODMAP Diet Resources & Tools"}
         description={
@@ -95,15 +62,18 @@ const Resources = () => {
         }
         searchPlaceholder={"Search resources..."}
       />
+
+      {/* FODMAP Diet Phases Section */}
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-1">
-        <h2 className="text-2xl md:text-3xl font-bold text-teal-700 my-12 text-center">
+        <h2 className="text-2xl md:text-3xl font-bold text-teal-700 my-12 text-center md:text-left">
           Understanding the FODMAP Diet Journey
         </h2>
-        {/* FODMAP Diet Phases Section */}
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <DietPhases setActiveCategory={setActiveCategory} />
         </div>
       </div>
+
       {/* Meal Planning Section */}
       <div className="bg-teal-100/15 mt-12">
         <div className="py-16 container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
@@ -111,19 +81,19 @@ const Resources = () => {
         </div>
       </div>
       <div className="bg-white ">
-        <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ResourcesSection
-            {...{
-              resourceCategories,
-              activeCategory,
-              setActiveCategory,
-              searchedResources,
-            }}
-          />
-        </div>
+        <ResourcesSection
+          {...{
+            resourceCategories,
+            activeCategory,
+            setActiveCategory,
+            searchedResources,
+          }}
+        />
       </div>
+
+      {/* FAQ Section */}
       <div className="pb-16 to-white">
-        <div className="container mx-auto px-4">
+        <div className=" px-4">
           <FAQSection {...{ faqs, expandedFaq, setExpandedFaq }} />
         </div>
       </div>

@@ -13,9 +13,18 @@ import {
   NotebookPen,
   FileCheck2,
 } from "lucide-react";
-import WaveDivider from "@/app/components/shared/WaveDivider";
+import { useResources } from "@/app/context/ResourcesContext";
 
 export default function ResourcePage({ params }) {
+  const {
+    activeCategory,
+    setActiveCategory,
+    searchTerm,
+    setSearchTerm,
+    searchedResources,
+    resourceCategories,
+  } = useResources();
+
   const resourceId = use(params).id;
   const [resource, setResource] = useState(null);
   const [relatedResources, setRelatedResources] = useState([]);
