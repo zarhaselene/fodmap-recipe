@@ -1,11 +1,16 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Search, ChevronDown } from "lucide-react";
 import ResourcesCard from "./ResourcesCard";
 import Pagination from "../shared/Pagination";
 import { useResources } from "@/app/context/ResourcesContext";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const ResourcesSection = () => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const sectionRef = useRef(null);
+
   const {
     activeCategory,
     setActiveCategory,
@@ -18,9 +23,48 @@ const ResourcesSection = () => {
   } = useResources();
 
   const [showMobileFilter, setShowMobileFilter] = useState(false);
-
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(6);
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
+
+  useEffect(() => {
+    const categoryParam = searchParams.get("category");
+
+    if (
+      categoryParam &&
+      resourceCategories.includes(decodeURIComponent(categoryParam))
+    ) {
+      setActiveCategory(decodeURIComponent(categoryParam));
+
+      // Only scroll if it's coming from an external navigation
+      if (isInitialLoad && sectionRef.current) {
+        // Scroll to the section with a slight delay to ensure content is rendered
+        setTimeout(() => {
+          sectionRef.current.scrollIntoView({ behavior: "smooth" });
+        }, 100);
+      }
+    }
+
+    if (isInitialLoad) {
+      setIsInitialLoad(false);
+    }
+  }, [searchParams, resourceCategories, setActiveCategory, isInitialLoad]);
+
+  // Handle category change and update URL
+  const handleCategoryChange = (category) => {
+    setActiveCategory(category);
+
+    // Update URL with new category
+    const params = new URLSearchParams(searchParams);
+    if (category === "All") {
+      params.delete("category");
+    } else {
+      params.set("category", category);
+    }
+
+    // Avoid adding to browser history stack
+    router.replace(`/resources?${params.toString()}`, { scroll: false });
+  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -63,7 +107,7 @@ const ResourcesSection = () => {
   );
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen" ref={sectionRef}>
       {/* Resources Section */}
       <div className="bg-white py-16">
         <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -104,7 +148,7 @@ const ResourcesSection = () => {
                             : "text-gray-700 hover:bg-gray-100"
                         }`}
                         onClick={() => {
-                          setActiveCategory(category);
+                          handleCategoryChange(category);
                           setShowMobileFilter(false);
                         }}
                       >
@@ -127,7 +171,7 @@ const ResourcesSection = () => {
                     ? "text-teal-600 border-b-2 border-teal-600"
                     : "text-gray-600 hover:text-gray-900 border-b-2 border-transparent"
                 }`}
-                onClick={() => setActiveCategory(category)}
+                onClick={() => handleCategoryChange(category)}
               >
                 {category}
               </button>
@@ -160,7 +204,7 @@ const ResourcesSection = () => {
                     className="text-teal-500 hover:text-teal-600 font-medium"
                     onClick={() => {
                       setSearchTerm("");
-                      setActiveCategory("All");
+                      handleCategoryChange("All");
                     }}
                   >
                     Clear filters
