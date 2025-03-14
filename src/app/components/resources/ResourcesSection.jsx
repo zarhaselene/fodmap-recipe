@@ -3,39 +3,24 @@ import { useState, useEffect } from "react";
 import { Search, ChevronDown } from "lucide-react";
 import ResourcesCard from "./ResourcesCard";
 import Pagination from "../shared/Pagination";
+import { useResources } from "@/app/context/ResourcesContext";
 
 const ResourcesSection = () => {
-  const [activeCategory, setActiveCategory] = useState("All");
-  const [searchTerm, setSearchTerm] = useState("");
+  const {
+    activeCategory,
+    setActiveCategory,
+    searchTerm,
+    setSearchTerm,
+    searchedResources,
+    resourceCategories,
+    loading,
+    error,
+  } = useResources();
+
   const [showMobileFilter, setShowMobileFilter] = useState(false);
 
-  const [resources, setResources] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  // Pagination states
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(6);
-
-  useEffect(() => {
-    const fetchResources = async () => {
-      try {
-        const response = await fetch("/resources.json");
-        if (!response.ok) {
-          throw new Error("Failed to fetch resources");
-        }
-        const data = await response.json();
-        const resourcesData = data.resources || data;
-        setResources(resourcesData);
-        setLoading(false);
-      } catch (err) {
-        console.error("Error loading resources:", err);
-        setError("Failed to load resources. Please try again later.");
-        setLoading(false);
-      }
-    };
-    fetchResources();
-  }, []);
 
   useEffect(() => {
     const handleResize = () => {
@@ -46,7 +31,7 @@ const ResourcesSection = () => {
       }
     };
 
-    handleResize(); // Set the initial itemsPerPage
+    handleResize();
     window.addEventListener("resize", handleResize);
 
     return () => {
@@ -57,32 +42,6 @@ const ResourcesSection = () => {
   useEffect(() => {
     setCurrentPage(1);
   }, [activeCategory, searchTerm]);
-
-  const resourceCategories = [
-    "All",
-    "FODMAP Guide",
-    "Elimination Phase",
-    "Reintroduction",
-    "Meal Planning",
-    "Printables",
-  ];
-
-  const filteredResources =
-    resources.length > 0
-      ? activeCategory === "All"
-        ? resources
-        : resources.filter(
-            (resource) =>
-              resource.category === activeCategory ||
-              (activeCategory === "Printables" && resource.downloadable)
-          )
-      : [];
-
-  const searchedResources = filteredResources.filter(
-    (resource) =>
-      resource.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      resource.description.toLowerCase().includes(searchTerm.toLowerCase())
-  );
 
   const nextPage = () => {
     if (currentPage < Math.ceil(searchedResources.length / itemsPerPage)) {
@@ -102,9 +61,6 @@ const ResourcesSection = () => {
     indexOfFirstResource,
     indexOfLastResource
   );
-
-  const featuredResources =
-    resources.length > 0 ? resources.filter((r) => r.id <= 3) : [];
 
   return (
     <div className="min-h-screen">
@@ -185,7 +141,7 @@ const ResourcesSection = () => {
             </div>
           ) : error ? (
             <div className="text-center py-12">
-              <div className="text-red-500 mb-4">{error}</div>
+              <div className="text-red-500 mb-4">{error.message}</div>
               <button
                 className="bg-teal-500 hover:bg-teal-600 text-white font-medium py-2 px-4 rounded-md"
                 onClick={() => window.location.reload()}
@@ -214,7 +170,6 @@ const ResourcesSection = () => {
                 <>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {currentResources.map((resource) => (
-                      // Resource Card
                       <ResourcesCard key={resource.id} resource={resource} />
                     ))}
                   </div>

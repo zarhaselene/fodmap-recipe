@@ -80,7 +80,7 @@ const Resources = () => {
           <MealPlanning setActiveCategory={setActiveCategory} />
         </div>
       </div>
-      <div className="bg-white ">
+      <div className="bg-white">
         <ResourcesSection
           {...{
             resourceCategories,
