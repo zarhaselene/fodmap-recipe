@@ -1,6 +1,7 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useResources } from "../context/ResourcesContext";
+import { useSearchParams } from "next/navigation";
 import Hero from "../components/shared/Hero";
 import DietPhases from "../components/resources/DietPhases";
 import MealPlanning from "../components/resources/MealPlanning";
@@ -9,6 +10,7 @@ import FAQSection from "../components/resources/FAQ";
 
 const Resources = () => {
   const [expandedFaq, setExpandedFaq] = useState(null);
+  const searchParams = useSearchParams();
 
   const {
     activeCategory,
@@ -18,6 +20,22 @@ const Resources = () => {
     searchedResources,
     resourceCategories,
   } = useResources();
+
+  // Check for category in URL params on initial load
+  useEffect(() => {
+    const categoryParam = searchParams.get("category");
+    if (categoryParam && resourceCategories.includes(categoryParam)) {
+      setActiveCategory(categoryParam);
+
+      // Scroll to resources section
+      setTimeout(() => {
+        const resourcesElement = document.getElementById("resources-section");
+        if (resourcesElement) {
+          resourcesElement.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+    }
+  }, [searchParams, resourceCategories, setActiveCategory]);
 
   const faqs = [
     {
@@ -80,7 +98,7 @@ const Resources = () => {
           <MealPlanning setActiveCategory={setActiveCategory} />
         </div>
       </div>
-      <div className="bg-white">
+      <div id="resources-section" className="bg-white">
         <ResourcesSection
           {...{
             resourceCategories,
