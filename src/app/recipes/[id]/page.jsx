@@ -179,8 +179,8 @@ export default function RecipeDetail() {
               alt={recipe.title}
               className="object-cover w-full h-full"
             />
-            <div className="absolute top-4 left-4 bg-green-500 text-white text-sm font-semibold px-3 py-1 rounded-full">
-              {recipe.level}
+            <div className="absolute top-4 right-4 bg-teal-500 text-white text-xs px-2 py-1 rounded">
+              {recipe.category}
             </div>
           </div>
 
@@ -231,9 +231,6 @@ export default function RecipeDetail() {
                   ({recipe.reviews} reviews)
                 </span>
               </div>
-              <span className="bg-teal-100 text-teal-800 text-xs px-2 py-1 rounded">
-                {recipe.category}
-              </span>
             </div>
 
             {/* Description */}
@@ -302,7 +299,6 @@ export default function RecipeDetail() {
             {relatedRecipes.slice(0, 3).map((recipe) => (
               <RecipeCard
                 key={recipe.id}
-                level={recipe.level}
                 image={recipe.image}
                 title={recipe.title}
                 rating={recipe.rating}
