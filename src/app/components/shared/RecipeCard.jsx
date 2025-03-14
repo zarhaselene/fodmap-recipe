@@ -14,29 +14,13 @@ const RecipeCard = ({
   const filledStars = Math.floor(rating);
   const emptyStars = 5 - filledStars;
 
-  // Function to determine the appropriate background color based on FODMAP level
-  const getTagColor = (fodmapLevel) => {
-    switch (fodmapLevel) {
-      case "Low FODMAP":
-        return "bg-green-500";
-      case "Moderate FODMAP":
-        return "bg-yellow-500";
-      case "High FODMAP":
-        return "bg-red-500";
-      default:
-        return "bg-gray-500";
-    }
-  };
-
-  const tagColorClass = getTagColor(level);
-
   return (
     <div className="bg-white rounded-lg border border-gray-200 shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden">
       <div className="h-48 bg-gray-200 relative">
         <div
-          className={`absolute top-2 left-2 ${tagColorClass} text-white text-xs font-medium px-2 py-1 rounded shadow-sm`}
+          className={`absolute top-2 right-2 bg-teal-500 text-white text-xs font-medium px-2 py-1 rounded shadow-sm`}
         >
-          {level}
+          {category}
         </div>
         <img src={image} alt={title} className="object-cover w-full h-full" />
       </div>
@@ -60,9 +44,6 @@ const RecipeCard = ({
           <span className="text-sm text-gray-600 flex items-center">
             <Clock className="h-4 w-4 mr-1 text-gray-400" />
             {totalTime} min
-          </span>
-          <span className="inline-block bg-teal-100 text-teal-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
-            {category}
           </span>
         </div>
 
