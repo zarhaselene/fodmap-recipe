@@ -153,14 +153,12 @@ const PhaseCard = ({
       </div>
 
       <div className="pl-16 text-right">
-        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-          <Link
-            href={link}
-            className={`bg-${color}-100 hover:bg-${color}-200 text-${color}-800 px-4 py-2 rounded-md font-medium inline-flex items-center transition-colors duration-200`}
-          >
-            {title} Resources <ChevronRight className="ml-1 h-4 w-4" />
-          </Link>
-        </motion.div>
+        <Link
+          href={link}
+          className={`bg-${color}-100 hover:bg-${color}-200 text-${color}-800 px-4 py-2 rounded-md font-medium inline-flex items-center transition-colors duration-200`}
+        >
+          {title} Resources <ChevronRight className="ml-1 h-4 w-4" />
+        </Link>
       </div>
     </motion.div>
   );
@@ -194,7 +192,6 @@ const Phase = ({ phaseNumber, children, reverse, icon }) => {
               damping: 20,
               delay: 0.2,
             }}
-            whileHover={{ scale: 1.1 }}
           >
             <span
               className={`text-3xl font-bold text-${children.props.color}-700`}
@@ -217,7 +214,7 @@ const FODMAPGuidePage = () => {
     // Filter resources from context instead of fetching again
     if (searchedResources.length > 0) {
       const fodmapGuides = searchedResources.filter(
-        (resource) => resource.category === "FODMAP Guide"
+        (resource) => resource.category === "FODMAP Guides"
       );
       setFeaturedResources(fodmapGuides.slice(0, 3));
     }
@@ -388,11 +385,7 @@ const FODMAPGuidePage = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <motion.div
-                className="relative rounded-xl overflow-hidden shadow-lg border-2 border-teal-200"
-                whileHover={{ scale: 1.03 }}
-                transition={{ type: "spring", stiffness: 400, damping: 10 }}
-              >
+              <div className="relative rounded-xl overflow-hidden shadow-lg border-2 border-teal-200">
                 <Image
                   src="/images/digestive-system.jpg"
                   alt="Digestive System"
@@ -405,7 +398,7 @@ const FODMAPGuidePage = () => {
                     How FODMAPs affect your digestive system
                   </p>
                 </div>
-              </motion.div>
+              </div>
               <motion.div
                 className="mt-4 bg-teal-700 text-white p-4 rounded-lg"
                 initial={{ opacity: 0, y: 20 }}
@@ -470,21 +463,21 @@ const FODMAPGuidePage = () => {
               initial={{ scale: 0 }}
               whileInView={{ scale: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.6 }}
+              transition={{ delay: 0.3 }}
             ></motion.div>
             <motion.div
               className="absolute left-1/2 transform -translate-x-1/2 top-2/3 h-4 w-4 rounded-full bg-purple-500 hidden md:block"
               initial={{ scale: 0 }}
               whileInView={{ scale: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: 1 }}
+              transition={{ delay: 0.4 }}
             ></motion.div>
             <motion.div
               className="absolute left-1/2 transform -translate-x-1/2 bottom-0 h-4 w-4 rounded-full bg-purple-500 hidden md:block"
               initial={{ scale: 0 }}
               whileInView={{ scale: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: 1.4 }}
+              transition={{ delay: 0.5 }}
             ></motion.div>
 
             <Phase phaseNumber={1}>

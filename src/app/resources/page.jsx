@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { useResources } from "../context/ResourcesContext";
 import { useSearchParams } from "next/navigation";
+import { motion } from "framer-motion";
 import Hero from "../components/shared/Hero";
 import DietPhases from "../components/resources/DietPhases";
 import MealPlanning from "../components/resources/MealPlanning";
@@ -70,35 +71,95 @@ const Resources = () => {
     },
   ];
 
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5 },
+    },
+  };
+
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <Hero
-        title={"FODMAP Diet Resources & Tools"}
-        description={
-          "Access guides, meal plans, tracking tools and more to help you navigate the low FODMAP diet with confidence"
-        }
-        searchPlaceholder={"Search resources..."}
-      />
+      {/* Hero Section with animation */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+      >
+        <Hero
+          title={"FODMAP Diet Resources & Tools"}
+          description={
+            "Access guides, meal plans, tracking tools and more to help you navigate the low FODMAP diet with confidence"
+          }
+          searchPlaceholder={"Search resources..."}
+        />
+      </motion.div>
 
       {/* FODMAP Diet Phases Section */}
-      <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-1">
-        <h2 className="text-2xl md:text-3xl font-bold text-teal-700 my-12 text-center md:text-left">
+      <motion.div
+        className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-1"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
+        <motion.h2
+          className="text-2xl md:text-3xl font-bold text-teal-700 my-12 text-center md:text-left"
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
           Understanding the FODMAP Diet Journey
-        </h2>
+        </motion.h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
           <DietPhases setActiveCategory={setActiveCategory} />
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
       {/* Meal Planning Section */}
       <div className="bg-teal-100/15 mt-12">
-        <div className="py-16 container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
+        <motion.div
+          className="py-16 container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+        >
           <MealPlanning setActiveCategory={setActiveCategory} />
-        </div>
+        </motion.div>
       </div>
-      <div id="resources-section" className="bg-white">
+
+      {/* Resources Section */}
+      <motion.div
+        id="resources-section"
+        className="bg-white"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.5 }}
+      >
         <ResourcesSection
           {...{
             resourceCategories,
@@ -107,13 +168,19 @@ const Resources = () => {
             searchedResources,
           }}
         />
-      </div>
+      </motion.div>
 
       {/* FAQ Section */}
       <div className="pb-16 to-white">
-        <div className=" px-4">
+        <motion.div
+          className="px-4"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
           <FAQSection {...{ faqs, expandedFaq, setExpandedFaq }} />
-        </div>
+        </motion.div>
       </div>
     </div>
   );

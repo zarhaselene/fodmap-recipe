@@ -12,6 +12,7 @@ import {
   CheckCircle,
   Info,
 } from "lucide-react";
+import { motion } from "framer-motion";
 
 import RecipeStats from "@/app/components/recipes/RecipeStats";
 import NutritionFacts from "@/app/components/recipes/NutritionFacts";
@@ -47,23 +48,55 @@ export default function RecipeDetail() {
     }
   }, [id, recipes]);
 
+  // Page transition variants
+  const pageVariants = {
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+    exit: { opacity: 0, y: -20, transition: { duration: 0.3 } },
+  };
+
+  // Content stagger variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.4 } },
+  };
+
   // If loading or no recipe found
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-screen">
-        <div className="border-t-4 border-teal-500 border-solid w-8 h-8 rounded-full animate-spin"></div>
+        <motion.div
+          className="border-t-4 border-teal-500 border-solid w-8 h-8 rounded-full"
+          animate={{ rotate: 360 }}
+          transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+        ></motion.div>
       </div>
     );
   }
 
   if (!recipe) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center">
+      <motion.div
+        className="min-h-screen flex flex-col items-center justify-center"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
         <div className="text-xl mb-4">Recipe not found</div>
         <Link href="/recipes" className="text-teal-500 hover:underline">
           Return to recipes
         </Link>
-      </div>
+      </motion.div>
     );
   }
 
@@ -150,99 +183,146 @@ export default function RecipeDetail() {
     : recipe.ingredients.eu;
 
   return (
-    <div className="min-h-screen">
+    <motion.div
+      className="min-h-screen"
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      variants={pageVariants}
+    >
       {/* Back button */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
-        <Link
-          href="/recipes"
-          className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-teal-600 hover:bg-teal-700 focus:outline-none 
-          focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+        <motion.div
+          whileHover={{ x: -5 }}
+          transition={{ type: "spring", stiffness: 400 }}
         >
-          <ChevronLeft size={16} className="mr-1" />
-          <span>Back to recipes</span>
-        </Link>
+          <Link
+            href="/recipes"
+            className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-teal-600 hover:bg-teal-700 focus:outline-none 
+            focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+          >
+            <ChevronLeft size={16} className="mr-1" />
+            <span>Back to recipes</span>
+          </Link>
+        </motion.div>
       </div>
 
       {/* Recipe container */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="bg-white rounded-lg shadow-md overflow-hidden">
+        <motion.div
+          className="bg-white rounded-lg shadow-md overflow-hidden"
+          variants={containerVariants}
+          initial="hidden"
+          animate="show"
+        >
           {/* Recipe image and badge */}
-          <div className="h-64 sm:h-80 bg-gray-200 relative">
-            <img
+          <motion.div
+            className="h-64 sm:h-80 bg-gray-200 relative"
+            variants={itemVariants}
+          >
+            <motion.img
               src={recipe.image}
               alt={recipe.title}
               className="object-cover w-full h-full"
+              initial={{ scale: 1.1, opacity: 0.8 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.8 }}
             />
-            <div className="absolute top-4 right-4 bg-teal-600 text-white text-xs px-2 py-1 rounded">
+            <motion.div
+              className="absolute top-4 right-4 bg-teal-600 text-white text-xs px-2 py-1 rounded"
+              initial={{ x: 20, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ delay: 0.3, duration: 0.5 }}
+            >
               {recipe.category}
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* Recipe content */}
           <div className="p-6">
-            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-4">
+            <motion.div
+              className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-4"
+              variants={itemVariants}
+            >
               <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2 lg:mb-0">
                 {recipe.title}
               </h1>
               <div className="flex space-x-2">
-                <button className="flex items-center px-3 py-1 bg-gray-200 rounded hover:bg-teal-600 hover:text-white cursor-pointer">
-                  <Printer size={16} className="mr-1" />
-                  <span className="text-sm">Print</span>
-                </button>
-                <button className="flex items-center px-3 py-1 bg-gray-200 rounded hover:bg-teal-600 hover:text-white cursor-pointer">
-                  <Share2 size={16} className="mr-1" />
-                  <span className="text-sm">Share</span>
-                </button>
-                <button className="flex items-center px-3 py-1 bg-gray-200 rounded hover:bg-teal-600 hover:text-white cursor-pointer">
-                  <Heart size={16} className="mr-1" />
-                  <span className="text-sm">Save</span>
-                </button>
+                {["Print", "Share", "Save"].map((action, index) => {
+                  const Icon = [Printer, Share2, Heart][index];
+                  return (
+                    <motion.button
+                      key={action}
+                      className="flex items-center px-3 py-1 bg-gray-200 rounded hover:bg-teal-600 hover:text-white cursor-pointer"
+                    >
+                      <Icon size={16} className="mr-1" />
+                      <span className="text-sm">{action}</span>
+                    </motion.button>
+                  );
+                })}
               </div>
-            </div>
+            </motion.div>
 
             {/* Rating and category */}
-            <div className="flex flex-wrap items-center mb-6">
+            <motion.div
+              className="flex flex-wrap items-center mb-6"
+              variants={itemVariants}
+            >
               <div className="flex items-center mr-4">
                 <div className="flex text-yellow-400 mr-1">
                   {Array(5)
                     .fill(0)
                     .map((_, i) => (
-                      <Star
+                      <motion.div
                         key={i}
-                        size={16}
-                        fill={
-                          i < Math.floor(recipe.rating)
-                            ? "currentColor"
-                            : "none"
-                        }
-                        className={
-                          i < Math.floor(recipe.rating) ? "" : "text-gray-300"
-                        }
-                      />
+                        initial={{ opacity: 0, scale: 0.5 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.1 * i, duration: 0.3 }}
+                      >
+                        <Star
+                          size={16}
+                          fill={
+                            i < Math.floor(recipe.rating)
+                              ? "currentColor"
+                              : "none"
+                          }
+                          className={
+                            i < Math.floor(recipe.rating) ? "" : "text-gray-300"
+                          }
+                        />
+                      </motion.div>
                     ))}
                 </div>
                 <span className="text-gray-600 text-sm">
                   ({recipe.reviews} reviews)
                 </span>
               </div>
-            </div>
+            </motion.div>
 
             {/* Description */}
-            <div>
+            <motion.div variants={itemVariants}>
               <p className="text-gray-700 mb-8">{recipe.description}</p>
-            </div>
+            </motion.div>
 
             {/* Recipe details */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+            <motion.div
+              className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8"
+              variants={itemVariants}
+            >
               <RecipeStats
                 recipe={recipe}
                 servings={servings}
                 setServings={setServings}
               />
-            </div>
+            </motion.div>
 
             {/* FODMAP info box */}
-            <div className="bg-blue-50 border-l-4 border-teal-400 p-4 mb-8 rounded">
+            <motion.div
+              className="bg-blue-50 border-l-4 border-teal-400 p-4 mb-8 rounded"
+              initial={{ x: -20, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ delay: 0.4, duration: 0.6 }}
+            >
               <div className="flex">
                 <Info
                   size={20}
@@ -254,26 +334,35 @@ export default function RecipeDetail() {
                   </h3>
                   <ul className="text-teal-700 text-sm space-y-1">
                     {recipe.fodmapTips.map((tip, index) => (
-                      <li key={index} className="flex items-start">
+                      <motion.li
+                        key={index}
+                        className="flex items-start"
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.2 + index * 0.1, duration: 0.4 }}
+                      >
                         <CheckCircle
                           size={16}
                           className="text-teal-500 mr-2 flex-shrink-0 mt-1"
                         />
                         <span>{tip}</span>
-                      </li>
+                      </motion.li>
                     ))}
                   </ul>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Nutrition Facts */}
-            <div className="mb-8">
+            <motion.div className="mb-8" variants={itemVariants}>
               <NutritionFacts recipe={recipe} />
-            </div>
+            </motion.div>
 
             {/* Tabs */}
-            <div className="border-gray-200 mb-6">
+            <motion.div
+              className="border-gray-200 mb-6"
+              variants={itemVariants}
+            >
               <RecipeTabs
                 recipe={{ ...recipe, ingredients: currentIngredients }}
                 servings={servings}
@@ -281,39 +370,60 @@ export default function RecipeDetail() {
                 useUSMeasurements={useUSMeasurements}
                 toggleMeasurementSystem={toggleMeasurementSystem}
               />
-            </div>
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
         {/* Related recipes section */}
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-8 pt-16">
+        <motion.div
+          className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-8 pt-16"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.7, duration: 0.6 }}
+        >
           <div className="flex items-baseline justify-between">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">
-              You Might Also Like
-            </h2>
-            {/* View all recipes button */}
-            <Link
-              href="/recipes"
-              className="inline-flex items-center text-sm font-medium text-teal-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+            <motion.h2
+              className="text-2xl font-bold text-gray-900 mb-6"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.8, duration: 0.5 }}
             >
-              View all <ChevronRight className="h-5 w-5 ml-1" />
-            </Link>
+              You Might Also Like
+            </motion.h2>
+            {/* View all recipes button */}
+            <motion.div
+              whileHover={{ x: 5 }}
+              transition={{ type: "spring", stiffness: 400 }}
+            >
+              <Link
+                href="/recipes"
+                className="inline-flex items-center text-sm font-medium text-teal-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+              >
+                View all <ChevronRight className="h-5 w-5 ml-1" />
+              </Link>
+            </motion.div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {relatedRecipes.slice(0, 3).map((recipe) => (
-              <RecipeCard
+            {relatedRecipes.slice(0, 3).map((recipe, index) => (
+              <motion.div
                 key={recipe.id}
-                image={recipe.image}
-                title={recipe.title}
-                rating={recipe.rating}
-                reviews={recipe.reviews}
-                time={recipe.time}
-                category={recipe.category}
-              />
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.9 + index * 0.2, duration: 0.5 }}
+              >
+                <RecipeCard
+                  image={recipe.image}
+                  title={recipe.title}
+                  rating={recipe.rating}
+                  reviews={recipe.reviews}
+                  time={recipe.time}
+                  category={recipe.category}
+                />
+              </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 }

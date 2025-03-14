@@ -53,14 +53,13 @@ const FeaturedRecipes = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <motion.h2
-            className="text-2xl md:text-3xl font-bold text-teal-700"
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 300 }}
-          >
+          <h2 className="text-2xl md:text-3xl font-bold text-teal-700">
             Featured Recipes
-          </motion.h2>
-          <motion.div>
+          </h2>
+          <motion.div
+            whileHover={{ x: 5 }}
+            transition={{ type: "spring", stiffness: 400 }}
+          >
             <Link
               href="/recipes"
               className="text-teal-700 hover:text-teal-900 flex items-center font-medium"

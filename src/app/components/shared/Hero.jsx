@@ -54,15 +54,13 @@ const Hero = ({ title, description, searchPlaceholder }) => {
                   placeholder={searchPlaceholder}
                   aria-placeholder={searchPlaceholder}
                 />
-                <motion.button
+                <button
                   type="submit"
                   aria-label="Submit search"
                   className="absolute inset-y-0 right-0 flex items-center px-4 text-white bg-teal-500 hover:bg-teal-600 rounded-r-lg"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
                 >
                   Search
-                </motion.button>
+                </button>
               </div>
             </form>
           </motion.div>
