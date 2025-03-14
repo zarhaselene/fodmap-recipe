@@ -29,29 +29,47 @@ const FAQItem = ({ faq, expandedFaq, setExpandedFaq }) => {
 const FAQSection = ({ faqs }) => {
   const [expandedFaq, setExpandedFaq] = useState(null);
 
+  const leftColumnFaqs = faqs.slice(0, Math.ceil(faqs.length / 2));
+  const rightColumnFaqs = faqs.slice(Math.ceil(faqs.length / 2));
+
   return (
-    <>
-      <div className="text-center mb-12">
+    <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-1">
+      <div className="text-center md:text-left mb-12">
         <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4">
           Frequently Asked Questions
         </h2>
-        <p className="text-gray-600 max-w-2xl mx-auto">
+        <p className="text-gray-600 max-w-2xl">
           Find answers to common questions about the low FODMAP diet and our
           resources
         </p>
       </div>
 
-      <div className="max-w-3xl mx-auto">
-        {faqs.map((faq) => (
-          <FAQItem
-            key={faq.id}
-            faq={faq}
-            expandedFaq={expandedFaq}
-            setExpandedFaq={setExpandedFaq}
-          />
-        ))}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
+        {/* Left Column */}
+        <div>
+          {leftColumnFaqs.map((faq) => (
+            <FAQItem
+              key={faq.id}
+              faq={faq}
+              expandedFaq={expandedFaq}
+              setExpandedFaq={setExpandedFaq}
+            />
+          ))}
+        </div>
+
+        {/* Right Column */}
+        <div>
+          {rightColumnFaqs.map((faq) => (
+            <FAQItem
+              key={faq.id}
+              faq={faq}
+              expandedFaq={expandedFaq}
+              setExpandedFaq={setExpandedFaq}
+            />
+          ))}
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 
