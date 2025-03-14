@@ -1,16 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import Hero from "../components/shared/Hero";
 import FilterOptions from "../components/recipes/FilterOptions";
 import RecipeCard from "../components/shared/RecipeCard";
 import Pagination from "../components/shared/Pagination";
 import Link from "next/link";
+import { useRecipeContext } from "../context/RecipeContext";
 
 const Recipes = () => {
-  const [recipes, setRecipes] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const { recipes, loading, error } = useRecipeContext();
 
   const [activeDietaryNeeds, setActiveDietaryNeeds] = useState([]);
   const [activeMealTypes, setActiveMealTypes] = useState([]);
@@ -20,37 +19,16 @@ const Recipes = () => {
   const [itemsPerPage, setItemsPerPage] = useState(8);
 
   useEffect(() => {
-    const fetchRecipes = async () => {
-      try {
-        const response = await fetch("/recipes.json");
-        if (!response.ok) throw new Error("Failed to fetch recipes");
-        const data = await response.json();
-        setRecipes(data.recipes);
-      } catch (error) {
-        setError(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchRecipes();
-  }, []);
-
-  useEffect(() => {
     // Update itemsPerPage based on screen size
     const handleResize = () => {
-      if (window.innerWidth < 640) {
-        setItemsPerPage(4); // Mobile: 4 items per page
-      } else {
-        setItemsPerPage(8); // Default: 8 items per page
-      }
+      setItemsPerPage(window.innerWidth < 640 ? 4 : 8);
     };
 
     handleResize(); // Set the initial itemsPerPage
-    window.addEventListener("resize", handleResize); // Listen for window resize
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener("resize", handleResize); // Clean up the event listener
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
@@ -80,29 +58,16 @@ const Recipes = () => {
 
   const handleSearch = (term) => {
     setSearchTerm(term);
-    setCurrentPage(1); // Reset page when search term changes
+    setCurrentPage(1);
   };
 
-  // Calculate the recipes to display based on the current page
+  // Calculate recipes to display per page
   const indexOfLastRecipe = currentPage * itemsPerPage;
   const indexOfFirstRecipe = indexOfLastRecipe - itemsPerPage;
   const currentRecipes = searchedRecipes.slice(
     indexOfFirstRecipe,
     indexOfLastRecipe
   );
-
-  // Pagination handlers
-  const nextPage = () => {
-    if (currentPage < Math.ceil(searchedRecipes.length / itemsPerPage)) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
-
-  const previousPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
 
   return (
     <div className="min-h-screen">
@@ -112,7 +77,7 @@ const Recipes = () => {
         searchPlaceholder="Search for a food or ingredient..."
         onSearch={handleSearch}
       />
-      <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
+      <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <FilterOptions
           activeDietaryNeeds={activeDietaryNeeds}
           setActiveDietaryNeeds={setActiveDietaryNeeds}
@@ -123,17 +88,7 @@ const Recipes = () => {
           {currentRecipes.length > 0 ? (
             currentRecipes.map((recipe) => (
               <Link key={recipe.id} href={`/recipes/${recipe.id}`}>
-                <RecipeCard
-                  key={recipe.id}
-                  level={recipe.level}
-                  image={recipe.image}
-                  title={recipe.title}
-                  rating={recipe.rating}
-                  reviews={recipe.reviews}
-                  totalTime={recipe.totalTime}
-                  category={recipe.category}
-                  dietaryNeeds={recipe.dietaryNeeds}
-                />
+                <RecipeCard {...recipe} />
               </Link>
             ))
           ) : (
@@ -149,8 +104,16 @@ const Recipes = () => {
           <Pagination
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
-            nextPage={nextPage}
-            previousPage={previousPage}
+            nextPage={() =>
+              setCurrentPage((prev) =>
+                prev < Math.ceil(searchedRecipes.length / itemsPerPage)
+                  ? prev + 1
+                  : prev
+              )
+            }
+            previousPage={() =>
+              setCurrentPage((prev) => (prev > 1 ? prev - 1 : prev))
+            }
             totalPages={Math.ceil(searchedRecipes.length / itemsPerPage)}
           />
         )}

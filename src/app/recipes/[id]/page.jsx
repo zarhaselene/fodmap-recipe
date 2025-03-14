@@ -17,42 +17,54 @@ import NutritionFacts from "@/app/components/recipes/NutritionFacts";
 import RecipeTabs from "@/app/components/recipes/RecipeTabs";
 import RecipeCard from "@/app/components/shared/RecipeCard";
 
+import { useRecipeContext } from "@/app/context/RecipeContext";
+
 export default function RecipeDetail() {
   const params = useParams();
   const id = params.id;
 
+  const { recipes, loading, error } = useRecipeContext();
+
   const [recipe, setRecipe] = useState(null);
   const [relatedRecipes, setRelatedRecipes] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [servings, setServings] = useState(4);
   const [useUSMeasurements, setUseUSMeasurements] = useState(false);
-
+  
+  // Find related recipes
   useEffect(() => {
-    const fetchRecipes = async () => {
-      try {
-        const response = await fetch("/recipes.json");
-        if (!response.ok) throw new Error("Failed to fetch recipes");
-        const data = await response.json();
+    if (id && recipes.length > 0) {
+      const foundRecipe = recipes.find((r) => r.id === parseInt(id));
+      setRecipe(foundRecipe);
 
-        const foundRecipe = data.recipes.find((r) => r.id === parseInt(id));
-        setRecipe(foundRecipe);
-
+      if (foundRecipe) {
         // Find related recipes based on category
-        const related = data.recipes.filter(
+        const related = recipes.filter(
           (r) => r.category === foundRecipe.category && r.id !== foundRecipe.id
         );
         setRelatedRecipes(related.slice(0, 3)); // Get only 3 related recipes
-      } catch (error) {
-        setError(error);
-      } finally {
-        setLoading(false);
       }
-    };
-
-    if (id) {
-      fetchRecipes();
     }
-  }, [id]);
+  }, [id, recipes]);
+
+  // If loading or no recipe found
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <div className="border-t-4 border-teal-500 border-solid w-8 h-8 rounded-full animate-spin"></div>
+      </div>
+    );
+  }
+
+  if (!recipe) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center">
+        <div className="text-xl mb-4">Recipe not found</div>
+        <Link href="/recipes" className="text-teal-500 hover:underline">
+          Return to recipes
+        </Link>
+      </div>
+    );
+  }
 
   const fractionToDecimal = {
     "½": 0.5,

@@ -1,30 +1,11 @@
 "use client";
-import { useState, useEffect } from "react";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import RecipeCard from "../shared/RecipeCard";
+import { useRecipeContext } from "../../context/RecipeContext";
 
 const FeaturedRecipes = () => {
-  const [recipes, setRecipes] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchRecipes = async () => {
-      try {
-        const response = await fetch("/recipes.json");
-        if (!response.ok) throw new Error("Failed to fetch recipes");
-        const data = await response.json();
-        setRecipes(data.recipes);
-      } catch (error) {
-        setError(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchRecipes();
-  }, []);
+  const { recipes, loading, error } = useRecipeContext();
 
   if (loading) {
     return (
@@ -33,7 +14,8 @@ const FeaturedRecipes = () => {
       </div>
     );
   }
-  if (error) return <p>Error: {error.message}</p>;
+  if (error) return <p className="text-center text-red-500">{error}</p>;
+
   return (
     <section className="py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
