@@ -2,7 +2,17 @@
 import { useState, useEffect, use } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Download, ChevronLeft, Star, Tag } from "lucide-react";
+import {
+  Download,
+  ChevronLeft,
+  Star,
+  Tag,
+  Video,
+  BookText,
+  FileText,
+  NotebookPen,
+  FileCheck2,
+} from "lucide-react";
 import WaveDivider from "@/app/components/shared/WaveDivider";
 
 export default function ResourcePage({ params }) {
@@ -169,12 +179,6 @@ export default function ResourcePage({ params }) {
                       )}
                     </button>
                   )}
-
-                  {!resource.downloadable && resource.accessMethod && (
-                    <button className="w-full bg-teal-500 hover:bg-teal-600 text-white font-medium py-3 px-4 rounded-lg flex items-center justify-center">
-                      Access Resource
-                    </button>
-                  )}
                 </div>
               </div>
             </div>
@@ -189,7 +193,7 @@ export default function ResourcePage({ params }) {
           {/* Left Column - Resource Details */}
           <div className="md:col-span-2">
             <div className="bg-white rounded-lg shadow-sm p-6 mb-8">
-              <h2 className="text-2xl font-bold text-gray-800 mb-4">
+              <h2 className="text-2xl font-bold text-teal-800 mb-4">
                 About This Resource
               </h2>
               <p className="text-gray-700 mb-6 leading-relaxed">
@@ -214,14 +218,14 @@ export default function ResourcePage({ params }) {
             {/* Tags Section */}
             {resource.tags && resource.tags.length > 0 && (
               <div className="bg-white rounded-lg shadow-sm p-6 mb-8">
-                <h3 className="text-lg font-bold text-gray-800 mb-4">
+                <h3 className="text-lg font-bold text-teal-800 mb-4">
                   Topics Covered
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {resource.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm inline-flex items-center"
+                      className="bg-gray-100 text-teal-800 px-3 py-1 rounded-full text-sm inline-flex items-center"
                     >
                       <Tag className="h-3 w-3 mr-1" />
                       {tag}
@@ -235,7 +239,7 @@ export default function ResourcePage({ params }) {
           {/* Right Column - Related Resources */}
           <div>
             <div className="bg-white rounded-lg shadow-sm p-6 sticky top-6">
-              <h3 className="text-lg font-bold text-gray-800 mb-4">
+              <h3 className="text-lg font-bold text-teal-800 mb-4">
                 Related Resources
               </h3>
 
@@ -247,18 +251,28 @@ export default function ResourcePage({ params }) {
                       key={related.id}
                       className="block group"
                     >
-                      <div className="flex items-start p-3 rounded-lg transition hover:bg-gray-50">
-                        <div className="relative h-14 w-14 flex-shrink-0 rounded overflow-hidden">
-                          <Image
-                            src={related.image || "/images/placeholder.jpg"}
-                            alt={related.title}
-                            width={56}
-                            height={56}
-                            className="object-cover w-full h-full"
-                          />
+                      <div className="flex items-center p-3 rounded-lg transition hover:bg-gray-50">
+                        <div className="relative  flex-shrink-0 rounded overflow-hidden">
+                          <div className="flex items-center justify-center h-full w-full">
+                            {resource.type === "PDF Guide" && (
+                              <FileText className="h-8 w-8 text-teal-400" />
+                            )}
+                            {resource.type === "Interactive Guide" && (
+                              <FileCheck2 className="h-8 w-8 text-purple-400" />
+                            )}
+                            {resource.type === "Workbook" && (
+                              <NotebookPen className="h-8 w-8 text-green-400" />
+                            )}
+                            {resource.type === "eBook" && (
+                              <BookText className="h-8 w-8 text-amber-400" />
+                            )}
+                            {resource.type === "Video Guide" && (
+                              <Video className="h-8 w-8 text-red-400" />
+                            )}
+                          </div>
                         </div>
                         <div className="ml-3">
-                          <h4 className="font-medium text-gray-800 group-hover:text-teal-500 transition">
+                          <h4 className="font-medium text-teal-800 group-hover:text-teal-500 transition">
                             {related.title}
                           </h4>
                           <p className="text-sm text-gray-500 line-clamp-2">
