@@ -96,7 +96,7 @@ const Resources = () => {
         searchPlaceholder={"Search resources..."}
       />
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-1">
-        <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-12 text-center">
+        <h2 className="text-2xl md:text-3xl font-bold text-teal-700 my-12 text-center">
           Understanding the FODMAP Diet Journey
         </h2>
         {/* FODMAP Diet Phases Section */}
