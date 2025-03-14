@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 
 const Footer = () => {
-    const [openSections, setOpenSections] = useState({});
+  const [openSections, setOpenSections] = useState({});
 
   // Toggle function for accordion sections
   const toggleSection = (title) => {
@@ -60,7 +60,7 @@ const Footer = () => {
           {footerSections.map((section) => (
             <div key={section.title} className="border-b border-white/20">
               <button
-                className="w-full py-4 flex justify-between items-center"
+                className="w-full py-4 flex justify-between items-start"
                 onClick={() => toggleSection(section.title)}
                 aria-expanded={openSections[section.title]}
               >
@@ -132,7 +132,7 @@ const Footer = () => {
         <div className="mt-8  ">
           <div className="grid md:grid-cols-2 gap-8">
             {/* Social icons */}
-            <div className="flex flex-col items-center md:items-start">
+            <div className="flex flex-col items-start">
               <h4 className="text-sm font-semibold mb-4">Connect With Us</h4>
               <div className="flex space-x-6">
                 {socialLinks.map((social, index) => (
@@ -161,7 +161,7 @@ const Footer = () => {
 
             {/* Newsletter */}
             <div className="md:flex md:flex-col md:justify-start">
-              <h4 className="text-center md:text-left text-sm font-semibold mb-3">
+              <h4 className="text-left text-sm font-semibold mb-3">
                 Stay Updated with FODMAP News
               </h4>
               <form className="flex flex-col sm:flex-row gap-2">
@@ -180,7 +180,7 @@ const Footer = () => {
                   </button>
                 </div>
               </form>
-              <p className="text-xs text-gray-300 mt-2 text-center md:text-left">
+              <p className="text-xs text-gray-300 mt-2 text-left">
                 Get weekly recipes and FODMAP-friendly tips
               </p>
             </div>
