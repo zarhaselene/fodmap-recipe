@@ -1,3 +1,4 @@
+import { Check } from "lucide-react";
 const FodmapCard = ({ title, color, icon, foodItems }) => {
   const bgColor =
     {
