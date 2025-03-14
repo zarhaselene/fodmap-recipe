@@ -65,7 +65,7 @@ const FodmapGuide = () => {
           </motion.h2>
           <motion.div>
             <Link
-              href="/recipes"
+              href="/resources/guides/fodmap"
               className="text-teal-700 hover:text-teal-900 flex items-center font-medium"
             >
               Learn more <ArrowRight className="h-5 w-5 ml-1" />
