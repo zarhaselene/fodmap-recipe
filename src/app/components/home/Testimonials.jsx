@@ -7,7 +7,7 @@ const testimonials = [
     review:
       "This website has been a lifesaver for me. After being diagnosed with IBS, I was lost until I found this resource. The recipes are delicious and the food database is so comprehensive!",
     rating: 5,
-    bgColor: "bg-teal-200",
+    bgColor: "teal",
   },
   {
     name: "Michael K.",
@@ -15,7 +15,7 @@ const testimonials = [
     review:
       "The AI recipe generator is amazing! It creates delicious meals based on what I have in my fridge, and I know they're safe for my digestion. I use this site every week for meal planning.",
     rating: 5,
-    bgColor: "bg-orange-200",
+    bgColor: "purple",
   },
   {
     name: "Jamie L.",
@@ -23,7 +23,7 @@ const testimonials = [
     review:
       "The educational resources helped me understand my condition better. I successfully completed the elimination phase and now I know exactly which foods trigger my symptoms.",
     rating: 4,
-    bgColor: "bg-green-200",
+    bgColor: "amber",
   },
 ];
 
