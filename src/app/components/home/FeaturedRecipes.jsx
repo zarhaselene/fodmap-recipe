@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
-import RecipeCard from "../RecipeCard";
+import RecipeCard from "../shared/RecipeCard";
 
 const FeaturedRecipes = () => {
   const [recipes, setRecipes] = useState([]);
@@ -34,7 +34,6 @@ const FeaturedRecipes = () => {
     );
   }
   if (error) return <p>Error: {error.message}</p>;
-
   return (
     <section className="py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
