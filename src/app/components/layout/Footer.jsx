@@ -3,8 +3,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 
 const Footer = () => {
-  // State to track which accordion sections are open on mobile
-  const [openSections, setOpenSections] = useState({});
+    const [openSections, setOpenSections] = useState({});
 
   // Toggle function for accordion sections
   const toggleSection = (title) => {
