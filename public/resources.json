@@ -255,7 +255,7 @@
       "title": "FODMAP Diet for Special Diets",
       "category": "FODMAP Guides",
       "description": "Guidance for following the FODMAP diet while managing other dietary restrictions.",
-      "longDescription": "This specialized guide addresses the challenges of following the low FODMAP diet alongside other dietary needs, with dedicated sections for vegetarian/vegan, gluten-free, dairy-free, and other common dietary restrictions. Includes specialized food lists, substitution ideas, and nutritional considerations for each combined approach.",
+      "longDescription": "This specialized guide addresses the challenges of following the low FODMAP diet alongside other dietary needs, with dedicated sections for vegetarian/vegan, gluten-free, lactose-free, dairy-free, and other common dietary restrictions. Includes specialized food lists, substitution ideas, and nutritional considerations for each combined approach.",
       "image": "/images/special-diets.jpg",
       "rating": 4.7,
       "reviews": 76,
@@ -270,7 +270,8 @@
         "restrictions",
         "vegetarian",
         "gluten-free",
-        "dairy-free"
+        "dairy-free",
+        "lactose-free"
       ],
       "relatedResources": [1, 5, 11]
     },

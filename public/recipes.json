@@ -152,7 +152,7 @@
       "servings": 2,
       "level": "Low FODMAP",
       "image": "/images/quinoa-breakfast.jpg",
-      "dietaryNeeds": ["Vegan", "Gluten-Free", "Dairy-Free"],
+      "dietaryNeeds": ["Vegan", "Gluten-Free", "Dairy-Free", "Lactose-Free"],
       "description": "Start your day with this nutritious low FODMAP quinoa breakfast bowl. Packed with protein and fiber, this warm breakfast alternative to oatmeal will keep you satisfied all morning.",
       "nutritionFacts": {
         "calories": 320,
@@ -207,7 +207,8 @@
         "Gluten-Free",
         "Dairy-Free",
         "Low FODMAP",
-        "High-Fiber"
+        "High-Fiber",
+        "Lactose-Free"
       ]
     },
     {
@@ -284,7 +285,8 @@
         "Gluten-Free",
         "Low FODMAP",
         "High-Protein",
-        "Quick Meal"
+        "Quick Meal",
+        "Lactose-Free"
       ]
     },
     {
@@ -445,7 +447,7 @@
       "servings": 12,
       "level": "Low FODMAP",
       "image": "/images/blueberry-muffins.jpg",
-      "dietaryNeeds": ["Gluten-Free", "Dairy-Free"],
+      "dietaryNeeds": ["Gluten-Free", "Dairy-Free", "Lactose-Free"],
       "description": "These gluten-free blueberry lemon muffins are perfect for a low FODMAP breakfast or snack. The bright citrus flavor complements the sweet blueberries for a delicious morning treat.",
       "nutritionFacts": {
         "calories": 185,
@@ -508,7 +510,8 @@
         "Gluten-Free",
         "Dairy-Free",
         "Low FODMAP",
-        "Snack"
+        "Snack",
+        "Lactose-Free"
       ]
     },
     {
@@ -612,7 +615,7 @@
       "servings": 4,
       "level": "Low FODMAP",
       "image": "/images/banana-pancakes.jpg",
-      "dietaryNeeds": ["Gluten-Free", "Dairy-Free"],
+      "dietaryNeeds": ["Gluten-Free", "Dairy-Free", "Lactose-Free"],
       "description": "These fluffy banana oat pancakes are a delicious low FODMAP breakfast option. Made with just the right amount of ripe banana to stay within low FODMAP guidelines, they're the perfect weekend treat.",
       "nutritionFacts": {
         "calories": 250,
@@ -676,7 +679,8 @@
         "Gluten-Free",
         "Dairy-Free",
         "Low FODMAP",
-        "Weekend Brunch"
+        "Weekend Brunch",
+        "Lactose-Free"
       ]
     },
     {
@@ -691,7 +695,7 @@
       "servings": 4,
       "level": "Low FODMAP",
       "image": "/images/chocolate-chia.jpg",
-      "dietaryNeeds": ["Vegan", "Gluten-Free", "Dairy-Free"],
+      "dietaryNeeds": ["Vegan", "Gluten-Free", "Dairy-Free", "Lactose-Free"],
       "description": "This creamy chocolate chia pudding is a delicious low FODMAP dessert that requires minimal effort. Just mix, chill, and enjoy this nutritious treat that's full of fiber and healthy fats.",
       "nutritionFacts": {
         "calories": 210,
@@ -743,7 +747,8 @@
         "Dairy-Free",
         "Low FODMAP",
         "No-Bake",
-        "High-Fiber"
+        "High-Fiber",
+        "Lactose-Free"
       ]
     },
     {
@@ -758,7 +763,7 @@
       "servings": 6,
       "level": "Low FODMAP",
       "image": "/images/spinach-frittata.jpg",
-      "dietaryNeeds": ["Gluten-Free", "Vegetarian"],
+      "dietaryNeeds": ["Gluten-Free", "Vegetarian", "Lactose-Free"],
       "description": "This easy spinach and feta frittata is a protein-packed low FODMAP breakfast option. Perfect for meal prep, it can be enjoyed hot or cold and stores well in the refrigerator for quick weekday breakfasts.",
       "nutritionFacts": {
         "calories": 180,
@@ -816,7 +821,8 @@
         "Vegetarian",
         "Low FODMAP",
         "High-Protein",
-        "Meal Prep"
+        "Meal Prep",
+        "Lactose-Free"
       ]
     },
     {
@@ -1248,7 +1254,8 @@
         "Dairy-Free",
         "Sugar-Free",
         "Nut-Free",
-        "Soy-Free"
+        "Soy-Free",
+        "Lactose-Free"
       ],
       "description": "These simple overnight oats with berries make a perfect low FODMAP breakfast that you can prepare ahead of time. With no added sugar, they're a healthy way to start your day that's also gentle on your digestive system.",
       "nutritionFacts": {
@@ -1305,7 +1312,8 @@
         "Nut-Free",
         "Soy-Free",
         "Low FODMAP",
-        "Meal Prep"
+        "Meal Prep",
+        "Lactose-Free"
       ]
     }
   ]
