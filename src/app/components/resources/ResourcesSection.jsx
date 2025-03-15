@@ -327,12 +327,7 @@ const ResourcesSection = () => {
 
                   {/* Pagination */}
                   {searchedResources.length > itemsPerPage && (
-                    <motion.div
-                      className="mt-8"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 0.5, duration: 0.5 }}
-                    >
+                    <div className="mt-8">
                       <Pagination
                         currentPage={currentPage}
                         setCurrentPage={setCurrentPage}
@@ -341,8 +336,10 @@ const ResourcesSection = () => {
                         totalPages={Math.ceil(
                           searchedResources.length / itemsPerPage
                         )}
+                        totalItems={searchedResources.length}
+                        itemsPerPage={itemsPerPage}
                       />
-                    </motion.div>
+                    </div>
                   )}
                 </>
               )}

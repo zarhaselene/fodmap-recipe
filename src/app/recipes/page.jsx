@@ -70,6 +70,18 @@ const Recipes = () => {
     setCurrentPage(1);
   };
 
+  const nextPage = () => {
+    if (currentPage < Math.ceil(searchedResources.length / itemsPerPage)) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const previousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
   // Calculate recipes to display per page
   const indexOfLastRecipe = currentPage * itemsPerPage;
   const indexOfFirstRecipe = indexOfLastRecipe - itemsPerPage;
@@ -168,28 +180,16 @@ const Recipes = () => {
           </motion.div>
         </AnimatePresence>
 
-        {searchedRecipes.length > 0 && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.5 }}
-          >
-            <Pagination
-              currentPage={currentPage}
-              setCurrentPage={setCurrentPage}
-              nextPage={() =>
-                setCurrentPage((prev) =>
-                  prev < Math.ceil(searchedRecipes.length / itemsPerPage)
-                    ? prev + 1
-                    : prev
-                )
-              }
-              previousPage={() =>
-                setCurrentPage((prev) => (prev > 1 ? prev - 1 : prev))
-              }
-              totalPages={Math.ceil(searchedRecipes.length / itemsPerPage)}
-            />
-          </motion.div>
+        {searchedRecipes.length > itemsPerPage && (
+          <Pagination
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            nextPage={nextPage}
+            previousPage={previousPage}
+            totalPages={Math.ceil(searchedRecipes.length / itemsPerPage)}
+            totalItems={searchedRecipes.length}
+            itemsPerPage={itemsPerPage}
+          />
         )}
       </motion.div>
     </motion.div>
