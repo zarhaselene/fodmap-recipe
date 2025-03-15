@@ -12,6 +12,7 @@ const FilterOptions = ({
 
   const dietaryNeedsOptions = [
     "Gluten-Free",
+    "Lactose-Free",
     "Vegetarian",
     "Vegan",
     "Dairy-Free",
