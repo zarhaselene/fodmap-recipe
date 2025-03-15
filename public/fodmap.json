@@ -1,0 +1,1192 @@
+{
+  "foods": [
+    {
+      "name": "Apple",
+      "category": "Fruit",
+      "serving_size": "1 medium apple (150g)",
+      "fodmap_level": "High",
+      "fodmap_types": ["Fructose", "Polyols (Sorbitol)"],
+      "safe_serving_size": "Up to 20g",
+      "low_fodmap_alternatives": ["Unripe banana", "Blueberries"],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Lactose-free milk",
+      "category": "Dairy",
+      "serving_size": "250ml",
+      "fodmap_level": "Low",
+      "fodmap_types": [],
+      "safe_serving_size": "Unlimited",
+      "low_fodmap_alternatives": [],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": false,
+        "vegan": false,
+        "vegetarian": false
+      }
+    },
+    {
+      "name": "Yellow onion",
+      "category": "Vegetable",
+      "serving_size": "1 medium onion (150g)",
+      "fodmap_level": "High",
+      "fodmap_types": ["Fructans"],
+      "safe_serving_size": "None",
+      "low_fodmap_alternatives": [
+        "Green part of spring onion",
+        "Garlic-infused oil"
+      ],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Almonds",
+      "category": "Nuts & Seeds",
+      "serving_size": "30g (about 20 almonds)",
+      "fodmap_level": "Moderate",
+      "fodmap_types": ["GOS"],
+      "safe_serving_size": "Up to 10g",
+      "low_fodmap_alternatives": ["Macadamia nuts", "Pecans"],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Broccoli (florets)",
+      "category": "Vegetable",
+      "serving_size": "75g",
+      "fodmap_level": "Low",
+      "fodmap_types": [],
+      "safe_serving_size": "Up to 75g",
+      "low_fodmap_alternatives": [],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Wheat bread",
+      "category": "Grains",
+      "serving_size": "1 slice (30g)",
+      "fodmap_level": "High",
+      "fodmap_types": ["Fructans"],
+      "safe_serving_size": "None",
+      "low_fodmap_alternatives": ["Gluten-free bread", "Sourdough spelt bread"],
+      "dietary_restrictions": {
+        "gluten_free": false,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Honey",
+      "category": "Sweetener",
+      "serving_size": "1 tbsp (21g)",
+      "fodmap_level": "High",
+      "fodmap_types": ["Fructose"],
+      "safe_serving_size": "None",
+      "low_fodmap_alternatives": ["Maple syrup", "Rice malt syrup"],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": false,
+        "vegetarian": false
+      }
+    },
+    {
+      "name": "Chickpeas (canned, drained)",
+      "category": "Legumes",
+      "serving_size": "42g (about 1/4 cup)",
+      "fodmap_level": "Low",
+      "fodmap_types": [],
+      "safe_serving_size": "Up to 42g",
+      "low_fodmap_alternatives": [],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Mushrooms",
+      "category": "Vegetable",
+      "serving_size": "100g",
+      "fodmap_level": "High",
+      "fodmap_types": ["Polyols (Mannitol)"],
+      "safe_serving_size": "None",
+      "low_fodmap_alternatives": ["Oyster mushrooms"],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Potato",
+      "category": "Vegetable",
+      "serving_size": "150g",
+      "fodmap_level": "Low",
+      "fodmap_types": [],
+      "safe_serving_size": "Unlimited",
+      "low_fodmap_alternatives": [],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Lingonberries",
+      "category": "Berries",
+      "serving_size": "50g",
+      "fodmap_level": "Low",
+      "fodmap_types": [],
+      "safe_serving_size": "Up to 50g",
+      "low_fodmap_alternatives": [],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Strawberries",
+      "category": "Berries",
+      "serving_size": "65g (about 5 medium strawberries)",
+      "fodmap_level": "Low",
+      "fodmap_types": [],
+      "safe_serving_size": "Up to 65g",
+      "low_fodmap_alternatives": [],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Carrot",
+      "category": "Vegetable",
+      "serving_size": "75g",
+      "fodmap_level": "Low",
+      "fodmap_types": [],
+      "safe_serving_size": "Up to 75g",
+      "low_fodmap_alternatives": [],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Quinoa",
+      "category": "Grains",
+      "serving_size": "125g cooked",
+      "fodmap_level": "Low",
+      "fodmap_types": [],
+      "safe_serving_size": "Up to 125g",
+      "low_fodmap_alternatives": [],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Salmon",
+      "category": "Protein",
+      "serving_size": "100g",
+      "fodmap_level": "Low",
+      "fodmap_types": [],
+      "safe_serving_size": "Unlimited",
+      "low_fodmap_alternatives": [],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": false,
+        "vegetarian": false
+      }
+    },
+    {
+      "name": "Tofu (firm)",
+      "category": "Protein",
+      "serving_size": "170g",
+      "fodmap_level": "Low",
+      "fodmap_types": [],
+      "safe_serving_size": "Up to 170g",
+      "low_fodmap_alternatives": [],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Cucumber",
+      "category": "Vegetable",
+      "serving_size": "75g",
+      "fodmap_level": "Low",
+      "fodmap_types": [],
+      "safe_serving_size": "Up to 75g",
+      "low_fodmap_alternatives": [],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Brown rice",
+      "category": "Grains",
+      "serving_size": "125g cooked",
+      "fodmap_level": "Low",
+      "fodmap_types": [],
+      "safe_serving_size": "Up to 125g",
+      "low_fodmap_alternatives": [],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Egg",
+      "category": "Protein",
+      "serving_size": "1 large egg (50g)",
+      "fodmap_level": "Low",
+      "fodmap_types": [],
+      "safe_serving_size": "Unlimited",
+      "low_fodmap_alternatives": [],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": false,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Peanut butter (natural)",
+      "category": "Nuts & Seeds",
+      "serving_size": "32g (about 2 tbsp)",
+      "fodmap_level": "Low",
+      "fodmap_types": [],
+      "safe_serving_size": "Up to 32g",
+      "low_fodmap_alternatives": [],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Red bell pepper",
+      "category": "Vegetable",
+      "serving_size": "50g",
+      "fodmap_level": "Low",
+      "fodmap_types": [],
+      "safe_serving_size": "Up to 50g",
+      "low_fodmap_alternatives": [],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Kiwi",
+      "category": "Fruit",
+      "serving_size": "76g (about 1 medium kiwi)",
+      "fodmap_level": "Low",
+      "fodmap_types": [],
+      "safe_serving_size": "Up to 76g",
+      "low_fodmap_alternatives": [],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Zucchini",
+      "category": "Vegetable",
+      "serving_size": "65g",
+      "fodmap_level": "Low",
+      "fodmap_types": [],
+      "safe_serving_size": "Up to 65g",
+      "low_fodmap_alternatives": [],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Lettuce (Iceberg)",
+      "category": "Vegetable",
+      "serving_size": "75g",
+      "fodmap_level": "Low",
+      "fodmap_types": [],
+      "safe_serving_size": "Up to 75g",
+      "low_fodmap_alternatives": [],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Cantaloupe",
+      "category": "Fruit",
+      "serving_size": "90g",
+      "fodmap_level": "Low",
+      "fodmap_types": [],
+      "safe_serving_size": "Up to 90g",
+      "low_fodmap_alternatives": [],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Turkey",
+      "category": "Protein",
+      "serving_size": "100g",
+      "fodmap_level": "Low",
+      "fodmap_types": [],
+      "safe_serving_size": "Unlimited",
+      "low_fodmap_alternatives": [],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": false,
+        "vegetarian": false
+      }
+    },
+    {
+      "name": "Oats",
+      "category": "Grains",
+      "serving_size": "1/2 cup (52g)",
+      "fodmap_level": "Low",
+      "fodmap_types": [],
+      "safe_serving_size": "Up to 52g",
+      "low_fodmap_alternatives": [],
+      "dietary_restrictions": {
+        "gluten_free": false,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Pineapple",
+      "category": "Fruit",
+      "serving_size": "140g",
+      "fodmap_level": "Low",
+      "fodmap_types": [],
+      "safe_serving_size": "Up to 140g",
+      "low_fodmap_alternatives": [],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Cheddar cheese",
+      "category": "Dairy",
+      "serving_size": "40g",
+      "fodmap_level": "Low",
+      "fodmap_types": [],
+      "safe_serving_size": "Up to 40g",
+      "low_fodmap_alternatives": [],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": false,
+        "vegan": false,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Pumpkin seeds",
+      "category": "Nuts & Seeds",
+      "serving_size": "30g",
+      "fodmap_level": "Low",
+      "fodmap_types": [],
+      "safe_serving_size": "Up to 30g",
+      "low_fodmap_alternatives": [],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Canned tuna",
+      "category": "Protein",
+      "serving_size": "85g",
+      "fodmap_level": "Low",
+      "fodmap_types": [],
+      "safe_serving_size": "Up to 85g",
+      "low_fodmap_alternatives": [],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": false,
+        "vegetarian": false
+      }
+    },
+    {
+      "name": "Rice noodles",
+      "category": "Grains",
+      "serving_size": "1 cup cooked (140g)",
+      "fodmap_level": "Low",
+      "fodmap_types": [],
+      "safe_serving_size": "Up to 140g",
+      "low_fodmap_alternatives": [],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Watermelon",
+      "category": "Fruit",
+      "serving_size": "120g",
+      "fodmap_level": "High",
+      "fodmap_types": ["Fructose", "Polyols"],
+      "safe_serving_size": "Up to 30g",
+      "low_fodmap_alternatives": ["Cantaloupe", "Kiwi"],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Gluten-free pasta",
+      "category": "Grains",
+      "serving_size": "145g cooked",
+      "fodmap_level": "Low",
+      "fodmap_types": [],
+      "safe_serving_size": "Up to 145g",
+      "low_fodmap_alternatives": [],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Avocado",
+      "category": "Fruit",
+      "serving_size": "75g",
+      "fodmap_level": "Moderate",
+      "fodmap_types": ["Polyols (Sorbitol)"],
+      "safe_serving_size": "Up to 30g",
+      "low_fodmap_alternatives": ["Peanut butter", "Olive oil"],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Greek yogurt",
+      "category": "Dairy",
+      "serving_size": "200g",
+      "fodmap_level": "Low",
+      "fodmap_types": [],
+      "safe_serving_size": "Up to 200g",
+      "low_fodmap_alternatives": [],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": false,
+        "dairy_free": false,
+        "vegan": false,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Garlic",
+      "category": "Vegetable",
+      "serving_size": "1 clove (5g)",
+      "fodmap_level": "High",
+      "fodmap_types": ["Fructans"],
+      "safe_serving_size": "None",
+      "low_fodmap_alternatives": ["Garlic-infused oil", "Chives"],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Lentils (canned, drained)",
+      "category": "Legumes",
+      "serving_size": "46g",
+      "fodmap_level": "High",
+      "fodmap_types": ["GOS", "Fructans"],
+      "safe_serving_size": "Up to 23g",
+      "low_fodmap_alternatives": ["Canned chickpeas (small amounts)"],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Banana (ripe)",
+      "category": "Fruit",
+      "serving_size": "100g",
+      "fodmap_level": "High",
+      "fodmap_types": ["Fructans", "Polyols"],
+      "safe_serving_size": "None",
+      "low_fodmap_alternatives": ["Unripe banana", "Kiwi"],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Baby spinach",
+      "category": "Vegetable",
+      "serving_size": "75g",
+      "fodmap_level": "Low",
+      "fodmap_types": [],
+      "safe_serving_size": "Up to 75g",
+      "low_fodmap_alternatives": [],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Chia seeds",
+      "category": "Nuts & Seeds",
+      "serving_size": "15g",
+      "fodmap_level": "Low",
+      "fodmap_types": [],
+      "safe_serving_size": "Up to 15g",
+      "low_fodmap_alternatives": [],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Walnuts",
+      "category": "Nuts & Seeds",
+      "serving_size": "30g",
+      "fodmap_level": "Low",
+      "fodmap_types": [],
+      "safe_serving_size": "Up to 30g",
+      "low_fodmap_alternatives": [],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Tempeh",
+      "category": "Protein",
+      "serving_size": "100g",
+      "fodmap_level": "Low",
+      "fodmap_types": [],
+      "safe_serving_size": "Up to 100g",
+      "low_fodmap_alternatives": [],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Oranges",
+      "category": "Fruit",
+      "serving_size": "130g (1 medium)",
+      "fodmap_level": "Low",
+      "fodmap_types": [],
+      "safe_serving_size": "Up to 130g",
+      "low_fodmap_alternatives": [],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Cauliflower",
+      "category": "Vegetable",
+      "serving_size": "75g",
+      "fodmap_level": "High",
+      "fodmap_types": ["Polyols (Mannitol)"],
+      "safe_serving_size": "Up to 15g",
+      "low_fodmap_alternatives": ["Broccoli (florets)"],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Maple syrup",
+      "category": "Sweetener",
+      "serving_size": "2 tbsp (40g)",
+      "fodmap_level": "Low",
+      "fodmap_types": [],
+      "safe_serving_size": "Up to 40g",
+      "low_fodmap_alternatives": [],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Parmesan cheese",
+      "category": "Dairy",
+      "serving_size": "30g",
+      "fodmap_level": "Low",
+      "fodmap_types": [],
+      "safe_serving_size": "Up to 30g",
+      "low_fodmap_alternatives": [],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": false,
+        "vegan": false,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Clementine",
+      "category": "Fruit",
+      "serving_size": "100g (about 2 small)",
+      "fodmap_level": "Low",
+      "fodmap_types": [],
+      "safe_serving_size": "Up to 100g",
+      "low_fodmap_alternatives": [],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Dragonfruit",
+      "category": "Fruit",
+      "serving_size": "140g",
+      "fodmap_level": "Low",
+      "fodmap_types": [],
+      "safe_serving_size": "Up to 140g",
+      "low_fodmap_alternatives": [],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Grapes",
+      "category": "Fruit",
+      "serving_size": "100g",
+      "fodmap_level": "Low",
+      "fodmap_types": [],
+      "safe_serving_size": "Up to 100g",
+      "low_fodmap_alternatives": [],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Feta cheese",
+      "category": "Dairy",
+      "serving_size": "40g",
+      "fodmap_level": "Low",
+      "fodmap_types": [],
+      "safe_serving_size": "Up to 40g",
+      "low_fodmap_alternatives": [],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": false,
+        "dairy_free": false,
+        "vegan": false,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Lactose-free yogurt",
+      "category": "Dairy",
+      "serving_size": "200g",
+      "fodmap_level": "Low",
+      "fodmap_types": [],
+      "safe_serving_size": "Up to 200g",
+      "low_fodmap_alternatives": [],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": false,
+        "vegan": false,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Cottage cheese",
+      "category": "Dairy",
+      "serving_size": "40g",
+      "fodmap_level": "Moderate",
+      "fodmap_types": ["Lactose"],
+      "safe_serving_size": "Up to 20g",
+      "low_fodmap_alternatives": ["Lactose-free cottage cheese"],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": false,
+        "dairy_free": false,
+        "vegan": false,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Eggplant",
+      "category": "Vegetable",
+      "serving_size": "75g",
+      "fodmap_level": "Low",
+      "fodmap_types": [],
+      "safe_serving_size": "Up to 75g",
+      "low_fodmap_alternatives": [],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Green beans",
+      "category": "Vegetable",
+      "serving_size": "75g",
+      "fodmap_level": "Low",
+      "fodmap_types": [],
+      "safe_serving_size": "Up to 75g",
+      "low_fodmap_alternatives": [],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Bok choy",
+      "category": "Vegetable",
+      "serving_size": "75g",
+      "fodmap_level": "Low",
+      "fodmap_types": [],
+      "safe_serving_size": "Up to 75g",
+      "low_fodmap_alternatives": [],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+
+    {
+      "name": "Brazil nuts",
+      "category": "Nuts & Seeds",
+      "serving_size": "30g",
+      "fodmap_level": "Low",
+      "fodmap_types": [],
+      "safe_serving_size": "Up to 30g",
+      "low_fodmap_alternatives": [],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Pine nuts",
+      "category": "Nuts & Seeds",
+      "serving_size": "15g",
+      "fodmap_level": "Low",
+      "fodmap_types": [],
+      "safe_serving_size": "Up to 15g",
+      "low_fodmap_alternatives": [],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Flaxseeds",
+      "category": "Nuts & Seeds",
+      "serving_size": "15g",
+      "fodmap_level": "Low",
+      "fodmap_types": [],
+      "safe_serving_size": "Up to 15g",
+      "low_fodmap_alternatives": [],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Buckwheat",
+      "category": "Grains",
+      "serving_size": "130g cooked",
+      "fodmap_level": "Low",
+      "fodmap_types": [],
+      "safe_serving_size": "Up to 130g",
+      "low_fodmap_alternatives": [],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Millet",
+      "category": "Grains",
+      "serving_size": "125g cooked",
+      "fodmap_level": "Low",
+      "fodmap_types": [],
+      "safe_serving_size": "Up to 125g",
+      "low_fodmap_alternatives": [],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Corn tortilla",
+      "category": "Grains",
+      "serving_size": "2 tortillas (50g)",
+      "fodmap_level": "Low",
+      "fodmap_types": [],
+      "safe_serving_size": "Up to 2 tortillas",
+      "low_fodmap_alternatives": [],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Brown sugar",
+      "category": "Sweetener",
+      "serving_size": "1 tbsp (12g)",
+      "fodmap_level": "Low",
+      "fodmap_types": [],
+      "safe_serving_size": "Up to 12g",
+      "low_fodmap_alternatives": [],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Stevia",
+      "category": "Sweetener",
+      "serving_size": "1 tsp (4g)",
+      "fodmap_level": "Low",
+      "fodmap_types": [],
+      "safe_serving_size": "Up to 4g",
+      "low_fodmap_alternatives": [],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Rice malt syrup",
+      "category": "Sweetener",
+      "serving_size": "1 tbsp (20g)",
+      "fodmap_level": "Low",
+      "fodmap_types": [],
+      "safe_serving_size": "Up to 20g",
+      "low_fodmap_alternatives": [],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Red lentils (cooked)",
+      "category": "Legumes",
+      "serving_size": "100g",
+      "fodmap_level": "High",
+      "fodmap_types": ["GOS", "Fructans"],
+      "safe_serving_size": "Up to 23g",
+      "low_fodmap_alternatives": ["Canned chickpeas (small amounts)"],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Edamame",
+      "category": "Legumes",
+      "serving_size": "50g",
+      "fodmap_level": "Low",
+      "fodmap_types": [],
+      "safe_serving_size": "Up to 50g",
+      "low_fodmap_alternatives": [],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Peanuts",
+      "category": "Legumes",
+      "serving_size": "30g",
+      "fodmap_level": "Low",
+      "fodmap_types": [],
+      "safe_serving_size": "Up to 30g",
+      "low_fodmap_alternatives": [],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Raspberries",
+      "category": "Berries",
+      "serving_size": "60g",
+      "fodmap_level": "Low",
+      "fodmap_types": [],
+      "safe_serving_size": "Up to 60g",
+      "low_fodmap_alternatives": [],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Blackberries",
+      "category": "Berries",
+      "serving_size": "30g",
+      "fodmap_level": "Moderate",
+      "fodmap_types": ["Fructans"],
+      "safe_serving_size": "Up to 30g",
+      "low_fodmap_alternatives": ["Strawberries", "Blueberries"],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Cranberries (dried)",
+      "category": "Berries",
+      "serving_size": "15g",
+      "fodmap_level": "High",
+      "fodmap_types": ["Fructans"],
+      "safe_serving_size": "Up to 10g",
+      "low_fodmap_alternatives": ["Fresh cranberries"],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Beef",
+      "category": "Protein",
+      "serving_size": "100g",
+      "fodmap_level": "Low",
+      "fodmap_types": [],
+      "safe_serving_size": "Unlimited",
+      "low_fodmap_alternatives": [],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": false,
+        "vegan": false,
+        "vegetarian": false
+      }
+    },
+    {
+      "name": "Seitan",
+      "category": "Protein",
+      "serving_size": "100g",
+      "fodmap_level": "High",
+      "fodmap_types": ["Fructans"],
+      "safe_serving_size": "None",
+      "low_fodmap_alternatives": ["Tofu", "Tempeh"],
+      "dietary_restrictions": {
+        "gluten_free": false,
+        "lactose_free": true,
+        "dairy_free": true,
+        "vegan": true,
+        "vegetarian": true
+      }
+    },
+    {
+      "name": "Chicken",
+      "category": "Protein",
+      "serving_size": "100g",
+      "fodmap_level": "Low",
+      "fodmap_types": [],
+      "safe_serving_size": "Unlimited",
+      "low_fodmap_alternatives": [],
+      "dietary_restrictions": {
+        "gluten_free": true,
+        "lactose_free": true,
+        "dairy_free": false,
+        "vegan": false,
+        "vegetarian": false
+      }
+    }
+  ]
+}
