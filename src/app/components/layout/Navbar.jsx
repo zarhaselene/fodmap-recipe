@@ -1,5 +1,5 @@
 "use client";
-import { Menu, Heart } from "lucide-react";
+import { Menu, X, Heart } from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -73,7 +73,6 @@ const Navbar = () => {
               <NavLink href="/">Home</NavLink>
               <NavLink href="/food-database">Food Database</NavLink>
               <NavLink href="/recipes">Recipes</NavLink>
-
               <NavLink href="/resources">Resources</NavLink>
             </div>
           </div>
@@ -92,8 +91,14 @@ const Navbar = () => {
               onClick={toggleMobileMenu}
               aria-expanded={mobileMenuOpen}
             >
-              <span className="sr-only">Open menu</span>
-              <Menu className="block h-8 w-8 text-teal-700" />
+              <span className="sr-only">
+                {mobileMenuOpen ? "Close menu" : "Open menu"}
+              </span>
+              {mobileMenuOpen ? (
+                <X className="block h-8 w-8 text-teal-700" />
+              ) : (
+                <Menu className="block h-8 w-8 text-teal-700" />
+              )}
             </button>
           </div>
         </div>
@@ -111,9 +116,6 @@ const Navbar = () => {
             </NavLink>
             <NavLink href="/recipes" isMobile={true}>
               Recipes
-            </NavLink>
-            <NavLink href="/recipes/favorites" icon={Heart} isMobile={true}>
-              Favorites
             </NavLink>
             <NavLink href="/resources" isMobile={true}>
               Resources
