@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# FODMAP Food Database
 
-## Getting Started
+## Overview
 
-First, run the development server:
+The FODMAP Food Database is a comprehensive web application designed to help individuals following a low FODMAP diet easily search, filter, and understand the FODMAP content of various foods.
 
+## 🌐 Live Preview
+Check out the live preview [Live Preview](https://fodmap-recipe.netlify.app/). 
+
+## Features
+
+### Key Functionality
+- 🔍 Advanced search capabilities
+- 🏷️ Multiple filtering options
+- 📊 View foods in list or grid mode
+- 📱 Responsive design
+- 🍽️ Detailed food information
+
+### Filters
+- FODMAP Levels (Low, Medium, High)
+- Dietary Restrictions
+  - Gluten-Free
+  - Lactose-Free
+  - Dairy-Free
+  - Vegan
+  - Vegetarian
+- Food Categories
+
+### Sorting Options
+- Alphabetical
+- FODMAP Level (Low to High)
+- FODMAP Level (High to Low)
+
+## Tech Stack
+
+- Next.js
+- Tailwind CSS
+- Framer Motion
+- Lucide React Icons
+
+## Installation
+
+1. Clone the repository
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/yourusername/fodmap-food-database.git
+cd fodmap-food-database
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+3. Run the development server
+```bash
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-## Learn More
+## Data Source
 
-To learn more about Next.js, take a look at the following resources:
+The application uses several JSON files located in the `public` directory to manage its data:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. **`fodmap.json`**: Contains the food database with the following key attributes:
+    - Food Name
+    - FODMAP Level
+    - Category
+    - Dietary Restrictions
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2. **`resources.json`**: Provides a curated list of educational resources, articles, and guides to help users better understand the low FODMAP diet.
 
-## Deploy on Vercel
+3. **`recipes.json`**: Includes a collection of low FODMAP recipes with details such as:
+    - Recipe Name
+    - Ingredients
+    - Preparation Steps
+    - Dietary Suitability (e.g., Vegan, Gluten-Free)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+These files can be modified to update or expand the application's content.
