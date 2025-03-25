@@ -1,16 +1,12 @@
 "use client";
 import { useState, useEffect } from "react";
-
 import { X } from "lucide-react";
-import { motion } from "framer-motion";
-
 import Hero from "../components/shared/Hero";
 import FilterSidebar from "../components/foodDatabase/FilterSidebar";
 import SearchBar from "../components/foodDatabase/SearchBar";
 import ViewOptions from "../components/foodDatabase/ViewOptions";
 import FoodList from "../components/foodDatabase/FoodList";
 import Pagination from "../components/shared/Pagination";
-import FodmapInfo from "../components/foodDatabase/FodmapInfo";
 
 const FODMAPDatabasePage = () => {
   const [filters, setFilters] = useState({
@@ -18,7 +14,7 @@ const FODMAPDatabasePage = () => {
     categories: [],
     dietaryRestrictions: [],
   });
-  const [viewMode, setViewMode] = useState("list"); // list or grid (default: list)
+  const [viewMode, setViewMode] = useState("list"); // list or grid
   const [sortBy, setSortBy] = useState("alphabetical");
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -350,8 +346,7 @@ const FODMAPDatabasePage = () => {
             </div>
           </div>
         </div>
-        {/* FODMAP Info */}
-        <FodmapInfo />
+
       </div>
     </div>
   );
