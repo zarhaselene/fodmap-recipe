@@ -7,7 +7,7 @@ import Link from "next/link";
 const Hero = ({ title, description }) => {
   return (
     <div className="relative bg-gradient-to-r from-teal-500 to-teal-600 overflow-hidden">
-      <div className="py-12 md:py-24 relative z-10">
+      <div className="py-22 md:py-24 relative z-10">
         <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h1
             className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white leading-tight mb-4"
