@@ -1,5 +1,6 @@
 "use client";
-import { useState, useEffect, use } from "react";
+import { useState, useEffect } from "react";
+import { use } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -17,23 +18,23 @@ import { useResources } from "@/app/context/ResourcesContext";
 import { motion } from "framer-motion";
 
 export default function ResourcePage({ params }) {
+  // Unwrap params using React.use()
+  const resourceId = use(params).id;
+
+  // Destructure context values
   const {
-    activeCategory,
-    setActiveCategory,
-    searchTerm,
-    setSearchTerm,
     searchedResources,
-    resourceCategories,
     loading: contextLoading,
     error: contextError,
   } = useResources();
 
-  const resourceId = use(params).id;
+  // State for current resource and related resources
   const [resource, setResource] = useState(null);
   const [relatedResources, setRelatedResources] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // Fetch and set resource data when component mounts or resources change
   useEffect(() => {
     // Only proceed if searchedResources is loaded from context
     if (!contextLoading && !contextError && searchedResources.length > 0) {
@@ -64,7 +65,7 @@ export default function ResourcePage({ params }) {
     }
   }, [resourceId, searchedResources, contextLoading, contextError]);
 
-  // Show loading state while either context is loading or component is processing
+  // Render loading spinner
   if (contextLoading || loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -84,7 +85,7 @@ export default function ResourcePage({ params }) {
     );
   }
 
-  // Show error from either context or component
+  // Render error message
   if (contextError || error) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -110,6 +111,7 @@ export default function ResourcePage({ params }) {
     );
   }
 
+  // Render "Resource Not Found" if no resource is found
   if (!resource) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -134,6 +136,7 @@ export default function ResourcePage({ params }) {
     );
   }
 
+  // Main resource page render
   return (
     <motion.div
       className="min-h-screen"
@@ -141,9 +144,10 @@ export default function ResourcePage({ params }) {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      {/* Header */}
+      {/* Header Section */}
       <div className="bg-gradient-to-r from-teal-600 to-teal-300">
         <div className="container max-w-6xl mx-auto px-4 sm:px-6 py-16">
+          {/* Back to Resources Link */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -159,7 +163,9 @@ export default function ResourcePage({ params }) {
             </Link>
           </motion.div>
 
+          {/* Resource Header Content */}
           <div className="flex flex-col md:flex-row items-center">
+            {/* Left Column - Resource Info */}
             <motion.div
               className="md:w-1/2 mb-8 md:mb-0"
               initial={{ opacity: 0, y: 20 }}
@@ -172,6 +178,8 @@ export default function ResourcePage({ params }) {
               <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">
                 {resource.title}
               </h1>
+
+              {/* Resource Metadata */}
               <div className="flex items-center text-white mb-4">
                 <div className="flex items-center mr-4">
                   <motion.div
@@ -198,6 +206,7 @@ export default function ResourcePage({ params }) {
               <p className="text-white/90 text-lg">{resource.description}</p>
             </motion.div>
 
+            {/* Right Column - Resource Image and Download */}
             <motion.div
               className="md:w-1/2 md:pl-8"
               initial={{ opacity: 0, y: 20 }}
@@ -217,6 +226,7 @@ export default function ResourcePage({ params }) {
                   </div>
                 )}
                 <div className="p-6">
+                  {/* Resource Author and Type */}
                   <div className="flex justify-between items-center mb-4">
                     <div>
                       <span className="text-sm text-gray-500">Created by</span>
@@ -230,6 +240,7 @@ export default function ResourcePage({ params }) {
                     </div>
                   </div>
 
+                  {/* Download Button */}
                   {resource.downloadable && (
                     <motion.button
                       className="w-full bg-teal-500 hover:bg-teal-600 text-white font-medium py-3 px-4 rounded-lg flex items-center justify-center"
@@ -262,6 +273,7 @@ export default function ResourcePage({ params }) {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Left Column - Resource Details */}
           <div className="md:col-span-2">
+            {/* About This Resource */}
             <motion.div
               className="bg-white rounded-lg shadow-sm p-6 mb-8"
               initial={{ opacity: 0, y: 30 }}
@@ -275,6 +287,7 @@ export default function ResourcePage({ params }) {
                 {resource.longDescription}
               </p>
 
+              {/* Optional Resource Metadata */}
               {resource.pages && (
                 <div className="flex items-center text-gray-600 mb-2">
                   <span className="font-medium mr-2">Length:</span>{" "}
@@ -332,6 +345,7 @@ export default function ResourcePage({ params }) {
                 Related Resources
               </h3>
 
+              {/* Related Resources List */}
               {relatedResources.length > 0 ? (
                 <div className="space-y-4">
                   {relatedResources.map((related, index) => (
@@ -351,6 +365,7 @@ export default function ResourcePage({ params }) {
                             backgroundColor: "#f0f9f8",
                           }}
                         >
+                          {/* Resource Type Icon */}
                           <div className="relative flex-shrink-0 rounded overflow-hidden">
                             <div className="flex items-center justify-center h-full w-full">
                               {related.type === "PDF Guide" && (
@@ -387,6 +402,7 @@ export default function ResourcePage({ params }) {
                 <p className="text-gray-500">No related resources found.</p>
               )}
 
+              {/* Browse All Resources Link */}
               <div className="mt-6 pt-6 border-t border-gray-100">
                 <motion.div
                   whileHover={{ x: -3 }}

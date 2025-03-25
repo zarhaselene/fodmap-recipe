@@ -14,18 +14,25 @@ const FODMAPDatabasePage = () => {
     categories: [],
     dietaryRestrictions: [],
   });
-  const [viewMode, setViewMode] = useState("list"); // list or grid
+  const [viewMode, setViewMode] = useState("list");
   const [sortBy, setSortBy] = useState("alphabetical");
   const [currentPage, setCurrentPage] = useState(1);
 
   const [searchTerm, setSearchTerm] = useState("");
-  const [categoryFilter, setCategoryFilter] = useState("All");
-  const [fodmapFilter, setFodmapFilter] = useState("All");
   const [foods, setFoods] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [selectedFood, setSelectedFood] = useState(null);
   const [categories, setCategories] = useState(["All"]);
-  const [itemsPerPage] = useState(10);
+  const itemsPerPage = 10;
+
+  // Consolidated dietary properties processing
+  const processAndNormalizeDietaryProperties = (food) => {
+    if (food.dietary_restrictions) {
+      return Object.entries(food.dietary_restrictions)
+        .filter(([_, value]) => value === true)
+        .map(([key]) => key.replace("_", "-").toLowerCase());
+    }
+    return [];
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,28 +41,23 @@ const FODMAPDatabasePage = () => {
         if (!response.ok) throw new Error("Failed to load data");
 
         const data = await response.json();
-
-        // Access the foods array from the data object
         const foodsData = data.foods || [];
 
-        // Pre-process dietary properties for consistent filtering
         const processedFoodsData = foodsData.map((food) => ({
           ...food,
-          // Normalize dietary_properties to an array if it exists
           processed_dietary_properties:
             processAndNormalizeDietaryProperties(food),
         }));
 
         setFoods(processedFoodsData);
 
-        // Extract unique categories
         const uniqueCategories = [
           "All",
           ...new Set(foodsData.map((item) => item.category)),
         ];
         setCategories(uniqueCategories);
       } catch (error) {
-        console.error("Error fetching FODMAP data:", error);
+        console.error("Error fetching food data:", error);
       } finally {
         setIsLoading(false);
       }
@@ -64,89 +66,45 @@ const FODMAPDatabasePage = () => {
     fetchData();
   }, []);
 
-  // Function to process and normalize dietary properties
-  const processAndNormalizeDietaryProperties = (food) => {
-    if (
-      food.dietary_restrictions &&
-      typeof food.dietary_restrictions === "object"
-    ) {
-      // Convert object keys with true values to array of strings
-      return Object.entries(food.dietary_restrictions)
-        .filter(([_, value]) => value === true)
-        .map(([key]) => key.replace("_", "-").toLowerCase());
-    }
-
-    // Keep the existing logic for backward compatibility
-    if (!food.dietary_properties) return [];
-
-    if (Array.isArray(food.dietary_properties)) {
-      return food.dietary_properties.map((prop) => prop.toLowerCase());
-    }
-
-    if (typeof food.dietary_properties === "string") {
-      return food.dietary_properties
-        .split(",")
-        .map((prop) => prop.trim().toLowerCase());
-    }
-
-    return [];
-  };
+  // Consolidated filtering logic
   const filteredFoods = foods.filter((food) => {
-    // Case-insensitive search
     const matchesSearch = food.name
       .toLowerCase()
       .includes(searchTerm.toLowerCase());
 
     const matchesCategory =
       filters.categories.length === 0 ||
-      filters.categories.some((category) => {
-        // Handle case where food.category might be capitalized differently
-        return (
-          food.category &&
-          food.category.toLowerCase() === category.toLowerCase()
-        );
-      });
+      filters.categories.some(
+        (category) => food.category?.toLowerCase() === category.toLowerCase()
+      );
 
-    // More flexible FODMAP level matching
     const matchesFodmap =
       filters.fodmapLevel.length === 0 ||
-      filters.fodmapLevel.some((level) => {
-        // Handle case where food.fodmap_level might have different capitalization or format
-        if (!food.fodmap_level) return false;
+      filters.fodmapLevel.some(
+        (level) => food.fodmap_level?.toLowerCase() === level.toLowerCase()
+      );
 
-        const foodLevel = food.fodmap_level.toLowerCase();
-        const filterLevel = level.toLowerCase();
-
-        return foodLevel === filterLevel;
-      });
-
-    // Improved dietary restrictions matching using normalized data
     const matchesDietaryRestrictions =
       filters.dietaryRestrictions.length === 0 ||
       filters.dietaryRestrictions.some((restriction) => {
-        // Use the pre-processed dietary properties array
         const normalizedRestriction = restriction.toLowerCase();
+        const properties = food.processed_dietary_properties;
 
-        // If we're checking for lactose-free, also match dairy-free foods
-        if (normalizedRestriction === "lactose-free") {
-          return food.processed_dietary_properties.some(
-            (prop) => prop === "lactose-free" || prop === "dairy-free"
-          );
-        }
+        return properties.some((prop) => {
+          const specialCases = {
+            "lactose-free": ["lactose-free", "dairy-free"],
+            "gluten-free": prop.includes("gluten free"),
+            "dairy-free":
+              prop.includes("dairy free") || prop.includes("non-dairy"),
+            vegan: prop.includes("plant-based"),
+            vegetarian: prop.includes("plant-based"),
+          };
 
-        return food.processed_dietary_properties.some(
-          (prop) =>
+          return (
             prop === normalizedRestriction ||
-            // Handle common variations
-            (normalizedRestriction === "gluten-free" &&
-              prop.includes("gluten free")) ||
-            (normalizedRestriction === "dairy-free" &&
-              (prop.includes("dairy free") || prop.includes("non-dairy"))) ||
-            (normalizedRestriction === "vegan" &&
-              prop.includes("plant-based")) ||
-            (normalizedRestriction === "vegetarian" &&
-              prop.includes("plant-based"))
-        );
+            specialCases[normalizedRestriction]
+          );
+        });
       });
 
     return (
@@ -157,78 +115,51 @@ const FODMAPDatabasePage = () => {
     );
   });
 
-  const handleSearch = (query) => {
-    setSearchTerm(query);
-    setCurrentPage(1); // Reset to first page when searching
-  };
-
-  const handleFilterChange = (newFilters) => {
-    // Debug logging to check what filters are being applied
-    console.log("New filters applied:", newFilters);
-    setFilters(newFilters);
-    setCurrentPage(1); // Reset to first page when filtering
-  };
-
-  const handleSortChange = (sort) => {
-    setSortBy(sort);
-  };
-
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-  };
-
-  const handleViewModeChange = (mode) => {
-    setViewMode(mode);
-  };
-
-  // Sort the filtered foods
+  // Sorting logic
   const sortedFoods = [...filteredFoods].sort((a, b) => {
+    const levelOrder = { Low: 1, Medium: 2, Moderate: 2, High: 3 };
+
     if (sortBy === "alphabetical") {
       return a.name.localeCompare(b.name);
     } else if (sortBy === "fodmap-low-high") {
-      // Sort by FODMAP level (Low, Medium, High)
-      const levels = { Low: 1, Medium: 2, Moderate: 2, High: 3 };
-      return levels[a.fodmap_level] - levels[b.fodmap_level];
+      return (
+        (levelOrder[a.fodmap_level] || 0) - (levelOrder[b.fodmap_level] || 0)
+      );
     } else if (sortBy === "fodmap-high-low") {
-      // Sort by FODMAP level (High, Medium, Low)
-      const levels = { Low: 1, Medium: 2, Moderate: 2, High: 3 };
-      return levels[b.fodmap_level] - levels[a.fodmap_level];
+      return (
+        (levelOrder[b.fodmap_level] || 0) - (levelOrder[a.fodmap_level] || 0)
+      );
     }
     return 0;
   });
 
-  // Paginate the sorted foods
+  // Pagination
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = sortedFoods.slice(indexOfFirstItem, indexOfLastItem);
   const totalPages = Math.ceil(sortedFoods.length / itemsPerPage);
 
-  // Function to get FODMAP level color
+  // Helper function for FODMAP level color
   const getFodmapColor = (level) => {
-    switch (level) {
-      case "Low":
-        return "bg-green-100 text-green-800";
-      case "Medium":
-      case "Moderate":
-        return "bg-yellow-100 text-yellow-800";
-      case "High":
-        return "bg-red-100 text-red-800";
-      default:
-        return "bg-gray-100 text-gray-800";
-    }
+    const colorMap = {
+      Low: "bg-green-100 text-green-800",
+      Medium: "bg-yellow-100 text-yellow-800",
+      Moderate: "bg-yellow-100 text-yellow-800",
+      High: "bg-red-100 text-red-800",
+    };
+    return colorMap[level] || "bg-gray-100 text-gray-800";
   };
 
-  // Debug logging to check filtering results
-  useEffect(() => {
-    if (filters.dietaryRestrictions.length > 0) {
-      console.log("Active dietary filters:", filters.dietaryRestrictions);
-      console.log("Number of filtered foods:", filteredFoods.length);
-      console.log(
-        "Sample filtered foods:",
-        filteredFoods.slice(0, 3).map((f) => f.name)
-      );
-    }
-  }, [filters.dietaryRestrictions, filteredFoods]);
+  // Event Handlers
+  const handleSearch = (query) => {
+    setSearchTerm(query);
+    setCurrentPage(1);
+  };
+
+  const handleFilterChange = (newFilters) => {
+    setFilters(newFilters);
+    setCurrentPage(1);
+  };
 
   const handleResetFilters = () => {
     setFilters({
@@ -238,15 +169,13 @@ const FODMAPDatabasePage = () => {
     });
     setCurrentPage(1);
   };
+
   return (
     <div className="min-h-screen">
       <Hero
-        title={"FODMAP Food Database"}
-        description={
-          "Search and filter foods to find out their FODMAP content and safe serving sizes."
-        }
+        title="FODMAP Food Database"
+        description="Search and filter foods to find out their FODMAP content and safe serving sizes."
       />
-      {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="md:grid md:grid-cols-12 md:gap-8">
           {/* Filter Sidebar */}
@@ -260,9 +189,9 @@ const FODMAPDatabasePage = () => {
 
           {/* Main Content */}
           <div className="md:col-span-9 mt-8 md:mt-0">
-            {/* Search Bar */}
             <SearchBar onSearch={handleSearch} />
 
+            {/* Search Term Display */}
             {searchTerm && (
               <div className="mb-4 px-2 py-1 bg-teal-50 text-teal-700 rounded inline-flex items-center">
                 <span>Search: {searchTerm}</span>
@@ -303,12 +232,12 @@ const FODMAPDatabasePage = () => {
               </div>
             )}
 
-            {/* View Options and Sort */}
+            {/* View Options */}
             <ViewOptions
               currentView={viewMode}
-              onViewChange={handleViewModeChange}
+              onViewChange={setViewMode}
               currentSort={sortBy}
-              onSortChange={handleSortChange}
+              onSortChange={setSortBy}
             />
 
             {/* Food Items */}
@@ -329,24 +258,23 @@ const FODMAPDatabasePage = () => {
                 items={currentItems}
                 viewMode={viewMode}
                 getFodmapColor={getFodmapColor}
-                onSelectFood={setSelectedFood}
               />
             )}
-            <div className="mt-8">
-              {/* Pagination */}
-              {!isLoading && filteredFoods.length > 0 && (
+
+            {/* Pagination */}
+            {!isLoading && filteredFoods.length > 0 && (
+              <div className="mt-8">
                 <Pagination
                   currentPage={currentPage}
                   totalPages={totalPages}
                   totalItems={sortedFoods.length}
                   itemsPerPage={itemsPerPage}
-                  onPageChange={handlePageChange}
+                  onPageChange={setCurrentPage}
                 />
-              )}
-            </div>
+              </div>
+            )}
           </div>
         </div>
-
       </div>
     </div>
   );

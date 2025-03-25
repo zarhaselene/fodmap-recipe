@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Globe, Check, ChevronRight } from "lucide-react";
+import { Globe, Check } from "lucide-react";
 
 export default function RecipeTabs({
   recipe,

@@ -1,8 +1,10 @@
 "use client";
 import { useState, useEffect } from "react";
-import { useResources } from "../context/ResourcesContext";
 import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
+
+// Context and component imports
+import { useResources } from "../context/ResourcesContext";
 import Hero from "../components/shared/Hero";
 import DietPhases from "../components/resources/DietPhases";
 import MealPlanning from "../components/resources/MealPlanning";
@@ -10,25 +12,25 @@ import ResourcesSection from "../components/resources/ResourcesSection";
 import FAQSection from "../components/resources/FAQ";
 
 const Resources = () => {
+  // State for managing expanded FAQ
   const [expandedFaq, setExpandedFaq] = useState(null);
   const searchParams = useSearchParams();
 
+  // Destructure context values
   const {
     activeCategory,
     setActiveCategory,
-    searchTerm,
-    setSearchTerm,
     searchedResources,
     resourceCategories,
   } = useResources();
 
-  // Check for category in URL params on initial load
+  // URL parameter handling for initial category selection
   useEffect(() => {
     const categoryParam = searchParams.get("category");
     if (categoryParam && resourceCategories.includes(categoryParam)) {
       setActiveCategory(categoryParam);
 
-      // Scroll to resources section
+      // Smooth scroll to resources section after category selection
       setTimeout(() => {
         const resourcesElement = document.getElementById("resources-section");
         if (resourcesElement) {
@@ -38,6 +40,7 @@ const Resources = () => {
     }
   }, [searchParams, resourceCategories, setActiveCategory]);
 
+  // FAQ data - could potentially be moved to a separate file
   const faqs = [
     {
       id: 1,
@@ -71,7 +74,7 @@ const Resources = () => {
     },
   ];
 
-  // Animation variants
+  // Framer Motion animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -83,28 +86,17 @@ const Resources = () => {
     },
   };
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5 },
-    },
-  };
-
   return (
     <div className="min-h-screen">
-      {/* Hero Section with animation */}
+      {/* Hero Section with entrance animation */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
       >
         <Hero
-          title={"FODMAP Diet Resources & Tools"}
-          description={
-            "Access guides, meal plans, tracking tools and more to help you navigate the low FODMAP diet with confidence"
-          }
+          title="FODMAP Diet Resources & Tools"
+          description="Access guides, meal plans, tracking tools and more to help you navigate the low FODMAP diet with confidence"
         />
       </motion.div>
 
@@ -160,12 +152,10 @@ const Resources = () => {
         transition={{ duration: 0.5 }}
       >
         <ResourcesSection
-          {...{
-            resourceCategories,
-            activeCategory,
-            setActiveCategory,
-            searchedResources,
-          }}
+          resourceCategories={resourceCategories}
+          activeCategory={activeCategory}
+          setActiveCategory={setActiveCategory}
+          searchedResources={searchedResources}
         />
       </motion.div>
 
@@ -178,7 +168,11 @@ const Resources = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <FAQSection {...{ faqs, expandedFaq, setExpandedFaq }} />
+          <FAQSection
+            faqs={faqs}
+            expandedFaq={expandedFaq}
+            setExpandedFaq={setExpandedFaq}
+          />
         </motion.div>
       </div>
     </div>

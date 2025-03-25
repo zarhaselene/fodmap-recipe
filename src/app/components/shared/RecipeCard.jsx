@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import { Star, Clock, Heart } from "lucide-react";
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -21,12 +20,6 @@ const RecipeCard = ({
   const emptyStars = 5 - filledStars;
 
   // Animation variants
-  const imageVariants = {
-    hover: {
-      scale: 1.05,
-      transition: { duration: 0.3 },
-    },
-  };
 
   const categoryVariants = {
     initial: { opacity: 0, y: -10 },
@@ -54,7 +47,7 @@ const RecipeCard = ({
 
   // Favorite toggle handler
   const handleFavoriteToggle = (e) => {
-    e.stopPropagation(); // Prevent card click event
+    e.stopPropagation();
     const recipeToSave = {
       id,
       title,
@@ -78,7 +71,6 @@ const RecipeCard = ({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
     >
-      {/* Favorite Heart Icon */}
       <motion.button
         onClick={handleFavoriteToggle}
         className="absolute top-3 right-3 z-10 bg-white/80 p-2 rounded-full shadow-md hover:bg-white transition-colors duration-300"
@@ -105,13 +97,7 @@ const RecipeCard = ({
         >
           {category}
         </motion.div>
-        <motion.img
-          src={image}
-          alt={title}
-          className="object-cover w-full h-full"
-          variants={imageVariants}
-          whileHover="hover"
-        />
+        <img src={image} alt={title} className="object-cover w-full h-full" />
       </div>
       <Link href={`/recipes/${id}`}>
         <div className="p-5">

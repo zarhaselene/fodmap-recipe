@@ -23,125 +23,21 @@ import { useRecipeContext } from "@/app/context/RecipeContext";
 import { useSavedRecipes } from "@/app/context/SavedRecipesContext";
 
 export default function RecipeDetail() {
+  // Extract recipe ID from URL parameters
   const params = useParams();
   const id = params.id;
 
+  // Use context hooks for recipes and saved recipes
   const { recipes, loading, error } = useRecipeContext();
   const { addSavedRecipe, removeSavedRecipe, isSaved } = useSavedRecipes();
 
+  // State management for recipe details
   const [recipe, setRecipe] = useState(null);
   const [relatedRecipes, setRelatedRecipes] = useState([]);
   const [servings, setServings] = useState(4);
   const [useUSMeasurements, setUseUSMeasurements] = useState(false);
 
-  // Find related recipes
-  useEffect(() => {
-    if (id && recipes.length > 0) {
-      const foundRecipe = recipes.find((r) => r.id === parseInt(id));
-      setRecipe(foundRecipe);
-
-      if (foundRecipe) {
-        // Find related recipes based on category
-        const related = recipes.filter(
-          (r) => r.category === foundRecipe.category && r.id !== foundRecipe.id
-        );
-        setRelatedRecipes(related.slice(0, 3)); // Get only 3 related recipes
-      }
-    }
-  }, [id, recipes]);
-
-  // Print recipe handler
-  const handlePrint = () => {
-    window.print();
-  };
-  // Share recipe handler
-  const handleShare = () => {
-    if (navigator.share) {
-      navigator
-        .share({
-          title: recipe.title,
-          text: `Check out this delicious ${recipe.title} recipe!`,
-          url: window.location.href,
-        })
-        .catch(console.error);
-    } else {
-      // Fallback for browsers that don't support Web Share API
-      navigator.clipboard.writeText(window.location.href).then(() => {
-        alert("Recipe link copied to clipboard!");
-      });
-    }
-  };
-  // Favorite toggle handler
-  const handleFavoriteToggle = (e) => {
-    e.stopPropagation(); // Prevent card click event
-    const recipeToSave = {
-      id,
-      title: recipe?.title,
-      image: recipe?.image,
-      rating: recipe?.rating,
-      reviews: recipe?.reviews,
-      category: recipe?.category,
-    };
-
-    if (isSaved(id)) {
-      removeSavedRecipe(id);
-    } else {
-      addSavedRecipe(recipeToSave);
-    }
-  };
-
-  // Page transition variants
-  const pageVariants = {
-    initial: { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-    exit: { opacity: 0, y: -20, transition: { duration: 0.3 } },
-  };
-
-  // Content stagger variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.4 } },
-  };
-
-  // If loading or no recipe found
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center min-h-screen">
-        <motion.div
-          className="border-t-4 border-teal-500 border-solid w-8 h-8 rounded-full"
-          animate={{ rotate: 360 }}
-          transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-        ></motion.div>
-      </div>
-    );
-  }
-
-  if (!recipe) {
-    return (
-      <motion.div
-        className="min-h-screen flex flex-col items-center justify-center"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-      >
-        <div className="text-xl mb-4">Recipe not found</div>
-        <Link href="/recipes" className="text-teal-500 hover:underline">
-          Return to recipes
-        </Link>
-      </motion.div>
-    );
-  }
-
+  // Utility functions for measurement conversions
   const fractionToDecimal = {
     "½": 0.5,
     "1/2": 0.5,
@@ -160,40 +56,123 @@ export default function RecipeDetail() {
     0.333: "⅓",
   };
 
-  const euToUSConversions = {
-    ml: (val) => `${(val / 236.588).toFixed(2)} cups`,
-    cl: (val) => `${(val / 23.6588).toFixed(2)} cups`,
-    dl: (val) => `${(val / 2.36588).toFixed(2)} cups`,
-    l: (val) => `${(val * 4.22675).toFixed(2)} cups`,
-    g: (val) =>
-      val < 5
-        ? `${(val / 5).toFixed(2)} teaspoons`
-        : `${(val / 28.3495).toFixed(2)} oz`,
-    kg: (val) => `${(val * 2.20462).toFixed(2)} lb`,
+  // Find related recipes and set current recipe
+  useEffect(() => {
+    if (id && recipes.length > 0) {
+      const foundRecipe = recipes.find((r) => r.id === parseInt(id));
+      setRecipe(foundRecipe);
+
+      if (foundRecipe) {
+        // Find related recipes in the same category
+        const related = recipes.filter(
+          (r) => r.category === foundRecipe.category && r.id !== foundRecipe.id
+        );
+        // Limit to 3 related recipes
+        setRelatedRecipes(related.slice(0, 3));
+      }
+    }
+  }, [id, recipes]);
+
+  // Print recipe handler
+  const handlePrint = () => {
+    window.print();
   };
 
-  const usToEUConversions = {
-    cup: (val) => `${(val * 236.588).toFixed(0)} ml`,
-    cups: (val) => `${(val * 236.588).toFixed(0)} ml`,
-    tablespoon: (val) => `${(val * 15).toFixed(0)} ml`,
-    tablespoons: (val) => `${(val * 15).toFixed(0)} ml`,
-    tbsp: (val) => `${(val * 15).toFixed(0)} ml`,
-    teaspoon: (val) => `${(val * 5).toFixed(0)} ml`,
-    teaspoons: (val) => `${(val * 5).toFixed(0)} ml`,
-    tsp: (val) => `${(val * 5).toFixed(0)} ml`,
-    oz: (val) => `${(val * 28.3495).toFixed(0)} g`,
-    ounce: (val) => `${(val * 28.3495).toFixed(0)} g`,
-    ounces: (val) => `${(val * 28.3495).toFixed(0)} g`,
-    lb: (val) => `${(val * 0.453592).toFixed(2)} kg`,
-    pound: (val) => `${(val * 0.453592).toFixed(2)} kg`,
-    pounds: (val) => `${(val * 0.453592).toFixed(2)} kg`,
+  // Share recipe handler
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator
+        .share({
+          title: recipe.title,
+          text: `Check out this delicious ${recipe.title} recipe!`,
+          url: window.location.href,
+        })
+        .catch(console.error);
+    } else {
+      // Fallback for browsers without Web Share API
+      navigator.clipboard.writeText(window.location.href).then(() => {
+        alert("Recipe link copied to clipboard!");
+      });
+    }
   };
 
+  // Favorite toggle handler
+  const handleFavoriteToggle = (e) => {
+    e.stopPropagation(); // Prevent unintended events
+    const recipeToSave = {
+      id,
+      title: recipe?.title,
+      image: recipe?.image,
+      rating: recipe?.rating,
+      reviews: recipe?.reviews,
+      category: recipe?.category,
+    };
+
+    if (isSaved(id)) {
+      removeSavedRecipe(id);
+    } else {
+      addSavedRecipe(recipeToSave);
+    }
+  };
+
+  // Animation variants for page and content transitions
+  const pageVariants = {
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+    exit: { opacity: 0, y: -20, transition: { duration: 0.3 } },
+  };
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.4 } },
+  };
+
+  // Loading state
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <motion.div
+          className="border-t-4 border-teal-500 border-solid w-8 h-8 rounded-full"
+          animate={{ rotate: 360 }}
+          transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+        ></motion.div>
+      </div>
+    );
+  }
+
+  // Recipe not found state
+  if (!recipe) {
+    return (
+      <motion.div
+        className="min-h-screen flex flex-col items-center justify-center"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        <div className="text-xl mb-4">Recipe not found</div>
+        <Link href="/recipes" className="text-teal-500 hover:underline">
+          Return to recipes
+        </Link>
+      </motion.div>
+    );
+  }
+
+  // Ingredient amount scaling function
   const updateIngredientAmount = (ingredient, servings, originalServings) => {
     const parts = ingredient.split(" ");
-
     let amount = parts[0].replace(",", ".");
 
+    // Convert fraction or parse number
     if (fractionToDecimal[amount]) {
       amount = fractionToDecimal[amount];
     } else if (!isNaN(amount)) {
@@ -202,8 +181,10 @@ export default function RecipeDetail() {
       return ingredient;
     }
 
+    // Scale ingredient amount
     let scaledAmount = amount * (servings / originalServings);
 
+    // Convert back to fraction or round
     if (decimalToFraction[scaledAmount]) {
       scaledAmount = decimalToFraction[scaledAmount];
     } else {
@@ -216,10 +197,12 @@ export default function RecipeDetail() {
     return `${scaledAmount} ${parts.slice(1).join(" ")}`;
   };
 
+  // Toggle measurement system
   const toggleMeasurementSystem = () => {
     setUseUSMeasurements(!useUSMeasurements);
   };
 
+  // Select ingredients based on measurement system
   const currentIngredients = useUSMeasurements
     ? recipe.ingredients.us
     : recipe.ingredients.eu;
@@ -232,7 +215,7 @@ export default function RecipeDetail() {
       exit="exit"
       variants={pageVariants}
     >
-      {/* Back button */}
+      {/* Back to Recipes Navigation */}
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
         <motion.div
           whileHover={{ x: -5 }}
@@ -240,8 +223,7 @@ export default function RecipeDetail() {
         >
           <Link
             href="/recipes"
-            className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-teal-600 hover:bg-teal-700 focus:outline-none 
-            focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+            className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
           >
             <ChevronLeft size={16} className="mr-1" />
             <span>Back to recipes</span>
@@ -249,7 +231,7 @@ export default function RecipeDetail() {
         </motion.div>
       </div>
 
-      {/* Recipe container */}
+      {/* Main Recipe Container */}
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <motion.div
           className="bg-white rounded-lg shadow-md overflow-hidden"
@@ -257,7 +239,7 @@ export default function RecipeDetail() {
           initial="hidden"
           animate="show"
         >
-          {/* Recipe image and badge */}
+          {/* Recipe Image */}
           <motion.div
             className="h-64 sm:h-80 bg-gray-200 relative"
             variants={itemVariants}
@@ -270,6 +252,7 @@ export default function RecipeDetail() {
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.8 }}
             />
+            {/* Category Badge */}
             <motion.div
               className="absolute bottom-4 left-4 bg-teal-600 text-white text-xs px-2 py-1 rounded"
               initial={{ x: 20, opacity: 0 }}
@@ -278,7 +261,7 @@ export default function RecipeDetail() {
             >
               {recipe.category}
             </motion.div>
-            {/* Favorite Heart Icon */}
+            {/* Favorite Button */}
             <motion.button
               onClick={handleFavoriteToggle}
               className="absolute top-3 right-3 z-10 bg-white/80 p-2 rounded-full shadow-md hover:bg-white transition-colors duration-300"
@@ -297,8 +280,9 @@ export default function RecipeDetail() {
             </motion.button>
           </motion.div>
 
-          {/* Recipe content */}
+          {/* Recipe Content */}
           <div className="p-6">
+            {/* Title and Action Buttons */}
             <motion.div
               className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-4"
               variants={itemVariants}
@@ -308,37 +292,22 @@ export default function RecipeDetail() {
               </h1>
               <div className="flex space-x-2">
                 {[
-                  {
-                    action: "Print",
-                    icon: Printer,
-                    handler: handlePrint,
-                  },
-                  {
-                    action: "Share",
-                    icon: Share2,
-                    handler: handleShare,
-                  },
+                  { action: "Print", icon: Printer, handler: handlePrint },
+                  { action: "Share", icon: Share2, handler: handleShare },
                 ].map(({ action, icon: Icon, handler }) => (
                   <motion.button
                     key={action}
                     onClick={handler}
                     className="flex items-center px-3 py-1 rounded bg-gray-200 hover:bg-teal-600 hover:text-white cursor-pointer"
                   >
-                    <Icon
-                      size={16}
-                      className={`mr-1 ${
-                        action === "Save" && isSaved(recipe.id)
-                          ? "fill-current"
-                          : ""
-                      }`}
-                    />
+                    <Icon size={16} className="mr-1" />
                     <span className="text-sm">{action}</span>
                   </motion.button>
                 ))}
               </div>
             </motion.div>
 
-            {/* Rating and category */}
+            {/* Rating */}
             <motion.div
               className="flex flex-wrap items-center mb-6"
               variants={itemVariants}
@@ -379,7 +348,7 @@ export default function RecipeDetail() {
               <p className="text-gray-700 mb-8">{recipe.description}</p>
             </motion.div>
 
-            {/* Recipe details */}
+            {/* Recipe Stats */}
             <motion.div
               className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8"
               variants={itemVariants}
@@ -391,7 +360,7 @@ export default function RecipeDetail() {
               />
             </motion.div>
 
-            {/* FODMAP info box */}
+            {/* FODMAP Information */}
             <motion.div
               className="bg-blue-50 border-l-4 border-teal-400 p-4 mb-8 rounded"
               initial={{ x: -20, opacity: 0 }}
@@ -433,7 +402,7 @@ export default function RecipeDetail() {
               <NutritionFacts recipe={recipe} />
             </motion.div>
 
-            {/* Tabs */}
+            {/* Recipe Tabs */}
             <motion.div
               className="border-gray-200 mb-6"
               variants={itemVariants}
@@ -448,7 +417,8 @@ export default function RecipeDetail() {
             </motion.div>
           </div>
         </motion.div>
-        {/* Related recipes section */}
+
+        {/* Related Recipes Section */}
         <motion.div
           className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-8 pt-16"
           initial={{ opacity: 0, y: 30 }}
@@ -464,7 +434,7 @@ export default function RecipeDetail() {
             >
               You Might Also Like
             </motion.h2>
-            {/* View all recipes button */}
+            {/* View All Recipes Link */}
             <motion.div
               whileHover={{ x: 5 }}
               transition={{ type: "spring", stiffness: 400 }}
@@ -478,6 +448,7 @@ export default function RecipeDetail() {
             </motion.div>
           </div>
 
+          {/* Related Recipes Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {relatedRecipes.slice(0, 3).map((recipe, index) => (
               <motion.div

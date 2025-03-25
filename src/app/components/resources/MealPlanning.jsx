@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Star,
   Download,
@@ -114,7 +113,6 @@ const MealPlanning = ({ setActiveCategory }) => {
       >
         <div className="bg-white p-6 rounded-lg shadow-md border border-gray-100">
           <div className="aspect-w-16 aspect-h-9 rounded-md bg-gray-200 mb-4">
-            {/* Placeholder for meal plan image */}
             <div className="flex items-center justify-center h-48 rounded-md bg-gradient-to-r from-teal-50 to-indigo-50">
               <FileSpreadsheet className="h-16 w-16 text-pink-400" />
             </div>

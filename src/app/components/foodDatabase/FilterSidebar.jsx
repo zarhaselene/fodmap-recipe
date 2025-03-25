@@ -186,7 +186,7 @@ export default function FilterSidebar({
             </div>
           ))}
 
-          {/* Additional categories that appear when "Show more" is clicked */}
+          {/* Additional categories */}
           {showAllCategories &&
             availableCategories.slice(6).map((category) => (
               <div key={category.value} className="flex items-center">

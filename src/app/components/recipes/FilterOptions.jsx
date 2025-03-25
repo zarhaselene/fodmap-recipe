@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Filter, ChevronDown, X, RefreshCw } from "lucide-react";
 
 const FilterOptions = ({

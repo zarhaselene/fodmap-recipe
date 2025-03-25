@@ -2,14 +2,12 @@
 
 import { createContext, useContext, useState, useEffect } from "react";
 
-// Create the context
 const SavedRecipesContext = createContext(undefined);
 
-// Provider component
 export const SavedRecipesProvider = ({ children }) => {
   const [savedRecipes, setSavedRecipes] = useState([]);
 
-  // Load saved recipes from localStorage on initial load
+  // Load saved recipes from localStorage
   useEffect(() => {
     const storedRecipes = localStorage.getItem("savedRecipes");
     if (storedRecipes) {

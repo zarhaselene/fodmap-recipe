@@ -70,9 +70,9 @@ const ResourcesSection = () => {
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 640) {
-        setItemsPerPage(4); // Mobile: 4 items per page
+        setItemsPerPage(4);
       } else {
-        setItemsPerPage(6); // Default: 6 items per page
+        setItemsPerPage(6); 
       }
     };
 

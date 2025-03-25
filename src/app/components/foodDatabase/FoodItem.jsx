@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
-export default function FoodItem({ item, viewMode, getFodmapColor, onClick }) {
+export default function FoodItem({ item, viewMode, getFodmapColor }) {
   // Use the provided getFodmapColor function or fallback to the local one
   const getBadgeClass =
     getFodmapColor ||
@@ -126,7 +126,7 @@ export default function FoodItem({ item, viewMode, getFodmapColor, onClick }) {
                       .map(([key]) => (
                         <span
                           key={key}
-                          className="inline-block bg-teal-100 text-teal-800 px-2 py-1 rounded-full mr-2 mt-1 text-xs"
+                          className="inline-block bg-teal-100 text-teal-800 px-2 py-1 rounded mr-2 mt-1 text-xs"
                         >
                           {key
                             .replace(/_/g, " ")
@@ -240,7 +240,7 @@ export default function FoodItem({ item, viewMode, getFodmapColor, onClick }) {
                   .map(([key]) => (
                     <span
                       key={key}
-                      className="inline-block bg-teal-100 text-teal-800 px-2 py-1 rounded-full mr-2 mt-1 text-xs"
+                      className="inline-block bg-teal-100 text-teal-800 px-2 py-1 rounded mr-2 mt-1 text-xs"
                     >
                       {key
                         .replace(/_/g, " ")

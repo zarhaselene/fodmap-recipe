@@ -1,5 +1,3 @@
-// components/shared/Pagination.jsx
-import React from "react";
 
 export default function Pagination({
   currentPage,
@@ -8,8 +6,8 @@ export default function Pagination({
   nextPage = null,
   previousPage = null,
   totalPages,
-  totalItems = null, // optional
-  itemsPerPage = null, // optional
+  totalItems = null, 
+  itemsPerPage = null, 
 }) {
   // Generate page numbers
   const pageNumbers = [];

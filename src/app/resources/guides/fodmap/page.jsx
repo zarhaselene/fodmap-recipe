@@ -2,12 +2,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import Hero from "@/app/components/shared/Hero";
-import ResourcesCard from "@/app/components/resources/ResourcesCard";
-import FAQSection from "@/app/components/resources/FAQ";
-import { useResources } from "@/app/context/ResourcesContext";
 import { motion } from "framer-motion";
-
 import {
   ChevronRight,
   HelpCircle,
@@ -21,6 +16,13 @@ import {
   Settings,
 } from "lucide-react";
 
+// Importing custom components
+import Hero from "@/app/components/shared/Hero";
+import ResourcesCard from "@/app/components/resources/ResourcesCard";
+import FAQSection from "@/app/components/resources/FAQ";
+import { useResources } from "@/app/context/ResourcesContext";
+
+// FODMAP Categories Card Component
 const FodmapCard = ({
   letter,
   title,
@@ -45,10 +47,11 @@ const FodmapCard = ({
       <span className={`${textColor} font-bold`}>{letter}</span>
     </div>
     <h3 className="text-xl font-bold text-teal-800 mb-2">{title}</h3>
-    <p className="text-gray-600 ">{description}</p>
+    <p className="text-gray-600">{description}</p>
   </motion.div>
 );
 
+// Static FODMAP Categories Data
 const fodmapCategories = [
   {
     letter: "O",
@@ -83,6 +86,8 @@ const fodmapCategories = [
     textColor: "text-amber-600",
   },
 ];
+
+// Phase Card Component
 const PhaseCard = ({
   phase,
   title,
@@ -92,6 +97,7 @@ const PhaseCard = ({
   color,
   icon: Icon,
 }) => {
+  // Determine border color based on phase color
   const borderColorClass =
     color === "teal"
       ? "border-l-teal-500"
@@ -112,6 +118,7 @@ const PhaseCard = ({
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.5 }}
     >
+      {/* Phase header */}
       <div className="flex flex-col md:items-center md:flex-row items-start mb-4">
         <div
           className={`w-12 h-12 rounded-full bg-${color}-100 hidden md:flex items-center justify-center mr-4`}
@@ -129,8 +136,10 @@ const PhaseCard = ({
         </div>
       </div>
 
+      {/* Phase description */}
       <p className="text-gray-600 mb-5 md:pl-16">{description}</p>
 
+      {/* Key steps */}
       <div className="bg-gray-50 p-4 rounded-lg mb-5">
         <h4 className={`text-${color}-700 font-medium mb-3`}>Key Steps:</h4>
         <ul className="space-y-3">
@@ -152,6 +161,7 @@ const PhaseCard = ({
         </ul>
       </div>
 
+      {/* Learn more link */}
       <div className="pl-16 text-right">
         <Link
           href={link}
@@ -164,6 +174,7 @@ const PhaseCard = ({
   );
 };
 
+// Phase Layout Component
 const Phase = ({ phaseNumber, children, reverse, icon }) => {
   return (
     <div className="mb-20 md:mb-28 relative">
@@ -174,6 +185,7 @@ const Phase = ({ phaseNumber, children, reverse, icon }) => {
       >
         <div className="md:w-1/2 md:px-12 mb-6 md:mb-0">{children}</div>
         <div className="md:w-1/2 flex justify-center relative">
+          {/* Rotating background circle */}
           <motion.div
             className="absolute inset-0 flex items-center justify-center"
             animate={{ rotate: 360 }}
@@ -181,6 +193,8 @@ const Phase = ({ phaseNumber, children, reverse, icon }) => {
           >
             <div className="w-3/4 h-3/4 rounded-full bg-gray-50 opacity-20"></div>
           </motion.div>
+
+          {/* Phase number */}
           <motion.div
             className={`relative hidden md:flex items-center justify-center bg-${children.props.color}-100 rounded-full h-20 w-20 md:h-24 md:w-24 z-10 shadow-lg border-4 border-white`}
             initial={{ scale: 0 }}
@@ -205,13 +219,15 @@ const Phase = ({ phaseNumber, children, reverse, icon }) => {
   );
 };
 
+// Main FODMAP Guide Page Component
 const FODMAPGuidePage = () => {
+  // Use resources context
   const { loading, searchedResources } = useResources();
   const [featuredResources, setFeaturedResources] = useState([]);
   const [expandedFaq, setExpandedFaq] = useState(null);
 
+  // Filter FODMAP guide resources
   useEffect(() => {
-    // Filter resources from context instead of fetching again
     if (searchedResources.length > 0) {
       const fodmapGuides = searchedResources.filter(
         (resource) => resource.category === "FODMAP Guides"
@@ -220,6 +236,7 @@ const FODMAPGuidePage = () => {
     }
   }, [searchedResources]);
 
+  // Static FAQ data
   const faqs = [
     {
       id: 1,
@@ -266,7 +283,7 @@ const FODMAPGuidePage = () => {
       transition: { duration: 0.5 },
     },
   };
-
+  
   return (
     <div className="min-h-screen relative">
       {/* Hero Section */}

@@ -10,23 +10,21 @@ import { useRecipeContext } from "../context/RecipeContext";
 
 const Recipes = () => {
   const { recipes, loading, error } = useRecipeContext();
-
   const [filters, setFilters] = useState({
     dietaryNeeds: [],
     mealTypes: [],
     searchTerm: "",
   });
-
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(8);
 
+  // Dynamically adjust items per page based on screen size
   useEffect(() => {
-    // Update itemsPerPage based on screen size
     const handleResize = () => {
       setItemsPerPage(window.innerWidth < 640 ? 4 : 8);
     };
 
-    handleResize(); // Set the initial itemsPerPage
+    handleResize(); // Set initial value
     window.addEventListener("resize", handleResize);
 
     return () => {
@@ -34,27 +32,24 @@ const Recipes = () => {
     };
   }, []);
 
+  // Reset to first page when filters change
   useEffect(() => {
-    // Reset to first page when filters change
     setCurrentPage(1);
   }, [filters.dietaryNeeds, filters.mealTypes, filters.searchTerm]);
 
-  // Memoized filtered recipes
+  // Memoized filtered recipes for performance
   const filteredRecipes = useMemo(() => {
     return recipes.filter((recipe) => {
-      // Search term filter
       const matchesSearch =
         filters.searchTerm === "" ||
         recipe.title.toLowerCase().includes(filters.searchTerm.toLowerCase());
 
-      // Dietary needs filter
       const matchesDietary =
         filters.dietaryNeeds.length === 0 ||
         filters.dietaryNeeds.every((need) =>
           recipe.dietaryNeeds.includes(need)
         );
 
-      // Meal types filter
       const matchesMealType =
         filters.mealTypes.length === 0 ||
         filters.mealTypes.includes(recipe.category);
@@ -63,7 +58,7 @@ const Recipes = () => {
     });
   }, [recipes, filters]);
 
-  // Pagination logic
+  // Pagination calculations
   const indexOfLastRecipe = currentPage * itemsPerPage;
   const indexOfFirstRecipe = indexOfLastRecipe - itemsPerPage;
   const currentRecipes = filteredRecipes.slice(
@@ -71,11 +66,12 @@ const Recipes = () => {
     indexOfLastRecipe
   );
 
-  // Extract unique dietary needs and meal types
+  // Derive unique dietary needs from recipes
   const availableDietaryNeeds = [
     ...new Set(recipes.flatMap((recipe) => recipe.dietaryNeeds || [])),
   ];
 
+  // Predefined meal types
   const availableMealTypes = [
     "Breakfast",
     "Lunch",
@@ -84,6 +80,7 @@ const Recipes = () => {
     "Dessert",
   ];
 
+  // Reset all filters to initial state
   const resetFilters = () => {
     setFilters({
       dietaryNeeds: [],
@@ -92,6 +89,7 @@ const Recipes = () => {
     });
   };
 
+  // Loading state
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-screen">
@@ -108,6 +106,7 @@ const Recipes = () => {
     );
   }
 
+  // Error state
   if (error) return <p className="text-center text-red-500">{error}</p>;
 
   return (
@@ -117,6 +116,7 @@ const Recipes = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
+      {/* Hero section */}
       <Hero
         title="Find FODMAP friendly recipes"
         description="Search our database of recipes that won't trigger your symptoms"
@@ -128,6 +128,7 @@ const Recipes = () => {
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.2, duration: 0.5 }}
       >
+        {/* Page header and search/filter section */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 mt-12">
           <motion.h2
             className="text-2xl md:text-3xl font-bold text-teal-700 mb-4 md:mb-0"
@@ -137,7 +138,8 @@ const Recipes = () => {
           >
             FODMAP Friendly Recipes
           </motion.h2>
-          {/* Filter Section */}
+
+          {/* Search and Filter Controls */}
           <div className="flex items-start space-x-4">
             {/* Search Input */}
             <div className="mb-4">
@@ -150,7 +152,7 @@ const Recipes = () => {
                   transition={{ duration: 0.2 }}
                   type="text"
                   className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-500 focus:outline-none focus:ring-teal-500 focus:border-teal-500"
-                  placeholder="Search resources..."
+                  placeholder="Search recipes..."
                   value={filters.searchTerm}
                   onChange={(e) =>
                     setFilters((prev) => ({
@@ -161,13 +163,15 @@ const Recipes = () => {
                 />
               </div>
             </div>
+
+            {/* Filters Dropdown */}
             <div className="relative group">
-              <button className="flex items-center bg-gray-100 hover:bg-gray-200 px-3 py-2 rounded-md transition">
+              <button className="flex items-center bg-gray-100 hover:bg-gray-200 px-3 py-2 rounded-md transition ">
                 <Filter className="mr-2 h-5 w-5" />
                 Filters
               </button>
 
-              <div className="absolute right-0 mt-2 w-64 bg-white border rounded-lg shadow-lg p-4 hidden group-hover:block z-10">
+              <div className="absolute right-0 mt-2 w-64 bg-white border rounded-lg shadow-lg p-4 hidden group-hover:block z-20">
                 {/* Meal Types Filter */}
                 <div className="mb-4">
                   <label className="block text-sm font-medium mb-2">
@@ -226,7 +230,7 @@ const Recipes = () => {
                   </div>
                 </div>
 
-                {/* Reset Filters */}
+                {/* Reset Filters Button */}
                 <button
                   onClick={resetFilters}
                   className="mt-4 w-full bg-gray-100 hover:bg-gray-200 px-3 py-2 rounded-md transition flex items-center justify-center"
@@ -238,7 +242,9 @@ const Recipes = () => {
           </div>
         </div>
 
+        {/* Recipes Display */}
         {filteredRecipes.length === 0 ? (
+          // No recipes found state
           <div className="text-center py-8 bg-gray-50 rounded-lg">
             <Search className="mx-auto mb-4 h-12 w-12 text-gray-400" />
             <p className="text-gray-600 text-lg mb-4">No recipes found</p>
@@ -254,6 +260,7 @@ const Recipes = () => {
             </button>
           </div>
         ) : (
+          // Recipes grid and pagination
           <>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
               {currentRecipes.map((recipe) => (
@@ -261,6 +268,7 @@ const Recipes = () => {
               ))}
             </div>
 
+            {/* Show pagination only if there are more recipes than items per page */}
             {filteredRecipes.length > itemsPerPage && (
               <Pagination
                 currentPage={currentPage}
