@@ -1,5 +1,5 @@
 "use client";
-import { Menu } from "lucide-react";
+import { Menu, Heart } from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -16,9 +16,12 @@ const mobileNavLinkClasses =
 const mobileActiveLinkClasses =
   "border-teal-500 text-teal-700 bg-teal-50 block pl-3 pr-4 py-2 border-l-4 text-base font-medium";
 
-const NavLink = ({ href, children, isMobile }) => {
+const NavLink = ({ href, children, isMobile, icon: Icon }) => {
   const pathname = usePathname();
-  const isActive = pathname === href;
+  const isActive =
+    pathname === href ||
+    (href === "/recipes/favorites" &&
+      pathname.startsWith("/recipes/favorites"));
 
   return (
     <Link
@@ -33,6 +36,15 @@ const NavLink = ({ href, children, isMobile }) => {
           : navLinkClasses
       }
     >
+      {Icon && (
+        <Icon
+          className={`mr-2 h-4 w-4 ${
+            isActive && href === "/recipes/favorites"
+              ? "fill-current text-teal-700"
+              : ""
+          }`}
+        />
+      )}
       {children}
     </Link>
   );
@@ -40,10 +52,13 @@ const NavLink = ({ href, children, isMobile }) => {
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
+
+  const isFavoritesActive = pathname.startsWith("/recipes/favorites");
 
   return (
     <nav className="bg-white shadow-sm">
@@ -58,10 +73,20 @@ const Navbar = () => {
               <NavLink href="/">Home</NavLink>
               <NavLink href="/food-database">Food Database</NavLink>
               <NavLink href="/recipes">Recipes</NavLink>
+
               <NavLink href="/resources">Resources</NavLink>
             </div>
           </div>
           <div className="flex items-center">
+            <Link href="/recipes/favorites" className="mr-4">
+              <Heart
+                className={`h-6 w-6 ${
+                  isFavoritesActive
+                    ? "fill-current text-teal-700"
+                    : "text-teal-700"
+                }`}
+              />
+            </Link>
             <button
               className="md:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-teal-500"
               onClick={toggleMobileMenu}
@@ -78,7 +103,7 @@ const Navbar = () => {
       {mobileMenuOpen && (
         <div className="md:hidden">
           <div className="pt-2 pb-3 space-y-1">
-            <NavLink href="/" isActive={true} isMobile={true}>
+            <NavLink href="/" isMobile={true}>
               Home
             </NavLink>
             <NavLink href="/food-database" isMobile={true}>
@@ -86,6 +111,9 @@ const Navbar = () => {
             </NavLink>
             <NavLink href="/recipes" isMobile={true}>
               Recipes
+            </NavLink>
+            <NavLink href="/recipes/favorites" icon={Heart} isMobile={true}>
+              Favorites
             </NavLink>
             <NavLink href="/resources" isMobile={true}>
               Resources
