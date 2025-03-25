@@ -20,12 +20,14 @@ import RecipeTabs from "@/app/components/recipes/RecipeTabs";
 import RecipeCard from "@/app/components/shared/RecipeCard";
 
 import { useRecipeContext } from "@/app/context/RecipeContext";
+import { useSavedRecipes } from "@/app/context/SavedRecipesContext";
 
 export default function RecipeDetail() {
   const params = useParams();
   const id = params.id;
 
   const { recipes, loading, error } = useRecipeContext();
+  const { addSavedRecipe, removeSavedRecipe, isSaved } = useSavedRecipes();
 
   const [recipe, setRecipe] = useState(null);
   const [relatedRecipes, setRelatedRecipes] = useState([]);
@@ -47,6 +49,46 @@ export default function RecipeDetail() {
       }
     }
   }, [id, recipes]);
+
+  // Print recipe handler
+  const handlePrint = () => {
+    window.print();
+  };
+  // Share recipe handler
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator
+        .share({
+          title: recipe.title,
+          text: `Check out this delicious ${recipe.title} recipe!`,
+          url: window.location.href,
+        })
+        .catch(console.error);
+    } else {
+      // Fallback for browsers that don't support Web Share API
+      navigator.clipboard.writeText(window.location.href).then(() => {
+        alert("Recipe link copied to clipboard!");
+      });
+    }
+  };
+  // Favorite toggle handler
+  const handleFavoriteToggle = (e) => {
+    e.stopPropagation(); // Prevent card click event
+    const recipeToSave = {
+      id,
+      title: recipe?.title,
+      image: recipe?.image,
+      rating: recipe?.rating,
+      reviews: recipe?.reviews,
+      category: recipe?.category,
+    };
+
+    if (isSaved(id)) {
+      removeSavedRecipe(id);
+    } else {
+      addSavedRecipe(recipeToSave);
+    }
+  };
 
   // Page transition variants
   const pageVariants = {
@@ -229,13 +271,30 @@ export default function RecipeDetail() {
               transition={{ duration: 0.8 }}
             />
             <motion.div
-              className="absolute top-4 right-4 bg-teal-600 text-white text-xs px-2 py-1 rounded"
+              className="absolute bottom-4 left-4 bg-teal-600 text-white text-xs px-2 py-1 rounded"
               initial={{ x: 20, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.5 }}
             >
               {recipe.category}
             </motion.div>
+            {/* Favorite Heart Icon */}
+            <motion.button
+              onClick={handleFavoriteToggle}
+              className="absolute top-3 right-3 z-10 bg-white/80 p-2 rounded-full shadow-md hover:bg-white transition-colors duration-300"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <Heart
+                className={`h-5 w-5 transition-colors duration-300 ${
+                  isSaved(id)
+                    ? "fill-current text-red-500"
+                    : "text-gray-500 hover:text-red-500"
+                }`}
+                fill={isSaved(id) ? "currentColor" : "none"}
+                stroke={isSaved(id) ? "none" : "currentColor"}
+              />
+            </motion.button>
           </motion.div>
 
           {/* Recipe content */}
@@ -248,18 +307,34 @@ export default function RecipeDetail() {
                 {recipe.title}
               </h1>
               <div className="flex space-x-2">
-                {["Print", "Share", "Save"].map((action, index) => {
-                  const Icon = [Printer, Share2, Heart][index];
-                  return (
-                    <motion.button
-                      key={action}
-                      className="flex items-center px-3 py-1 bg-gray-200 rounded hover:bg-teal-600 hover:text-white cursor-pointer"
-                    >
-                      <Icon size={16} className="mr-1" />
-                      <span className="text-sm">{action}</span>
-                    </motion.button>
-                  );
-                })}
+                {[
+                  {
+                    action: "Print",
+                    icon: Printer,
+                    handler: handlePrint,
+                  },
+                  {
+                    action: "Share",
+                    icon: Share2,
+                    handler: handleShare,
+                  },
+                ].map(({ action, icon: Icon, handler }) => (
+                  <motion.button
+                    key={action}
+                    onClick={handler}
+                    className="flex items-center px-3 py-1 rounded bg-gray-200 hover:bg-teal-600 hover:text-white cursor-pointer"
+                  >
+                    <Icon
+                      size={16}
+                      className={`mr-1 ${
+                        action === "Save" && isSaved(recipe.id)
+                          ? "fill-current"
+                          : ""
+                      }`}
+                    />
+                    <span className="text-sm">{action}</span>
+                  </motion.button>
+                ))}
               </div>
             </motion.div>
 
@@ -412,12 +487,14 @@ export default function RecipeDetail() {
                 transition={{ delay: 0.9 + index * 0.2, duration: 0.5 }}
               >
                 <RecipeCard
+                  id={recipe.id}
                   image={recipe.image}
                   title={recipe.title}
                   rating={recipe.rating}
                   reviews={recipe.reviews}
-                  time={recipe.time}
+                  totalTime={recipe.time}
                   category={recipe.category}
+                  dietaryNeeds={recipe.dietaryNeeds}
                 />
               </motion.div>
             ))}

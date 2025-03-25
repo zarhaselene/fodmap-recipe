@@ -3,6 +3,7 @@ import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import { RecipeProvider } from "./context/RecipeContext";
 import { ResourcesProvider } from "./context/ResourcesContext";
+import { SavedRecipesProvider } from "./context/SavedRecipesContext";
 
 export const metadata = {
   title: "Low FODMAP Recipe Finder | IBS-Friendly Meals",
@@ -16,9 +17,11 @@ export default function RootLayout({ children }) {
       <body className={`antialiased`}>
         <RecipeProvider>
           <ResourcesProvider>
-            <Navbar />
-            {children}
-            <Footer />
+            <SavedRecipesProvider>
+              <Navbar />
+              {children}
+              <Footer />
+            </SavedRecipesProvider>
           </ResourcesProvider>
         </RecipeProvider>
       </body>

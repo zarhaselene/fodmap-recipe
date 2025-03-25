@@ -77,18 +77,16 @@ const FeaturedRecipes = () => {
         >
           {recipes.slice(0, 3).map((recipe, index) => (
             <motion.div key={recipe.id} variants={itemVariants}>
-              <Link href={`/recipes/${recipe.id}`}>
-                <RecipeCard
-                  level={recipe.level}
-                  image={recipe.image}
-                  title={recipe.title}
-                  rating={recipe.rating}
-                  reviews={recipe.reviews}
-                  totalTime={recipe.totalTime}
-                  category={recipe.category}
-                  dietaryNeeds={recipe.dietaryNeeds}
-                />
-              </Link>
+              <RecipeCard
+                id={recipe.id}
+                image={recipe.image}
+                title={recipe.title}
+                rating={recipe.rating}
+                reviews={recipe.reviews}
+                totalTime={recipe.time}
+                category={recipe.category}
+                dietaryNeeds={recipe.dietaryNeeds}
+              />
             </motion.div>
           ))}
         </motion.div>
