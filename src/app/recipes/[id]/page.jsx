@@ -250,7 +250,7 @@ export default function RecipeDetail() {
       </div>
 
       {/* Recipe container */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <motion.div
           className="bg-white rounded-lg shadow-md overflow-hidden"
           variants={containerVariants}
@@ -450,7 +450,7 @@ export default function RecipeDetail() {
         </motion.div>
         {/* Related recipes section */}
         <motion.div
-          className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-8 pt-16"
+          className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-8 pt-16"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7, duration: 0.6 }}
