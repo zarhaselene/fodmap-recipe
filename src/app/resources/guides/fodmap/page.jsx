@@ -273,7 +273,6 @@ const FODMAPGuidePage = () => {
       <Hero
         title="Understanding the FODMAP Diet"
         description="Your complete guide to navigating FODMAPs, managing IBS symptoms, and finding food freedom."
-        searchPlaceholder={"Search FODMAP resources..."}
       />
 
       {/* What are FODMAPs Section */}
@@ -535,15 +534,7 @@ const FODMAPGuidePage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-          >
-            <Link
-              href="/resources?category=FODMAP%20Guide"
-              className="bg-teal-600 hover:bg-teal-700 text-white px-8 py-3 rounded-lg font-medium inline-flex items-center shadow-md hover:shadow-lg transition-all duration-200"
-            >
-              Explore All FODMAP Resources
-              <ChevronRight className="ml-2 h-5 w-5" />
-            </Link>
-          </motion.div>
+          ></motion.div>
         </div>
       </section>
 

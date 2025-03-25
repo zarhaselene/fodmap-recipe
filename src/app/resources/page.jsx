@@ -105,7 +105,6 @@ const Resources = () => {
           description={
             "Access guides, meal plans, tracking tools and more to help you navigate the low FODMAP diet with confidence"
           }
-          searchPlaceholder={"Search resources..."}
         />
       </motion.div>
 

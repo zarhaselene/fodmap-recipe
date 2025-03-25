@@ -249,7 +249,6 @@ const FODMAPDatabasePage = () => {
         description={
           "Search and filter foods to find out their FODMAP content and safe serving sizes."
         }
-        searchPlaceholder={"Search for a food or ingredient..."}
       />
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">

@@ -1,20 +1,21 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useMemo } from "react";
+import { motion } from "framer-motion";
+import { Search, Filter, X } from "lucide-react";
 import Hero from "../components/shared/Hero";
-import FilterOptions from "../components/recipes/FilterOptions";
 import RecipeCard from "../components/shared/RecipeCard";
 import Pagination from "../components/shared/Pagination";
-import Link from "next/link";
 import { useRecipeContext } from "../context/RecipeContext";
 
 const Recipes = () => {
   const { recipes, loading, error } = useRecipeContext();
 
-  const [activeDietaryNeeds, setActiveDietaryNeeds] = useState([]);
-  const [activeMealTypes, setActiveMealTypes] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [filters, setFilters] = useState({
+    dietaryNeeds: [],
+    mealTypes: [],
+    searchTerm: "",
+  });
 
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(8);
@@ -33,6 +34,64 @@ const Recipes = () => {
     };
   }, []);
 
+  useEffect(() => {
+    // Reset to first page when filters change
+    setCurrentPage(1);
+  }, [filters.dietaryNeeds, filters.mealTypes, filters.searchTerm]);
+
+  // Memoized filtered recipes
+  const filteredRecipes = useMemo(() => {
+    return recipes.filter((recipe) => {
+      // Search term filter
+      const matchesSearch =
+        filters.searchTerm === "" ||
+        recipe.title.toLowerCase().includes(filters.searchTerm.toLowerCase());
+
+      // Dietary needs filter
+      const matchesDietary =
+        filters.dietaryNeeds.length === 0 ||
+        filters.dietaryNeeds.every((need) =>
+          recipe.dietaryNeeds.includes(need)
+        );
+
+      // Meal types filter
+      const matchesMealType =
+        filters.mealTypes.length === 0 ||
+        filters.mealTypes.includes(recipe.category);
+
+      return matchesSearch && matchesDietary && matchesMealType;
+    });
+  }, [recipes, filters]);
+
+  // Pagination logic
+  const indexOfLastRecipe = currentPage * itemsPerPage;
+  const indexOfFirstRecipe = indexOfLastRecipe - itemsPerPage;
+  const currentRecipes = filteredRecipes.slice(
+    indexOfFirstRecipe,
+    indexOfLastRecipe
+  );
+
+  // Extract unique dietary needs and meal types
+  const availableDietaryNeeds = [
+    ...new Set(recipes.flatMap((recipe) => recipe.dietaryNeeds || [])),
+  ];
+
+  const availableMealTypes = [
+    "Breakfast",
+    "Lunch",
+    "Dinner",
+    "Snack",
+    "Dessert",
+  ];
+
+  const resetFilters = () => {
+    setFilters({
+      dietaryNeeds: [],
+      mealTypes: [],
+      searchTerm: "",
+    });
+  };
+
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-screen">
@@ -48,73 +107,8 @@ const Recipes = () => {
       </div>
     );
   }
+
   if (error) return <p className="text-center text-red-500">{error}</p>;
-
-  const filteredRecipes = recipes.filter((recipe) => {
-    const matchesDietary =
-      activeDietaryNeeds.length === 0 ||
-      activeDietaryNeeds.every((need) => recipe.dietaryNeeds.includes(need));
-
-    const matchesMealType =
-      activeMealTypes.length === 0 || activeMealTypes.includes(recipe.category);
-
-    return matchesDietary && matchesMealType;
-  });
-
-  const searchedRecipes = filteredRecipes.filter((recipe) =>
-    recipe.title.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
-  const handleSearch = (term) => {
-    setSearchTerm(term);
-    setCurrentPage(1);
-  };
-
-  const nextPage = () => {
-    if (currentPage < Math.ceil(searchedResources.length / itemsPerPage)) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
-
-  const previousPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
-
-  // Calculate recipes to display per page
-  const indexOfLastRecipe = currentPage * itemsPerPage;
-  const indexOfFirstRecipe = indexOfLastRecipe - itemsPerPage;
-  const currentRecipes = searchedRecipes.slice(
-    indexOfFirstRecipe,
-    indexOfLastRecipe
-  );
-
-  // Animation variants - matching the FeaturedRecipes component
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { duration: 0.5 },
-    },
-  };
-
-  const pageTransition = {
-    type: "tween",
-    ease: "anticipate",
-    duration: 0.5,
-  };
 
   return (
     <motion.div
@@ -124,72 +118,164 @@ const Recipes = () => {
       transition={{ duration: 0.5 }}
     >
       <Hero
-        title="Find FODMAP friendly foods & recipes"
-        description="Search our database of foods and discover delicious recipes that won't trigger your symptoms"
-        searchPlaceholder="Search for a food or ingredient..."
-        onSearch={handleSearch}
+        title="Find FODMAP friendly recipes"
+        description="Search our database of recipes that won't trigger your symptoms"
       />
+
       <motion.div
         className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.2, duration: 0.5 }}
       >
-        <FilterOptions
-          activeDietaryNeeds={activeDietaryNeeds}
-          setActiveDietaryNeeds={setActiveDietaryNeeds}
-          activeMealTypes={activeMealTypes}
-          setActiveMealTypes={setActiveMealTypes}
-        />
-
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentPage}
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
-            transition={pageTransition}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 mt-12">
+          <motion.h2
+            className="text-2xl md:text-3xl font-bold text-teal-700 mb-4 md:mb-0"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <motion.div
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12"
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-            >
-              {currentRecipes.length > 0 ? (
-                currentRecipes.map((recipe) => (
-                  <motion.div key={recipe.id} variants={itemVariants}>
-                    <Link href={`/recipes/${recipe.id}`}>
-                      <RecipeCard {...recipe} />
-                    </Link>
-                  </motion.div>
-                ))
-              ) : (
-                <motion.div
-                  className="col-span-3 text-center py-12"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.3 }}
-                >
-                  <p className="text-gray-500">
-                    No recipes match your current filters.
-                  </p>
-                </motion.div>
-              )}
-            </motion.div>
-          </motion.div>
-        </AnimatePresence>
+            FODMAP Friendly Recipes
+          </motion.h2>
+          {/* Filter Section */}
+          <div className="flex items-start space-x-4">
+            {/* Search Input */}
+            <div className="mb-4">
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <Search className="h-5 w-5 text-gray-400" />
+                </div>
+                <motion.input
+                  whileFocus={{ scale: 1.02 }}
+                  transition={{ duration: 0.2 }}
+                  type="text"
+                  className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-500 focus:outline-none focus:ring-teal-500 focus:border-teal-500"
+                  placeholder="Search resources..."
+                  value={filters.searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />
+              </div>
+            </div>
+            <div className="relative group">
+              <button className="flex items-center bg-gray-100 hover:bg-gray-200 px-3 py-2 rounded-md transition">
+                <Filter className="mr-2 h-5 w-5" />
+                Filters
+              </button>
 
-        {searchedRecipes.length > itemsPerPage && (
-          <Pagination
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
-            nextPage={nextPage}
-            previousPage={previousPage}
-            totalPages={Math.ceil(searchedRecipes.length / itemsPerPage)}
-            totalItems={searchedRecipes.length}
-            itemsPerPage={itemsPerPage}
-          />
+              <div className="absolute right-0 mt-2 w-64 bg-white border rounded-lg shadow-lg p-4 hidden group-hover:block z-10">
+                {/* Meal Types Filter */}
+                <div className="mb-4">
+                  <label className="block text-sm font-medium mb-2">
+                    Meal Types
+                  </label>
+                  <div className="space-y-2">
+                    {availableMealTypes.map((mealType) => (
+                      <div key={mealType} className="flex items-center">
+                        <input
+                          type="checkbox"
+                          id={mealType}
+                          checked={filters.mealTypes.includes(mealType)}
+                          onChange={() =>
+                            setFilters((prev) => ({
+                              ...prev,
+                              mealTypes: prev.mealTypes.includes(mealType)
+                                ? prev.mealTypes.filter(
+                                    (type) => type !== mealType
+                                  )
+                                : [...prev.mealTypes, mealType],
+                            }))
+                          }
+                          className="mr-2"
+                        />
+                        <label htmlFor={mealType}>{mealType}</label>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Dietary Needs Filter */}
+                <div>
+                  <label className="block text-sm font-medium mb-2">
+                    Dietary Needs
+                  </label>
+                  <div className="space-y-2">
+                    {availableDietaryNeeds.map((need) => (
+                      <div key={need} className="flex items-center">
+                        <input
+                          type="checkbox"
+                          id={need}
+                          checked={filters.dietaryNeeds.includes(need)}
+                          onChange={() =>
+                            setFilters((prev) => ({
+                              ...prev,
+                              dietaryNeeds: prev.dietaryNeeds.includes(need)
+                                ? prev.dietaryNeeds.filter((n) => n !== need)
+                                : [...prev.dietaryNeeds, need],
+                            }))
+                          }
+                          className="mr-2"
+                        />
+                        <label htmlFor={need}>{need}</label>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Reset Filters */}
+                <button
+                  onClick={resetFilters}
+                  className="mt-4 w-full bg-gray-100 hover:bg-gray-200 px-3 py-2 rounded-md transition flex items-center justify-center"
+                >
+                  <X className="mr-2 h-5 w-5" /> Reset Filters
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {filteredRecipes.length === 0 ? (
+          <div className="text-center py-8 bg-gray-50 rounded-lg">
+            <Search className="mx-auto mb-4 h-12 w-12 text-gray-400" />
+            <p className="text-gray-600 text-lg mb-4">No recipes found</p>
+            <p className="text-gray-500">
+              Try adjusting your search or filters to find what you're looking
+              for.
+            </p>
+            <button
+              onClick={resetFilters}
+              className="mt-4 bg-teal-500 text-white px-4 py-2 rounded-md hover:bg-teal-600 transition"
+            >
+              Reset Filters
+            </button>
+          </div>
+        ) : (
+          <>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+              {currentRecipes.map((recipe) => (
+                <RecipeCard key={recipe.id} {...recipe} />
+              ))}
+            </div>
+
+            {filteredRecipes.length > itemsPerPage && (
+              <Pagination
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
+                nextPage={() =>
+                  setCurrentPage((prev) =>
+                    prev < Math.ceil(filteredRecipes.length / itemsPerPage)
+                      ? prev + 1
+                      : prev
+                  )
+                }
+                previousPage={() =>
+                  setCurrentPage((prev) => (prev > 1 ? prev - 1 : prev))
+                }
+                totalPages={Math.ceil(filteredRecipes.length / itemsPerPage)}
+                totalItems={filteredRecipes.length}
+                itemsPerPage={itemsPerPage}
+              />
+            )}
+          </>
         )}
       </motion.div>
     </motion.div>
