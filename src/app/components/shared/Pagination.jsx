@@ -1,13 +1,12 @@
-
 export default function Pagination({
   currentPage,
-  setCurrentPage = null, 
-  onPageChange = null, 
+  setCurrentPage = null,
+  onPageChange = null,
   nextPage = null,
   previousPage = null,
   totalPages,
-  totalItems = null, 
-  itemsPerPage = null, 
+  totalItems = null,
+  itemsPerPage = null,
 }) {
   // Generate page numbers
   const pageNumbers = [];
@@ -49,6 +48,43 @@ export default function Pagination({
         }
       : null;
 
+  // Intelligent page number rendering
+  const renderPageNumbers = () => {
+    // If total pages are 5 or less, show all
+    if (totalPages <= 5) return pageNumbers;
+
+    const pages = [];
+
+    // Always show first and last page
+    if (currentPage <= 3) {
+      // If current page is near the start
+      pages.push(1, 2, 3, 4, "...", totalPages);
+    } else if (currentPage >= totalPages - 2) {
+      // If current page is near the end
+      pages.push(
+        1,
+        "...",
+        totalPages - 3,
+        totalPages - 2,
+        totalPages - 1,
+        totalPages
+      );
+    } else {
+      // Current page is in the middle
+      pages.push(
+        1,
+        "...",
+        currentPage - 1,
+        currentPage,
+        currentPage + 1,
+        "...",
+        totalPages
+      );
+    }
+
+    return pages;
+  };
+
   return (
     <div className="flex flex-col items-center justify-between space-y-4 md:flex-row md:space-y-0">
       {showingInfo && (
@@ -59,7 +95,7 @@ export default function Pagination({
         </div>
       )}
 
-      <div className="flex space-x-2">
+      <div className="flex flex-wrap justify-center items-center space-x-2">
         <button
           className={`px-3 py-1 rounded-md ${
             currentPage === 1
@@ -72,19 +108,31 @@ export default function Pagination({
           Previous
         </button>
 
-        {pageNumbers.map((page) => (
-          <button
-            key={page}
-            className={`px-3 py-1 rounded-md ${
-              currentPage === page
-                ? "bg-teal-600 text-white"
-                : "bg-white text-gray-700 hover:bg-gray-50"
-            }`}
-            onClick={() => handlePageChange(page)}
-          >
-            {page}
-          </button>
-        ))}
+        {renderPageNumbers().map((page, index) => {
+          if (page === "...") {
+            return (
+              <span
+                key={`ellipsis-${index}`}
+                className="px-2 py-1 text-gray-500"
+              >
+                ...
+              </span>
+            );
+          }
+          return (
+            <button
+              key={page}
+              className={`px-3 py-1 rounded-md ${
+                currentPage === page
+                  ? "bg-teal-600 text-white"
+                  : "bg-white text-gray-700 hover:bg-gray-50"
+              }`}
+              onClick={() => typeof page === "number" && handlePageChange(page)}
+            >
+              {page}
+            </button>
+          );
+        })}
 
         <button
           className={`px-3 py-1 rounded-md ${
