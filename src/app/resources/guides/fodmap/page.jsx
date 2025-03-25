@@ -120,7 +120,7 @@ const PhaseCard = ({
         </div>
         <div>
           <motion.span
-            className={`inline-block px-3 py-1 bg-${color}-100 text-${color}-800 rounded-full text-sm font-medium`}
+            className={`inline-block px-3 py-1 bg-${color}-100 text-${color}-800 rounded text-sm font-medium`}
             whileHover={{ scale: 1.05 }}
           >
             {phase}
@@ -273,6 +273,7 @@ const FODMAPGuidePage = () => {
       <Hero
         title="Understanding the FODMAP Diet"
         description="Your complete guide to navigating FODMAPs, managing IBS symptoms, and finding food freedom."
+        searchPlaceholder={"Search FODMAP resources..."}
       />
 
       {/* What are FODMAPs Section */}

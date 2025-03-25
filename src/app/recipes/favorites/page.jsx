@@ -43,7 +43,7 @@ export default function FavoritesPage() {
               <button
                 key={category}
                 onClick={() => setFilter(category)}
-                className={`px-3 py-1 rounded-full text-sm ${
+                className={`px-3 py-1 rounded text-sm ${
                   filter === category
                     ? "bg-teal-600 text-white"
                     : "bg-gray-200 text-gray-700"
