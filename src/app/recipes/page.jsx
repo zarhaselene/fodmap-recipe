@@ -152,7 +152,12 @@ const Recipes = () => {
                   className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-500 focus:outline-none focus:ring-teal-500 focus:border-teal-500"
                   placeholder="Search resources..."
                   value={filters.searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
+                  onChange={(e) =>
+                    setFilters((prev) => ({
+                      ...prev,
+                      searchTerm: e.target.value,
+                    }))
+                  }
                 />
               </div>
             </div>
