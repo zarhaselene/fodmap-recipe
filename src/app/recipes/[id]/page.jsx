@@ -233,7 +233,7 @@ export default function RecipeDetail() {
       variants={pageVariants}
     >
       {/* Back button */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
         <motion.div
           whileHover={{ x: -5 }}
           transition={{ type: "spring", stiffness: 400 }}
