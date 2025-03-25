@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { Clock, Users } from "lucide-react";
+import { Clock, Users, Minus, Plus } from "lucide-react";
 
 export default function RecipeStats({ recipe, servings, setServings }) {
   return (
@@ -23,14 +22,14 @@ export default function RecipeStats({ recipe, servings, setServings }) {
             className="text-teal-500 px-1"
             onClick={() => setServings(Math.max(1, servings - 1))}
           >
-            -
+            <Minus className="h-5 cursor-pointer" />
           </button>
           <span className="font-medium mx-1">{servings}</span>
           <button
             className="text-teal-500 px-1"
             onClick={() => setServings(servings + 1)}
           >
-            +
+            <Plus className="h-5 cursor-pointer" />
           </button>
         </div>
       </div>
