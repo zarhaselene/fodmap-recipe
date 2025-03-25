@@ -83,7 +83,7 @@ const FeaturedRecipes = () => {
                 title={recipe.title}
                 rating={recipe.rating}
                 reviews={recipe.reviews}
-                totalTime={recipe.time}
+                totalTime={recipe.totalTime}
                 category={recipe.category}
                 dietaryNeeds={recipe.dietaryNeeds}
               />
