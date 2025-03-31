@@ -214,17 +214,33 @@ export default function ResourcePage({ params }) {
               transition={{ duration: 0.5, delay: 0.4 }}
             >
               <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-                {resource.image && (
-                  <div className="relative h-48 w-full">
-                    <Image
-                      src={resource.image}
-                      alt={resource.title}
-                      width={400}
-                      height={200}
-                      className="object-cover w-full h-full"
-                    />
-                  </div>
-                )}
+                <div className="relative h-48 w-full flex items-center justify-center bg-gradient-to-r from-teal-50 to-indigo-50">
+                  <motion.div
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{
+                      delay: 0.1,
+                      type: "spring",
+                      stiffness: 100,
+                    }}
+                  >
+                    {resource.type === "PDF Guide" && (
+                      <FileText className="h-16 w-16 text-teal-400" />
+                    )}
+                    {resource.type === "Interactive Guide" && (
+                      <FileCheck2 className="h-16 w-16 text-purple-400" />
+                    )}
+                    {resource.type === "Workbook" && (
+                      <NotebookPen className="h-16 w-16 text-green-400" />
+                    )}
+                    {resource.type === "eBook" && (
+                      <BookText className="h-16 w-16 text-amber-400" />
+                    )}
+                    {resource.type === "Video Guide" && (
+                      <Video className="h-16 w-16 text-red-400" />
+                    )}
+                  </motion.div>
+                </div>
                 <div className="p-6">
                   {/* Resource Author and Type */}
                   <div className="flex justify-between items-center mb-4">
