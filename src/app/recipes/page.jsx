@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
-import { motion } from "framer-motion";
-import { Search, Filter, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Search, Filter, X, ChevronDown, ChevronUp } from "lucide-react";
 import Hero from "../components/shared/Hero";
 import RecipeCard from "../components/shared/RecipeCard";
 import Pagination from "../components/shared/Pagination";
@@ -16,12 +16,16 @@ const Recipes = () => {
     searchTerm: "",
   });
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(8);
+  const [itemsPerPage, setItemsPerPage] = useState(9);
+
+  // New state for mobile filtering
+  const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
+  const [activeFilterSection, setActiveFilterSection] = useState(null);
 
   // Dynamically adjust items per page based on screen size
   useEffect(() => {
     const handleResize = () => {
-      setItemsPerPage(window.innerWidth < 640 ? 4 : 8);
+      setItemsPerPage(window.innerWidth < 640 ? 4 : 9);
     };
 
     handleResize(); // Set initial value
@@ -87,6 +91,12 @@ const Recipes = () => {
       mealTypes: [],
       searchTerm: "",
     });
+    setIsMobileFilterOpen(false);
+  };
+
+  // Mobile filter toggle for sections
+  const toggleFilterSection = (section) => {
+    setActiveFilterSection(activeFilterSection === section ? null : section);
   };
 
   // Loading state
@@ -140,9 +150,9 @@ const Recipes = () => {
           </motion.h2>
 
           {/* Search and Filter Controls */}
-          <div className="flex items-start space-x-4">
+          <div className="flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-4 w-full sm:w-auto">
             {/* Search Input */}
-            <div className="mb-4">
+            <div className="w-full sm:w-auto mb-4 sm:mb-0">
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                   <Search className="h-5 w-5 text-gray-400" />
@@ -164,14 +174,18 @@ const Recipes = () => {
               </div>
             </div>
 
-            {/* Filters Dropdown */}
+            {/* Desktop Filter Dropdown */}
             <div className="relative group">
-              <button className="flex items-center bg-gray-100 hover:bg-gray-200 px-3 py-2 rounded-md transition ">
+              <button
+                onClick={() => setIsMobileFilterOpen(!isMobileFilterOpen)}
+                className="flex items-center bg-gray-100 hover:bg-gray-200 px-3 py-2 rounded-md transition "
+              >
                 <Filter className="mr-2 h-5 w-5" />
                 Filters
+                <ChevronDown className="ml-2 h-4 w-4" />
               </button>
 
-              <div className="absolute right-0 mt-2 w-64 bg-white border rounded-lg shadow-lg p-4 hidden group-hover:block z-20">
+              <div className="hidden md:absolute md:right-0 md:mt-2 md:w-64 md:bg-white md:border md:rounded-lg md:shadow-lg md:p-4 md:group-hover:block md:z-20">
                 {/* Meal Types Filter */}
                 <div className="mb-4">
                   <label className="block text-sm font-medium mb-2">
@@ -241,6 +255,141 @@ const Recipes = () => {
             </div>
           </div>
         </div>
+
+        {/* Mobile Filter Overlay */}
+        <AnimatePresence>
+          {isMobileFilterOpen && (
+            <motion.div
+              className="fixed inset-0 bg-black/50 z-40 sm:hidden"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsMobileFilterOpen(false)}
+            >
+              <motion.div
+                className="absolute bottom-0 left-0 right-0 bg-white rounded-t-2xl p-6 max-h-[80vh] overflow-y-auto"
+                initial={{ y: "100%" }}
+                animate={{ y: 0 }}
+                exit={{ y: "100%" }}
+                transition={{ type: "spring", damping: 15, stiffness: 200 }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="flex justify-between items-center mb-4">
+                  <h3 className="text-xl font-bold">Filters</h3>
+                  <button onClick={() => setIsMobileFilterOpen(false)}>
+                    <X className="h-6 w-6 text-gray-600" />
+                  </button>
+                </div>
+
+                {/* Mobile Meal Types Filter */}
+                <div className="mb-4">
+                  <div
+                    className="flex justify-between items-center cursor-pointer"
+                    onClick={() => toggleFilterSection("mealTypes")}
+                  >
+                    <label className="text-sm font-medium">Meal Types</label>
+                    {activeFilterSection === "mealTypes" ? (
+                      <ChevronUp />
+                    ) : (
+                      <ChevronDown />
+                    )}
+                  </div>
+                  {activeFilterSection === "mealTypes" && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      transition={{ duration: 0.2 }}
+                      className="space-y-2 mt-2"
+                    >
+                      {availableMealTypes.map((mealType) => (
+                        <div key={mealType} className="flex items-center">
+                          <input
+                            type="checkbox"
+                            id={`mobile-${mealType}`}
+                            checked={filters.mealTypes.includes(mealType)}
+                            onChange={() =>
+                              setFilters((prev) => ({
+                                ...prev,
+                                mealTypes: prev.mealTypes.includes(mealType)
+                                  ? prev.mealTypes.filter(
+                                      (type) => type !== mealType
+                                    )
+                                  : [...prev.mealTypes, mealType],
+                              }))
+                            }
+                            className="mr-2"
+                          />
+                          <label htmlFor={`mobile-${mealType}`}>
+                            {mealType}
+                          </label>
+                        </div>
+                      ))}
+                    </motion.div>
+                  )}
+                </div>
+
+                {/* Mobile Dietary Needs Filter */}
+                <div>
+                  <div
+                    className="flex justify-between items-center cursor-pointer"
+                    onClick={() => toggleFilterSection("dietaryNeeds")}
+                  >
+                    <label className="text-sm font-medium">Dietary Needs</label>
+                    {activeFilterSection === "dietaryNeeds" ? (
+                      <ChevronUp />
+                    ) : (
+                      <ChevronDown />
+                    )}
+                  </div>
+                  {activeFilterSection === "dietaryNeeds" && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      transition={{ duration: 0.2 }}
+                      className="space-y-2 mt-2"
+                    >
+                      {availableDietaryNeeds.map((need) => (
+                        <div key={need} className="flex items-center">
+                          <input
+                            type="checkbox"
+                            id={`mobile-${need}`}
+                            checked={filters.dietaryNeeds.includes(need)}
+                            onChange={() =>
+                              setFilters((prev) => ({
+                                ...prev,
+                                dietaryNeeds: prev.dietaryNeeds.includes(need)
+                                  ? prev.dietaryNeeds.filter((n) => n !== need)
+                                  : [...prev.dietaryNeeds, need],
+                              }))
+                            }
+                            className="mr-2"
+                          />
+                          <label htmlFor={`mobile-${need}`}>{need}</label>
+                        </div>
+                      ))}
+                    </motion.div>
+                  )}
+                </div>
+
+                {/* Reset and Apply Filters */}
+                <div className="flex space-x-4 mt-6">
+                  <button
+                    onClick={resetFilters}
+                    className="flex-1 bg-gray-100 hover:bg-gray-200 px-3 py-2 rounded-md transition flex items-center justify-center"
+                  >
+                    <X className="mr-2 h-5 w-5" /> Reset
+                  </button>
+                  <button
+                    onClick={() => setIsMobileFilterOpen(false)}
+                    className="flex-1 bg-teal-500 text-white hover:bg-teal-600 px-3 py-2 rounded-md transition"
+                  >
+                    Apply
+                  </button>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* Recipes Display */}
         {filteredRecipes.length === 0 ? (
