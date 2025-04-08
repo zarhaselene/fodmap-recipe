@@ -48,7 +48,7 @@ const FeaturedRecipes = () => {
     <section className="py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          className="flex items-center justify-between mb-8"
+          className="flex flex-col md:flex-row items-start justify-between mb-8"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -76,7 +76,7 @@ const FeaturedRecipes = () => {
           animate="visible"
         >
           {recipes.slice(0, 3).map((recipe, index) => (
-            <motion.div key={recipe.id} variants={itemVariants}>
+            <motion.div key={recipe.id} variants={itemVariants}>  
               <RecipeCard
                 id={recipe.id}
                 image={recipe.image}
