@@ -259,7 +259,7 @@ export default function ResourcePage({ params }) {
                   {/* Download Button */}
                   {resource.downloadable && (
                     <motion.button
-                      className="w-full bg-teal-500 hover:bg-teal-600 text-white font-medium py-3 px-4 rounded-lg flex items-center justify-center"
+                      className="w-full cursor-pointer bg-teal-500 hover:bg-teal-600 text-white font-medium py-3 px-4 rounded-lg flex items-center justify-center"
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       transition={{

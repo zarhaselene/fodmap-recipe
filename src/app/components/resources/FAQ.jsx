@@ -10,7 +10,7 @@ const FAQItem = ({ faq, expandedFaq, setExpandedFaq }) => {
   return (
     <div className="mb-4">
       <button
-        className="w-full bg-white p-4 rounded-lg shadow-sm flex justify-between items-center text-left hover:bg-gray-50 focus:outline-none"
+        className="w-full bg-white p-4 rounded-lg shadow-sm flex justify-between items-center text-left hover:bg-gray-50 focus:outline-none cursor-pointer"
         onClick={() => setExpandedFaq(isOpen ? null : faq.id)}
       >
         <h3 className="font-semibold text-lg text-gray-800">{faq.question}</h3>

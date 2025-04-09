@@ -243,7 +243,7 @@ const ResourcesSection = () => {
               {resourceCategories.map((category, index) => (
                 <motion.button
                   key={category}
-                  className={`py-3 px-5 font-medium text-sm focus:outline-none ${
+                  className={`py-3 px-5 font-medium text-sm focus:outline-none cursor-pointer ${
                     activeCategory === category
                       ? "text-teal-600 border-b-2 border-teal-600"
                       : "text-gray-600 hover:text-gray-900 border-b-2 border-transparent"

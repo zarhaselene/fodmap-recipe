@@ -91,7 +91,7 @@ const MealPlanning = ({ setActiveCategory }) => {
           ))}
         </motion.ul>
         <motion.button
-          className="mt-8 bg-teal-500 hover:bg-teal-600 text-white font-medium py-2.5 px-5 rounded-md transition-colors duration-300 flex items-center"
+          className="mt-8 bg-teal-500 hover:bg-teal-600 text-white font-medium py-2.5 px-5 rounded-md transition-colors duration-300 flex items-center cursor-pointer"
           onClick={() => setActiveCategory("Meal Planning")}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
