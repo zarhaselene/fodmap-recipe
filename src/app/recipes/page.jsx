@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, Filter, X, ChevronDown, ChevronUp } from "lucide-react";
 import Hero from "../components/shared/Hero";
@@ -18,9 +18,33 @@ const Recipes = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(9);
 
-  // New state for mobile filtering
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
+  const [isDesktopFilterOpen, setIsDesktopFilterOpen] = useState(false);
   const [activeFilterSection, setActiveFilterSection] = useState(null);
+
+  // Refs for click outside detection
+  const filterButtonRef = useRef(null);
+  const filterDropdownRef = useRef(null);
+
+  // Handle clicks outside the filter dropdown to close it
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (
+        isDesktopFilterOpen &&
+        filterDropdownRef.current &&
+        filterButtonRef.current &&
+        !filterDropdownRef.current.contains(event.target) &&
+        !filterButtonRef.current.contains(event.target)
+      ) {
+        setIsDesktopFilterOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isDesktopFilterOpen]);
 
   // Dynamically adjust items per page based on screen size
   useEffect(() => {
@@ -92,11 +116,17 @@ const Recipes = () => {
       searchTerm: "",
     });
     setIsMobileFilterOpen(false);
+    setIsDesktopFilterOpen(false);
   };
 
   // Mobile filter toggle for sections
   const toggleFilterSection = (section) => {
     setActiveFilterSection(activeFilterSection === section ? null : section);
+  };
+
+  // Toggle desktop filter dropdown
+  const toggleDesktopFilter = () => {
+    setIsDesktopFilterOpen(!isDesktopFilterOpen);
   };
 
   // Loading state
@@ -174,84 +204,110 @@ const Recipes = () => {
               </div>
             </div>
 
-            {/* Desktop Filter Dropdown */}
-            <div className="relative group">
+            {/* Desktop Filter Button */}
+            <div className="relative">
               <button
-                onClick={() => setIsMobileFilterOpen(!isMobileFilterOpen)}
-                className="flex items-center bg-gray-100 hover:bg-gray-200 px-3 py-2 rounded-md transition "
+                ref={filterButtonRef}
+                onClick={() => {
+                  // Mobile view
+                  if (window.innerWidth < 768) {
+                    setIsMobileFilterOpen(true);
+                  }
+                  // Desktop view
+                  else {
+                    toggleDesktopFilter();
+                  }
+                }}
+                className={`flex items-center ${
+                  isDesktopFilterOpen ? "bg-gray-200" : "bg-gray-100"
+                } hover:bg-gray-200 px-3 py-2 rounded-md transition`}
               >
                 <Filter className="mr-2 h-5 w-5" />
                 Filters
                 <ChevronDown className="ml-2 h-4 w-4" />
               </button>
 
-              <div className="hidden md:absolute md:right-0 md:mt-2 md:w-64 md:bg-white md:border md:rounded-lg md:shadow-lg md:p-4 md:group-hover:block md:z-20">
-                {/* Meal Types Filter */}
-                <div className="mb-4">
-                  <label className="block text-sm font-medium mb-2">
-                    Meal Types
-                  </label>
-                  <div className="space-y-2">
-                    {availableMealTypes.map((mealType) => (
-                      <div key={mealType} className="flex items-center">
-                        <input
-                          type="checkbox"
-                          id={mealType}
-                          checked={filters.mealTypes.includes(mealType)}
-                          onChange={() =>
-                            setFilters((prev) => ({
-                              ...prev,
-                              mealTypes: prev.mealTypes.includes(mealType)
-                                ? prev.mealTypes.filter(
-                                    (type) => type !== mealType
-                                  )
-                                : [...prev.mealTypes, mealType],
-                            }))
-                          }
-                          className="mr-2"
-                        />
-                        <label htmlFor={mealType}>{mealType}</label>
+              {/* Desktop Filter Dropdown */}
+              <AnimatePresence>
+                {isDesktopFilterOpen && (
+                  <motion.div
+                    ref={filterDropdownRef}
+                    className="absolute right-0 mt-2 w-64 bg-white border rounded-lg shadow-lg p-4 z-20"
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    {/* Meal Types Filter */}
+                    <div className="mb-4">
+                      <label className="block text-sm font-medium mb-2">
+                        Meal Types
+                      </label>
+                      <div className="space-y-2">
+                        {availableMealTypes.map((mealType) => (
+                          <div key={mealType} className="flex items-center">
+                            <input
+                              type="checkbox"
+                              id={mealType}
+                              checked={filters.mealTypes.includes(mealType)}
+                              onChange={() =>
+                                setFilters((prev) => ({
+                                  ...prev,
+                                  mealTypes: prev.mealTypes.includes(mealType)
+                                    ? prev.mealTypes.filter(
+                                        (type) => type !== mealType
+                                      )
+                                    : [...prev.mealTypes, mealType],
+                                }))
+                              }
+                              className="mr-2"
+                            />
+                            <label htmlFor={mealType}>{mealType}</label>
+                          </div>
+                        ))}
                       </div>
-                    ))}
-                  </div>
-                </div>
+                    </div>
 
-                {/* Dietary Needs Filter */}
-                <div>
-                  <label className="block text-sm font-medium mb-2">
-                    Dietary Needs
-                  </label>
-                  <div className="space-y-2">
-                    {availableDietaryNeeds.map((need) => (
-                      <div key={need} className="flex items-center">
-                        <input
-                          type="checkbox"
-                          id={need}
-                          checked={filters.dietaryNeeds.includes(need)}
-                          onChange={() =>
-                            setFilters((prev) => ({
-                              ...prev,
-                              dietaryNeeds: prev.dietaryNeeds.includes(need)
-                                ? prev.dietaryNeeds.filter((n) => n !== need)
-                                : [...prev.dietaryNeeds, need],
-                            }))
-                          }
-                          className="mr-2"
-                        />
-                        <label htmlFor={need}>{need}</label>
+                    {/* Dietary Needs Filter */}
+                    <div>
+                      <label className="block text-sm font-medium mb-2">
+                        Dietary Needs
+                      </label>
+                      <div className="space-y-2">
+                        {availableDietaryNeeds.map((need) => (
+                          <div key={need} className="flex items-center">
+                            <input
+                              type="checkbox"
+                              id={need}
+                              checked={filters.dietaryNeeds.includes(need)}
+                              onChange={() =>
+                                setFilters((prev) => ({
+                                  ...prev,
+                                  dietaryNeeds: prev.dietaryNeeds.includes(need)
+                                    ? prev.dietaryNeeds.filter(
+                                        (n) => n !== need
+                                      )
+                                    : [...prev.dietaryNeeds, need],
+                                }))
+                              }
+                              className="mr-2"
+                            />
+                            <label htmlFor={need}>{need}</label>
+                          </div>
+                        ))}
                       </div>
-                    ))}
-                  </div>
-                </div>
+                    </div>
 
-                {/* Reset Filters Button */}
-                <button
-                  onClick={resetFilters}
-                  className="mt-4 w-full bg-gray-100 hover:bg-gray-200 px-3 py-2 rounded-md transition flex items-center justify-center"
-                >
-                  <X className="mr-2 h-5 w-5" /> Reset Filters
-                </button>
-              </div>
+                    {/* Reset Filters Button */}
+                    <button
+                      onClick={resetFilters}
+                      className="mt-4 w-full bg-gray-100 hover:bg-gray-200 px-3 py-2 rounded-md transition flex items-center justify-center"
+                    >
+                      <X className="mr-2 h-5 w-5" /> Reset Filters
+                    </button>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </div>
         </div>
@@ -260,7 +316,7 @@ const Recipes = () => {
         <AnimatePresence>
           {isMobileFilterOpen && (
             <motion.div
-              className="fixed inset-0 bg-black/50 z-40 sm:hidden"
+              className="fixed inset-0 bg-black/50 z-40 md:hidden"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
